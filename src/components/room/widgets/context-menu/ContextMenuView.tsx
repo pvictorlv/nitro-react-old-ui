@@ -58,14 +58,14 @@ export const ContextMenuView: FC<ContextMenuViewProps> = props =>
 
         let offset = -(elementRef.current.offsetHeight);
 
-        if((userType > -1) && ((userType === RoomObjectType.USER) || (userType === RoomObjectType.BOT) || (userType === RoomObjectType.RENTABLE_BOT)))
-        {
-            offset = (offset + ((bounds.height > 50) ? 15 : 0));
-        }
-        else
-        {
-            offset = (offset - 14);
-        }
+        //    if((userType > -1) && ((userType === RoomObjectType.USER) || (userType === RoomObjectType.BOT) || (userType === RoomObjectType.RENTABLE_BOT)))
+        //    {
+        //    offset = (offset + ((bounds.height > 50) ? 15 : 0));
+        // }
+        //else
+        // {
+        offset = (offset - 14);
+        // }
 
         FIXED_STACK.addValue((location.y - bounds.top));
 

@@ -2,7 +2,7 @@ import { RoomControllerLevel, RoomObjectOperationType } from '@nitrots/nitro-ren
 import { FC } from 'react';
 import { FaArrowsAlt, FaSyncAlt, FaTrashRestore } from 'react-icons/fa';
 import { AvatarInfoFurni, ProcessRoomObjectOperation } from '../../../../../api';
-import { Flex } from '../../../../../common';
+import { Flex, Button } from '../../../../../common';
 import { ContextMenuHeaderView } from '../../context-menu/ContextMenuHeaderView';
 import { ContextMenuListItemView } from '../../context-menu/ContextMenuListItemView';
 import { ContextMenuView } from '../../context-menu/ContextMenuView';
@@ -42,26 +42,21 @@ export const AvatarInfoWidgetFurniView: FC<AvatarInfoWidgetFurniViewProps> = pro
     }
 
     return (
-        <ContextMenuView objectId={ avatarInfo.id } category={ avatarInfo.category } onClose={ onClose } collapsable={ true }>
-            <ContextMenuHeaderView>
-                { avatarInfo.name }
-            </ContextMenuHeaderView>
-            <Flex className="menu-list-split-3">
-                <ContextMenuListItemView onClick={ event => processAction('move') }>
+        <Flex gap={ 1 } justifyContent="end">
+                <Button onClick={ event => processAction('move') }>
                     <FaArrowsAlt className="center fa-icon" />
-                </ContextMenuListItemView>
-                <ContextMenuListItemView onClick={ event => processAction('rotate') } disabled={ avatarInfo.isWallItem }>
+                </Button>
+                <Button onClick={ event => processAction('rotate') } disabled={ avatarInfo.isWallItem }>
                     <FaSyncAlt className="center fa-icon" />
-                </ContextMenuListItemView>
+                </Button>
                 { (avatarInfo.isOwner || avatarInfo.isAnyRoomController) &&
-                    <ContextMenuListItemView onClick={ event => processAction('pickup') }>
+                    <Button onClick={ event => processAction('pickup') }>
                         <FaTrashRestore className="center fa-icon" />
-                    </ContextMenuListItemView> }
+                    </Button> }
                 { (!avatarInfo.isOwner && !avatarInfo.isAnyRoomController) && (avatarInfo.isRoomOwner || (avatarInfo.roomControllerLevel >= RoomControllerLevel.GUILD_ADMIN)) &&
-                    <ContextMenuListItemView onClick={ event => processAction('eject') }>
+                    <Button onClick={ event => processAction('eject') }>
                         <FaTrashRestore className="center fa-icon" />
-                    </ContextMenuListItemView> }
-            </Flex>
-        </ContextMenuView>
+                    </Button> }
+        </Flex>
     );
 }

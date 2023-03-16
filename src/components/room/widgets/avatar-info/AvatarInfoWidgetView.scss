@@ -33,14 +33,18 @@
     @media (max-width: 968px) {
         bottom: $toolbar-height + 70px;
     }
+
     .nitro-infostand {
         position: relative;
         min-width: 190px;
         max-width: 190px;
         z-index: $infostand-zindex;
         pointer-events: auto;
-        background: rgba($dark, .95);
-        box-shadow: inset 0px 5px lighten(rgba($dark, .6), 2.5), inset 0 -4px darken(rgba($dark, .6), 4);
+
+        border-image-source: url("@/assets/images/infostand/border.png");
+        border-image-slice: 6 fill;
+        border-image-width: 6px;
+        border-image-repeat: repeat;
 
         .form-control-sm {
             height: 25px;
@@ -52,10 +56,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba($light-dark, 1);
+            border-image-source: url("@/assets/images/infostand/body.png");
             width: 100%;
             max-width: 68px;
             border-radius: $border-radius;
+
+            border-image-slice: 6 fill;
+            border-image-width: 6px;
+            border-image-repeat: repeat;
 
             &.pet {
                 max-width: 75px;
