@@ -25,7 +25,7 @@ export const NitroCardTabsItemView: FC<NitroCardTabsItemViewProps> = props =>
 
     return (
         <Flex overflow={ overflow } pointer={ pointer } position={ position } classNames={ getClassNames } { ...rest }>
-            <Flex shrink center>
+            <Flex shrink center className={'nav-item-children'}>
                 { children }
             </Flex>
             { (count > 0) &&

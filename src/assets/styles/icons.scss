@@ -37,20 +37,64 @@
   }
 
   &.icon-rooms {
-    background-image: url(data:image/png;base64,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);
+    background-image: url('@/assets/images/toolbar/icons/rooms-1.png');
     width: 32px;
     height: 60px;
-    background-position: -96px 0;
 
-    &[data-frame="3"] {
-      background-position: -32px 0px;
+    &[data-frame="2"] {
+      background-image: url('@/assets/images/toolbar/icons/rooms-2.png');
     }
-
+    &[data-frame="3"] {
+      background-image: url('@/assets/images/toolbar/icons/rooms-3.png');
+    }
     &[data-frame="4"] {
-      background-position: -64px 0;
-
+      background-image: url('@/assets/images/toolbar/icons/rooms-4.png');
     }
   }
+
+  &.icon-friends {
+    background-image: url('@/assets/images/toolbar/icons/friends-1.png');
+    width: 32px;
+    height: 42px;
+
+    &[data-frame="2"] {
+      background-image: url('@/assets/images/toolbar/icons/friends-2.png');
+    }
+    &[data-frame="3"] {
+      background-image: url('@/assets/images/toolbar/icons/friends-3.png');
+    }
+    &[data-frame="4"] {
+      background-image: url('@/assets/images/toolbar/icons/friends-4.png');
+    }
+    &[data-frame="5"] {
+      background-image: url('@/assets/images/toolbar/icons/friends-5.png');
+    }
+  }
+  &.icon-catalog {
+    background-image: url('@/assets/images/toolbar/icons/catalog-1.png');
+    width: 42px;
+    height: 56px;
+
+    &[data-frame="2"] {
+      background-image: url('@/assets/images/toolbar/icons/catalog-2.png');
+    }
+    &[data-frame="3"] {
+      background-image: url('@/assets/images/toolbar/icons/catalog-3.png');
+    }
+    &[data-frame="4"] {
+      background-image: url('@/assets/images/toolbar/icons/catalog-4.png');
+    }
+    &[data-frame="5"] {
+      background-image: url('@/assets/images/toolbar/icons/catalog-5.png');
+    }
+    &[data-frame="6"] {
+      background-image: url('@/assets/images/toolbar/icons/catalog-6.png');
+    }
+    &[data-frame="7"] {
+      background-image: url('@/assets/images/toolbar/icons/catalog-7.png');
+    }
+  }
+
 
   &.icon-house {
     background-image: url('@/assets/images/toolbar/icons/house.png');

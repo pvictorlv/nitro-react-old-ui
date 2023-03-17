@@ -71,6 +71,9 @@ const useNotificationState = () =>
     {
         if(bubblesDisabled) return;
 
+        if (!imageUrl)
+            imageUrl = GetConfiguration<string>('image.library.notifications.url', '').replace('%image%', 'bubble_default');
+
         const notificationItem = new NotificationBubbleItem(message, type, imageUrl, internalLink);
 
         setBubbleAlerts(prevValue => [ notificationItem, ...prevValue ]);

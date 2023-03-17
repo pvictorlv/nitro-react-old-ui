@@ -35,7 +35,7 @@ export const ToolbarMeView: FC<PropsWithChildren<ToolbarMeViewProps>> = props =>
     }, [ setMeExpanded ]);
 
     return (
-        <Flex innerRef={ elementRef } alignItems="center" className="nitro-toolbar-me p-2" gap={ 2 }>
+        <Flex innerRef={ elementRef } alignItems="center" className="nitro-toolbar-me p-2 d-grid" gap={ 2 }>
             { (GetConfiguration('guides.enabled') && useGuideTool) &&
                 <Base pointer className="navigation-item icon icon-me-helper-tool" onClick={ event => DispatchUiEvent(new GuideToolEvent(GuideToolEvent.TOGGLE_GUIDE_TOOL)) } /> }
             <Base pointer className="navigation-item icon icon-me-achievements" onClick={ event => CreateLinkEvent('achievements/toggle') }>

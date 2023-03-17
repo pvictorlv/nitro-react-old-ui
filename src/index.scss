@@ -48,6 +48,11 @@ body {
   }
 }
 
+.d-grid {
+  display: grid !important;
+  grid-template-columns: auto auto auto;
+}
+
 .btn {
   z-index: 100;
 }
