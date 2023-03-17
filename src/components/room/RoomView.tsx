@@ -39,7 +39,6 @@ export const RoomView: FC<{}> = props => {
                     <RoomWidgetsView/>
                     {roomSession.isSpectator && <RoomSpectatorView/>}
 
-                    <MeetingView/>
                 </>}
         </Base>
     );

@@ -332,7 +332,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                 <Column overflow="visible" className="container-fluid content-area" gap={ 1 }>
                     <Column gap={ 1 }>
                         <Flex alignItems="center" justifyContent="between" gap={ 1 }>
-                            <Text variant="white" small wrap>{ avatarInfo.name }</Text>
+                            <Text variant="white" wrap>{ avatarInfo.name }</Text>
                             <FaTimes className="cursor-pointer fa-icon" onClick={ onClose } />
                         </Flex>
                         <hr className="m-0" />
@@ -354,40 +354,26 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                     </Column>
                     <Column gap={ 1 }>
                         <Text fullWidth wrap textBreak variant="white" small>{ avatarInfo.description }</Text>
-                        <hr className="m-0" />
                     </Column>
-                    <Column gap={ 1 }>
-                        <Flex alignItems="center" gap={ 1 }>
-                            <UserProfileIconView userId={ avatarInfo.ownerId } />
-                            <Text variant="white" small wrap>
-                                { LocalizeText('furni.owner', [ 'name' ], [ avatarInfo.ownerName ]) }
-                            </Text>
-                        </Flex>
-                        { (avatarInfo.purchaseOfferId > 0) &&
-                            <Flex>
-                                <Text variant="white" small underline pointer onClick={ event => processButtonAction('buy_one') }>
-                                    { LocalizeText('infostand.button.buy') }
-                                </Text>
-                            </Flex> }
-                    </Column>
+
                     { (isJukeBox || isSongDisk) &&
                         <Column gap={ 1 }>
                             <hr className="m-0" />
                             { (songId === -1) &&
-                                <Text variant="white" small wrap>
+                                <Text variant="white" wrap>
                                     { LocalizeText('infostand.jukebox.text.not.playing') }
                                 </Text> }
                             { !!songName.length &&
                                 <Flex alignItems="center" gap={ 1 }>
                                     <Base className="icon disk-icon" />
-                                    <Text variant="white" small wrap>
+                                    <Text variant="white" wrap>
                                         { songName }
                                     </Text>
                                 </Flex> }
                             { !!songCreator.length &&
                                 <Flex alignItems="center" gap={ 1 }>
                                     <Base className="icon disk-creator" />
-                                    <Text variant="white" small wrap>
+                                    <Text variant="white" wrap>
                                         { songCreator }
                                     </Text>
                                 </Flex> }
@@ -396,7 +382,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                         { isCrackable &&
                             <>
                                 <hr className="m-0" />
-                                <Text variant="white" small wrap>{ LocalizeText('infostand.crackable_furni.hits_remaining', [ 'hits', 'target' ], [ crackableHits.toString(), crackableTarget.toString() ]) }</Text>
+                                <Text variant="white" wrap>{ LocalizeText('infostand.crackable_furni.hits_remaining', [ 'hits', 'target' ], [ crackableHits.toString(), crackableTarget.toString() ]) }</Text>
                             </> }
                         { avatarInfo.groupId > 0 &&
                             <>

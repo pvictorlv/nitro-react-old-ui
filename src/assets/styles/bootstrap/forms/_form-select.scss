@@ -56,10 +56,8 @@
 }
 
 .form-select-sm {
-  padding-top: $form-select-padding-y-sm;
-  padding-bottom: $form-select-padding-y-sm;
-  padding-left: $form-select-padding-x-sm;
-  @include font-size($form-select-font-size-sm);
+  padding: 7px;
+  font-size: 9px;
 }
 
 .form-select-lg {

@@ -41,6 +41,8 @@
         z-index: $infostand-zindex;
         pointer-events: auto;
 
+        font-size: 9px;
+        font-family: 'Volter', sans-serif;
         border-image-source: url("@/assets/images/infostand/border.png");
         border-image-slice: 6 fill;
         border-image-width: 6px;

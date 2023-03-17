@@ -64,7 +64,7 @@ export const NavigatorSearchView: FC<NavigatorSearchViewProps> = props =>
     }, [ searchResult ]);
 
     return (
-        <Flex fullWidth gap={ 1 }>
+        <Flex fullWidth gap={ 1 } className={'nitro-border'}>
             <Flex shrink>
                 <select className="form-select form-select-sm" value={ searchFilterIndex } onChange={ event => setSearchFilterIndex(parseInt(event.target.value)) }>
                     { SearchFilterOptions.map((filter, index) =>

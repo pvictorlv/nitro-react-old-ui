@@ -482,8 +482,9 @@
     }
 
     &.icon-navigator-info {
-        background: url('@/assets/images/navigator/icons/info.png');
-        width: 18px;
+        background: transparent;
+        width: 100%;
+        position: absolute;
         height: 18px;
     }
 

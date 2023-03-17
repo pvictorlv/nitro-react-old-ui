@@ -2,7 +2,7 @@ import { AvatarAction, AvatarExpressionEnum, RoomControllerLevel, RoomObjectCate
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { AvatarInfoUser, CreateLinkEvent, DispatchUiEvent, GetCanStandUp, GetCanUseExpression, GetOwnPosture, GetUserProfile, HasHabboClub, HasHabboVip, IsRidingHorse, LocalizeText, PostureTypeEnum, SendMessageComposer } from '../../../../../api';
-import { Flex, LayoutCurrencyIcon } from '../../../../../common';
+import { ColorVariantType, Flex, LayoutCurrencyIcon } from '../../../../../common';
 import { HelpNameChangeEvent } from '../../../../../events';
 import { useRoom } from '../../../../../hooks';
 import { ContextMenuHeaderView } from '../../context-menu/ContextMenuHeaderView';
@@ -125,163 +125,157 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
                             { LocalizeText('widget.avatar.change_name') }
                         </Button> }
                     { isShowDecorate() &&
-                        <Button onClick={ event => processAction('decorate') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('decorate') }>
                             { LocalizeText('widget.avatar.decorate') }
                         </Button> }
-                    <Button onClick={ event => processAction('change_looks') }>
+                    <Button variant={ 'dark' } onClick={ event => processAction('change_looks') }>
                         { LocalizeText('widget.memenu.myclothes') }
                     </Button>
                     { (HasHabboClub() && !isRidingHorse) &&
-                        <Button onClick={ event => processAction('dance_menu') }>
-                            <FaChevronRight className="right fa-icon" />
+                        <Button variant={ 'dark' } onClick={ event => processAction('dance_menu') }>
                             { LocalizeText('widget.memenu.dance') }
                         </Button> }
                     { (!isDancing && !HasHabboClub() && !isRidingHorse) &&
-                        <Button onClick={ event => processAction('dance') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('dance') }>
                             { LocalizeText('widget.memenu.dance') }
                         </Button> }
                     { (isDancing && !HasHabboClub() && !isRidingHorse) &&
-                        <Button onClick={ event => processAction('dance_stop') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('dance_stop') }>
                             { LocalizeText('widget.memenu.dance.stop') }
                         </Button> }
-                    <Button onClick={ event => processAction('expressions') }>
-                        <FaChevronRight className="right fa-icon" />
+                    <Button variant={ 'dark' } onClick={ event => processAction('expressions') }>
                         { LocalizeText('infostand.link.expressions') }
                     </Button>
-                    <Button onClick={ event => processAction('signs') }>
-                        <FaChevronRight className="right fa-icon" />
+                    <Button variant={ 'dark' } onClick={ event => processAction('signs') }>
                         { LocalizeText('infostand.show.signs') }
                     </Button>
                     { (avatarInfo.carryItem > 0) &&
-                        <Button onClick={ event => processAction('drop_carry_item') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('drop_carry_item') }>
                             { LocalizeText('avatar.widget.drop_hand_item') }
                         </Button> }
                 </> }
             { (mode === MODE_CLUB_DANCES) &&
                 <>
                     { isDancing &&
-                        <Button onClick={ event => processAction('dance_stop') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('dance_stop') }>
                             { LocalizeText('widget.memenu.dance.stop') }
                         </Button> }
-                    <Button onClick={ event => processAction('dance_1') }>
+                    <Button variant={ 'dark' } onClick={ event => processAction('dance_1') }>
                         { LocalizeText('widget.memenu.dance1') }
                     </Button>
-                    <Button onClick={ event => processAction('dance_2') }>
+                    <Button variant={ 'dark' } onClick={ event => processAction('dance_2') }>
                         { LocalizeText('widget.memenu.dance2') }
                     </Button>
-                    <Button onClick={ event => processAction('dance_3') }>
+                    <Button variant={ 'dark' } onClick={ event => processAction('dance_3') }>
                         { LocalizeText('widget.memenu.dance3') }
                     </Button>
-                    <Button onClick={ event => processAction('dance_4') }>
+                    <Button variant={ 'dark' } onClick={ event => processAction('dance_4') }>
                         { LocalizeText('widget.memenu.dance4') }
                     </Button>
-                    <Button onClick={ event => processAction('back') }>
-                        <FaChevronLeft className="left fa-icon" />
+                    <Button variant={ 'dark' } onClick={ event => processAction('back') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }
             { (mode === MODE_EXPRESSIONS) &&
                 <>
                     { (GetOwnPosture() === AvatarAction.POSTURE_STAND) &&
-                        <Button onClick={ event => processAction('sit') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sit') }>
                             { LocalizeText('widget.memenu.sit') }
                         </Button> }
                     { GetCanStandUp() &&
-                        <Button onClick={ event => processAction('stand') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('stand') }>
                             { LocalizeText('widget.memenu.stand') }
                         </Button> }
                     { GetCanUseExpression() &&
-                        <Button onClick={ event => processAction('wave') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('wave') }>
                             { LocalizeText('widget.memenu.wave') }
                         </Button> }
                     { GetCanUseExpression() &&
-                        <Button disabled={ !HasHabboVip() } onClick={ event => processAction('laugh') }>
+                        <Button variant={'dark' } disabled={ !HasHabboVip() } onClick={ event => processAction('laugh') }>
                             { !HasHabboVip() && <LayoutCurrencyIcon type="hc" /> }
                             { LocalizeText('widget.memenu.laugh') }
                         </Button> }
                     { GetCanUseExpression() &&
-                        <Button disabled={ !HasHabboVip() } onClick={ event => processAction('blow') }>
+                        <Button variant={'dark' } disabled={ !HasHabboVip() } onClick={ event => processAction('blow') }>
                             { !HasHabboVip() && <LayoutCurrencyIcon type="hc" /> }
                             { LocalizeText('widget.memenu.blow') }
                         </Button> }
-                    <Button onClick={ event => processAction('idle') }>
+                    <Button variant={ 'dark' } onClick={ event => processAction('idle') }>
                         { LocalizeText('widget.memenu.idle') }
                     </Button>
-                    <Button onClick={ event => processAction('back') }>
-                        <FaChevronLeft className="left fa-icon" />
+                    <Button variant={ 'dark' } onClick={ event => processAction('back') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }
             { (mode === MODE_SIGNS) &&
                 <>
                     <Flex className="menu-list-split-3">
-                        <Button onClick={ event => processAction('sign_1') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_1') }>
                             1
                         </Button>
-                        <Button onClick={ event => processAction('sign_2') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_2') }>
                             2
                         </Button>
-                        <Button onClick={ event => processAction('sign_3') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_3') }>
                             3
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
-                        <Button onClick={ event => processAction('sign_4') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_4') }>
                             4
                         </Button>
-                        <Button onClick={ event => processAction('sign_5') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_5') }>
                             5
                         </Button>
-                        <Button onClick={ event => processAction('sign_6') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_6') }>
                             6
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
-                        <Button onClick={ event => processAction('sign_7') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_7') }>
                             7
                         </Button>
-                        <Button onClick={ event => processAction('sign_8') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_8') }>
                             8
                         </Button>
-                        <Button onClick={ event => processAction('sign_9') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_9') }>
                             9
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
-                        <Button onClick={ event => processAction('sign_10') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_10') }>
                             10
                         </Button>
-                        <Button onClick={ event => processAction('sign_11') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_11') }>
                             <i className="icon icon-sign-heart" />
                         </Button>
-                        <Button onClick={ event => processAction('sign_12') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_12') }>
                             <i className="icon icon-sign-skull" />
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
-                        <Button onClick={ event => processAction('sign_0') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_0') }>
                             0
                         </Button>
-                        <Button onClick={ event => processAction('sign_13') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_13') }>
                             <i className="icon icon-sign-exclamation" />
                         </Button>
-                        <Button onClick={ event => processAction('sign_15') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_15') }>
                             <i className="icon icon-sign-smile" />
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
-                        <Button onClick={ event => processAction('sign_14') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_14') }>
                             <i className="icon icon-sign-soccer" />
                         </Button>
-                        <Button onClick={ event => processAction('sign_17') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_17') }>
                             <i className="icon icon-sign-yellow" />
                         </Button>
-                        <Button onClick={ event => processAction('sign_16') }>
+                        <Button variant={ 'dark' } onClick={ event => processAction('sign_16') }>
                             <i className="icon icon-sign-red" />
                         </Button>
                     </Flex>
-                    <Button onClick={ event => processAction('back') }>
-                        <FaChevronLeft className="left fa-icon" />
+                    <Button variant={ 'dark' } onClick={ event => processAction('back') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }
