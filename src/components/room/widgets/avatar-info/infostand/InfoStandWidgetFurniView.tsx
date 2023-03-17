@@ -353,7 +353,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                         <hr className="m-0" />
                     </Column>
                     <Column gap={ 1 }>
-                        <Text fullWidth wrap textBreak variant="white" small>{ avatarInfo.description }</Text>
+                        <Text fullWidth wrap textBreak variant="white" >{ avatarInfo.description }</Text>
                     </Column>
 
                     { (isJukeBox || isSongDisk) &&
@@ -395,7 +395,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                         { godMode &&
                             <>
                                 <hr className="m-0" />
-                                { canSeeFurniId && <Text small wrap variant="white">ID: { avatarInfo.id }</Text> }
+                                { canSeeFurniId && <Text  wrap variant="white">ID: { avatarInfo.id }</Text> }
                                 { (furniKeys.length > 0) &&
                                     <>
                                         <hr className="m-0"/>
@@ -404,7 +404,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                                             {
                                                 return (
                                                     <Flex key={ index } alignItems="center" gap={ 1 }>
-                                                        <Text small wrap align="end" variant="white" className="col-4">{ key }</Text>
+                                                        <Text  wrap align="end" variant="white" className="col-4">{ key }</Text>
                                                         <input type="text" className="form-control form-control-sm" value={ furniValues[index] } onChange={ event => onFurniSettingChange(index, event.target.value) }/>
                                                     </Flex>);
                                             }) }
@@ -419,7 +419,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                                     {
                                         return (
                                             <Flex key={ index } alignItems="center" gap={ 1 }>
-                                                <Text small wrap align="end" variant="white" className="col-4">{ key }</Text>
+                                                <Text  wrap align="end" variant="white" className="col-4">{ key }</Text>
                                                 <input type="text" className="form-control form-control-sm" value={ customValues[index] } onChange={ event => onCustomVariableChange(index, event.target.value) }/>
                                             </Flex>);
                                     }) }
@@ -428,7 +428,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                     </Column>
                 </Column>
             </Column>
-            <Flex gap={ 1 } justifyContent="end">
+            <Flex gap={ 2 } justifyContent="end">
                 { canMove &&
                     <Button variant="dark" onClick={ event => processButtonAction('move') }>
                         { LocalizeText('infostand.button.move') }

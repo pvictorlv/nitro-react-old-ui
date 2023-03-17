@@ -1,250 +1,343 @@
 .nitro-friends-spritesheet {
-    background: url('@/assets/images/friends/friends-spritesheet.png') transparent no-repeat;
+  background: url('@/assets/images/friends/friends-spritesheet.png') transparent no-repeat;
 
-    &.icon-friendbar-visit {
-        width: 21px; height: 21px;
-        background-position: -38px -5px;
+  &.icon-friendbar-visit {
+    width: 21px;
+    height: 21px;
+    background-position: -38px -5px;
+  }
+
+  &.icon-heart {
+    width: 16px;
+    height: 14px;
+    background-position: -5px -67px;
+  }
+
+  &.icon-new-message {
+    width: 14px;
+    height: 14px;
+    background-position: -96px -53px;
+  }
+
+  &.icon-none {
+    width: 16px;
+    height: 14px;
+    background-position: -31px -67px;
+  }
+
+  &.icon-profile {
+    width: 21px;
+    height: 21px;
+    background-position: -5px -36px;
+  }
+
+  &.icon-profile-sm {
+    width: 13px;
+    height: 11px;
+    background-position: -51px -91px;
+
+    &:hover {
+      width: 13px;
+      height: 11px;
+      background-position: -74px -91px;
     }
+  }
 
-    &.icon-heart {
-        width: 16px; height: 14px;
-        background-position: -5px -67px;
-    }
+  &.icon-smile {
+    width: 16px;
+    height: 14px;
+    background-position: -57px -67px;
+  }
 
-    &.icon-new-message {
-        width: 14px; height: 14px;
-        background-position: -96px -53px;
-    }
+  &.icon-warning {
+    width: 23px;
+    height: 21px;
+    background-position: -5px -5px;
+  }
 
-    &.icon-none {
-        width: 16px; height: 14px;
-        background-position: -31px -67px;
-    }
+  &.icon-accept {
+    width: 13px;
+    height: 14px;
+    background-position: -5px -91px;
+  }
 
-    &.icon-profile {
-        width: 21px; height: 21px;
-        background-position: -5px -36px;
-    }
+  &.icon-add {
+    width: 16px;
+    height: 15px;
+    background-position: -69px -31px;
+  }
 
-    &.icon-profile-sm {
-        width: 13px; height: 11px;
-        background-position: -51px -91px;
+  &.icon-bobba {
+    width: 16px;
+    height: 14px;
+    background-position: -96px -5px;
+  }
 
-        &:hover {
-            width: 13px; height: 11px;
-            background-position: -74px -91px;
-        }
-    }
+  &.icon-chat {
+    width: 17px;
+    height: 16px;
+    background-position: -69px -5px;
+  }
 
-    &.icon-smile {
-        width: 16px; height: 14px;
-        background-position: -57px -67px;
-    }
+  &.icon-deny {
+    width: 13px;
+    height: 14px;
+    background-position: -28px -91px;
+  }
 
-    &.icon-warning {
-        width: 23px; height: 21px;
-        background-position: -5px -5px;
-    }
+  &.icon-follow {
+    width: 16px;
+    height: 14px;
+    background-position: -96px -29px;
+  }
 
-    &.icon-accept {
-        width: 13px; height: 14px;
-        background-position: -5px -91px;
-    }
-
-    &.icon-add {
-        width: 16px; height: 15px;
-        background-position: -69px -31px;
-    }
-
-    &.icon-bobba {
-        width: 16px; height: 14px;
-        background-position: -96px -5px;
-    }
-
-    &.icon-chat {
-        width: 17px; height: 16px;
-        background-position: -69px -5px;
-    }
-
-    &.icon-deny {
-        width: 13px; height: 14px;
-        background-position: -28px -91px;
-    }
-
-    &.icon-follow {
-        width: 16px; height: 14px;
-        background-position: -96px -29px;
-    }
-
-    &.icon-friendbar-chat {
-        width: 20px; height: 21px;
-        background-position: -36px -36px;
-    }
+  &.icon-friendbar-chat {
+    width: 20px;
+    height: 21px;
+    background-position: -36px -36px;
+  }
 }
 
 .messenger-notification-icon {
-    background: url('@/assets/images/friends/messenger_notification_icon.png') transparent no-repeat;
-    width: 25px; height: 25px;
+  background: url('@/assets/images/friends/messenger_notification_icon.png') transparent no-repeat;
+  width: 25px;
+  height: 25px;
 }
 
 .nitro-friends {
-    width: $friends-list-width;
-    height: $friends-list-height;
 
-    .search-input {
-        border: 0;
-        border-bottom: 1px solid rgba($black, 0.2);
+  .content-area {
+    border: none;
+    background-color: #e6e6e6 !important;
+    color: #000 !important;
+    margin: 0 -5px !important;
+    border-top: 1px solid black !important;
+    border-bottom: 1px solid black !important;
+    height: 100% !important;
+    position: relative !important;
+    padding: 0 !important;
+  }
+
+  border-image-source: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAAAXNSR0IArs4c6QAAALFJREFUSEvtlksSgCAIhvFQrexQHaVD5apD2UjikGHO+GgFy2j45MfHb6Ac/iNXSxnpB+kjQvxZq1fOmyXlHvVzmO+B5PgITQwOGwoiMAcSbAooAJ0DWDdEm+kwpNwzRNi0rkhK6k5h7YeObRKVUWUUFdBz1rUx9LoaIp8kI1qOkXaAr/TXx1OCTemOg/Cpzobjjx3A2r6RBUgI8h7J/Ahl0TcGaGtEyKsZ0blGyHBHfAGrZ3UNoBGi0QAAAABJRU5ErkJggg==) !important;
+  width: $friends-list-width;
+  height: $friends-list-height;
+
+  &:before {
+    opacity: .55;
+  }
+
+  .nitro-card-header {
+    background: transparent !important;
+
+    &:before {
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAECAYAAACk7+45AAAACXBIWXMAAAsTAAALEwEAmpwYAAAGxmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjItMDgtMDZUMjE6NTE6MzktMDQ6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjItMDgtMDhUMTQ6NTU6MDItMDQ6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIyLTA4LTA4VDE0OjU1OjAyLTA0OjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA1NmIwOWQyLTk5ZDAtNDJkNC04OTc4LWU2MGE0ZDRlNmU4ZiIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjhlNWJmNTQyLTFhNDAtODY0ZS1iNjUyLTE0OWNhOWI3NTk1MSIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjIwMjg2ZDlmLTgxNmUtNDVkOS1hNTYxLTFmOWJiYjhkNDVhZCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MjAyODZkOWYtODE2ZS00NWQ5LWE1NjEtMWY5YmJiOGQ0NWFkIiBzdEV2dDp3aGVuPSIyMDIyLTA4LTA2VDIxOjUxOjM5LTA0OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YjA3MTFiMDgtNDg4Zi00MDY4LWE1ZWEtODYyZmE2NmRlYWFlIiBzdEV2dDp3aGVuPSIyMDIyLTA4LTA2VDIxOjUxOjM5LTA0OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MDU2YjA5ZDItOTlkMC00MmQ0LTg5NzgtZTYwYTRkNGU2ZThmIiBzdEV2dDp3aGVuPSIyMDIyLTA4LTA4VDE0OjU1OjAyLTA0OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz78AK/cAAAAGklEQVQImWNgYGBoYMAGGhj////PwMDAwAAAKhgD/xuBsrwAAAAASUVORK5CYII=) !important;
+      border-radius: 3px 0 0 !important;
     }
+
+    .nitro-card-header-text {
+      background: #FFCB00 none !important;
+      color: #00000080;
+
+    }
+  }
+
+  .nitro-card-header-close {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAANCAYAAAC3mX7tAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFzmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjItMDgtMDZUMjE6NTc6MTQtMDQ6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjItMDgtMDZUMjE6NTc6MTQtMDQ6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIyLTA4LTA2VDIxOjU3OjE0LTA0OjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjMzNDIyNWRjLWU4MWItNGVkNy1iNDU5LWRkYWMzOTMwM2ZjNiIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjI5NzA2NzUwLTNlMDUtYTY0Mi1hYjQ1LWZhMDRjNDlmYzRmOSIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjU2NzY1OGZjLWE4ZTYtNGNjNi1iNTk5LWUwYTJjOWEzOGE5MSIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjU2NzY1OGZjLWE4ZTYtNGNjNi1iNTk5LWUwYTJjOWEzOGE5MSIgc3RFdnQ6d2hlbj0iMjAyMi0wOC0wNlQyMTo1NzoxNC0wNDowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKE1hY2ludG9zaCkiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjMzNDIyNWRjLWU4MWItNGVkNy1iNDU5LWRkYWMzOTMwM2ZjNiIgc3RFdnQ6d2hlbj0iMjAyMi0wOC0wNlQyMTo1NzoxNC0wNDowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKE1hY2ludG9zaCkiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+iLZGwQAAAMlJREFUOI2VlNENwyAMRI9skUyTNTJH5+gcrME0sEY/arf4OFL6pCggO5ztQ0l4cwLY8ZsGoNj6AnAsfFMB5GQi/7JSVGDr1gXfaplZLNujCLFNJPCBM3E+9G4fhC5xeJnEnYc4PKs4e7SrakykUZ5zAHhOiqi+4dE1jJWzCFMROxtEgLEjQHvCOXzrZlP4wB31IsozhfSExfl69yI8RiXGIjzG2+vde6I8U/SeKM+CRz53ZTzHfO+/oIqREEu2OUXijGLvlU6d/ALH+TJ6oRXFOwAAAABJRU5ErkJggg==);
+    width: 13px;
+    height: 13px;
+    margin-left: 2px;
+    flex-shrink: 0;
+
+    &:hover {
+      background-position-x: -13px;
+    }
+  }
+
+  .search-input {
+    border: 0;
+    border-bottom: 1px solid rgba($black, 0.2);
+  }
 }
 
 .nitro-friends-room-invite {
-    width: $friends-list-width;
+  width: $friends-list-width;
 }
 
 .nitro-friends-remove-confirmation {
-    width: $friends-list-width;
+  width: $friends-list-width;
 }
 
 .friend-bar {
 
-    .friend-bar-button {
-        z-index: 2;
+  .friend-bar-button {
+    z-index: 2;
+  }
+
+  .friend-bar-item {
+    width: 130px;
+    margin: 0 3px;
+    z-index: 0;
+    position: relative;
+    padding-left: 38px;
+    text-align: left;
+
+    &.friend-bar-item-active {
+      margin-bottom: 21px;
     }
 
-    .friend-bar-item {
-        width: 130px;
-        margin: 0 3px;
-        z-index: 0;
-        position: relative;
-        padding-left:38px;
-        text-align: left;
+    .friend-bar-item-head {
+      &.avatar {
+        top: -30px;
+        left: -30px;
+      }
 
-        &.friend-bar-item-active {
-            margin-bottom:21px;
-        }
+      &.group {
+        top: -5px;
+        left: -5px;
+      }
 
-        .friend-bar-item-head {
-            &.avatar {
-                top: -30px;
-                left: -30px;
-            }
-            &.group {
-                top: -5px;
-                left: -5px;
-            }
-
-            pointer-events: none;
-        }
-
-        &.friend-bar-search {
-            .friend-bar-item-head {
-                top: -3px;
-                left: 5px;
-                width: 31px;
-                height: 34px;
-                background-image: url('@/assets/images/toolbar/friend-search.png');
-            }
-        }
+      pointer-events: none;
     }
+
+    &.friend-bar-search {
+      .friend-bar-item-head {
+        top: -3px;
+        left: 5px;
+        width: 31px;
+        height: 34px;
+        background-image: url('@/assets/images/toolbar/friend-search.png');
+      }
+    }
+  }
 }
 
 .nitro-friends-messenger {
-    width: $messenger-width;
-    height: $messenger-height;
+  width: $messenger-width;
+  height: $messenger-height;
 
-    .layout-grid-item {
-        min-height: 50px;
+  .layout-grid-item {
+    min-height: 50px;
+  }
+
+  .friend-head {
+    width: 50px;
+    height: 45px;
+    overflow: hidden;
+
+    .avatar-image {
+      margin-top: 90px;
+    }
+  }
+
+  .open-chat-entry {
+    position: relative;
+    border: 2px solid;
+    border-color: $light;
+
+    &.active {
+      border-color: #fffde9;
+      background-color: #ececec
     }
 
     .friend-head {
-        width: 50px;
-        height: 45px;
-        overflow: hidden;
+      width: 45px;
+      height: 45px;
+      overflow: hidden;
 
-        .avatar-image {
-            margin-top: 90px;
-        }
+      .avatar-image {
+        position: absolute;
+        margin-left: -27px;
+        margin-top: -27px;
+      }
+    }
+  }
+
+  .chat-title {
+    margin-top: -21px;
+  }
+
+  .chat-messages {
+    overflow-y: auto;
+
+    a {
+      color: black !important;
     }
 
-    .open-chat-entry {
-        position: relative;
-        border: 2px solid;
-        border-color: $light;
+    .message-avatar {
+      position: relative;
+      overflow: hidden;
+      width: 50px;
+      height: 50px;
 
-        &.active {
-            border-color: #fffde9;
-            background-color: #ececec
-        }
-
-        .friend-head {
-            width: 45px;
-            height: 45px;
-            overflow: hidden;
-
-            .avatar-image {
-                position: absolute;
-                margin-left: -27px;
-                margin-top: -27px;
-            }
-        }
+      .avatar-image {
+        position: absolute;
+        margin-left: -22px;
+        margin-top: -25px;
+      }
     }
 
-    .chat-title {
-        margin-top: -21px;
+    .messages-group-left {
+      position: relative;
+      user-select: text;
+
+      &:before {
+        position: absolute;
+        content: ' ';
+        width: 0;
+        height: 0;
+        border-right: 8px solid rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        top: 10px;
+        left: -8px;
+      }
     }
 
-    .chat-messages {
-        overflow-y: auto;
+    .messages-group-right {
+      position: relative;
+      user-select: text;
 
-        a {
-            color: black !important;
-        }
-
-        .message-avatar {
-            position: relative;
-            overflow: hidden;
-            width: 50px;
-            height: 50px;
-
-            .avatar-image {
-                position: absolute;
-                margin-left: -22px;
-                margin-top: -25px;
-            }
-        }
-
-        .messages-group-left {
-            position: relative;
-            user-select: text;
-
-            &:before {
-                position: absolute;
-                content: ' ';
-                width: 0;
-                height: 0;
-                border-right: 8px solid rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
-                border-top: 8px solid transparent;
-                border-bottom: 8px solid transparent;
-                top: 10px;
-                left: -8px;
-            }
-        }
-
-        .messages-group-right {
-            position: relative;
-            user-select: text;
-
-            &:before {
-                position: absolute;
-                content: ' ';
-                width: 0;
-                height: 0;
-                border-left: 8px solid rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
-                border-top: 8px solid transparent;
-                border-bottom: 8px solid transparent;
-                top: 10px;
-                right: -8px;
-            }
-        }
+      &:before {
+        position: absolute;
+        content: ' ';
+        width: 0;
+        height: 0;
+        border-left: 8px solid rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        top: 10px;
+        right: -8px;
+      }
     }
+  }
+
 }
+
+
+.online-friends {
+  .nitro-card-accordion-set-header {
+    color: #443fbd;
+    background: linear-gradient(0deg, rgb(162, 194, 216) 0%, rgb(162, 194, 216) 50%, rgb(180, 218, 247) 50%, rgb(180, 218, 247) 100%);
+  }
+}
+
+.offline-friends {
+  .nitro-card-accordion-set-header {
+    color: #443fbd;
+    background: linear-gradient(0deg,rgb(183,183,183) 0%,rgb(183,183,183) 50%,rgb(213,213,212) 50%,rgb(213,213,212) 100%);
+  }
+}
+.request-friends {
+  .nitro-card-accordion-set-header {
+    color: white;
+    background: linear-gradient(0deg,rgb(84,85,85) 0%,rgb(84,85,85) 50%,rgb(107,107,107) 50%,rgb(107,107,107) 100%);
+  }
+}
+.search-friends {
+  .nitro-card-accordion-set-header {
+    color: white;
+    background: linear-gradient(0deg,rgb(84,85,85) 0%,rgb(84,85,85) 50%,rgb(107,107,107) 50%,rgb(107,107,107) 100%);
+  }
+}
+
+
