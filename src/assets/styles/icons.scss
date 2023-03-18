@@ -214,6 +214,12 @@
     height: 45px;
   }
 
+  &.icon-room-info {
+    background-image: url('@/assets/images/toolbar/icons/room-info.png');
+    width: 36px;
+    height: 34px;
+  }
+
   &.icon-message {
     background-image: url('@/assets/images/toolbar/icons/message.png');
     width: 36px;
@@ -369,9 +375,9 @@
   }
 
   &.icon-house-small {
-    background: url('@/assets/images/icons/house-small.png');
-    width: 19px;
-    height: 14px;
+    background: url('@/assets/images/navigator/icons/home_room.png');
+    width: 18px;
+    height: 16px;
   }
 
   &.icon-camera-small {
@@ -552,6 +558,11 @@
   &.icon-navigator-room-password {
     background: url('@/assets/images/navigator/icons/room_password.png');
     width: 13px;
+    height: 16px;
+  }
+  &.icon-navigator-room-home {
+    background: url('@/assets/images/navigator/icons/home_room.png');
+    width: 18px;
     height: 16px;
   }
 

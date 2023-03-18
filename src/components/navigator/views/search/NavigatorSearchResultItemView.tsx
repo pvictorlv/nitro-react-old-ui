@@ -15,8 +15,7 @@ export interface NavigatorSearchResultItemViewProps extends LayoutGridItemProps
 export const NavigatorSearchResultItemView: FC<NavigatorSearchResultItemViewProps> = props =>
 {
     const { roomData = null, children = null, thumbnail = false, ...rest } = props;
-    const { setDoorData = null } = useNavigator();
-
+    const { setDoorData = null,navigatorData = null } = useNavigator();
     const getUserCounterColor = () =>
     {
         const num: number = (100 * (roomData.userCount / roomData.maxUserCount));
@@ -104,16 +103,19 @@ export const NavigatorSearchResultItemView: FC<NavigatorSearchResultItemViewProp
 
     return (
         <Flex pointer overflow="hidden" alignItems="center" onClick={ visitRoom } gap={ 2 } className="navigator-item px-2 py-1 small" { ...rest }>
-            <Flex center className={ 'badge p-1 ' + getUserCounterColor() } gap={ 1 }>
-                <FaUser className="fa-icon" />
-                { roomData.userCount }
-            </Flex>
+
             <Text truncate grow>{ roomData.roomName }</Text>
+
             <Flex reverse alignItems="center" gap={ 1 }>
                 <NavigatorSearchResultItemInfoView roomData={ roomData } />
                 { roomData.habboGroupId > 0 && <i className="icon icon-navigator-room-group" /> }
-                { (roomData.doorMode !== RoomDataParser.OPEN_STATE) && 
+                { navigatorData.homeRoomId === roomData.roomId && <i className="icon icon-navigator-room-home" /> }
+                { (roomData.doorMode !== RoomDataParser.OPEN_STATE) &&
                     <i className={ ('icon icon-navigator-room-' + ((roomData.doorMode === RoomDataParser.DOORBELL_STATE) ? 'locked' : (roomData.doorMode === RoomDataParser.PASSWORD_STATE) ? 'password' : (roomData.doorMode === RoomDataParser.INVISIBLE_STATE) ? 'invisible' : '')) } /> }
+            </Flex>
+            <Flex center className={ 'badge p-1 ' + getUserCounterColor() } gap={ 1 }>
+                <FaUser className="fa-icon" />
+                { roomData.userCount }
             </Flex>
             { children }
         </Flex>

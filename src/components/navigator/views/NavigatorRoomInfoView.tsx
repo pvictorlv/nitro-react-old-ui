@@ -99,8 +99,9 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
     if(!navigatorData.enteredGuestRoom) return null;
 
     return (
-        <NitroCardView className="nitro-room-info" theme="primary-slim">
+        <Column className="nitro-room-info">
             <NitroCardHeaderView headerText={ LocalizeText('navigator.roomsettings.roominfo') } onCloseClick={ () => processAction('close') } />
+
             <NitroCardContentView className="text-black">
                 { navigatorData.enteredGuestRoom &&
                     <>
@@ -175,6 +176,6 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
                     </> }
 
             </NitroCardContentView>
-        </NitroCardView>
+        </Column>
     );
 };

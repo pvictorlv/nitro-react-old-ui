@@ -58,7 +58,22 @@
 }
 
 .nitro-room-info {
+    background: #3D3D3D;
+    color: #FFFFFF;
+    position: fixed;
+    bottom: 55px;
+    left: 90px;
     width: $room-info-width;
+
+    .btn-primary {
+        background-color: #3D3D3D;
+        border: 1px white solid;
+        border-radius: 3px;
+        color: white;
+        &:hover {
+            background-color: #2d2d2d;
+        }
+    }
 }
 
 .nitro-room-link {
