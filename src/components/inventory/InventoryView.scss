@@ -14,4 +14,35 @@
         padding: 1px 2px;
         z-index: 5;
     }
+
+    .inventory-badge-data {
+        background: #DDE3F1;
+        border-radius: $border-secondary-radius;
+    }
+
+    .inventory-ach-points {
+        font-family: VolterBold, sans-serif;
+        color: white;
+        background: #3F403E;
+        border-radius: $border-secondary-radius;
+        font-size: 9.3px;
+        padding: 4px;
+    }
+
+    .inventory-ach-main-view {
+        height: 100%;
+        }
+    .inventory-ach-item:nth-child(odd) {
+        background-color: #dee4f2;
+    }
+
+    .btn-sm {
+        max-width: 120px;
+        line-height: 1.25;
+        min-height: 0px;
+    }
+    .inventory-ach-item:nth-child(even) {
+        background-color: #fff;
+    }
+
 }

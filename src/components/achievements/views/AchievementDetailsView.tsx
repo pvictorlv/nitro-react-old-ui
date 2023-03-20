@@ -16,7 +16,7 @@ export const AchievementDetailsView: FC<AchievementDetailsViewProps> = props =>
     if(!achievement) return null;
 
     return (
-        <Flex shrink className="bg-muted rounded p-2 text-black" gap={ 2 } overflow="hidden">
+        <Flex fullWidth shrink className="bg-muted rounded p-2 text-black" gap={ 2 } overflow="hidden">
             <Column center gap={ 1 }>
                 <AchievementBadgeView className="nitro-achievements-badge-image" achievement={ achievement } scale={ 2 } />
                 <Text fontWeight="bold">

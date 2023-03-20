@@ -8,13 +8,15 @@ import { InventoryBotView } from './views/bot/InventoryBotView';
 import { InventoryFurnitureView } from './views/furniture/InventoryFurnitureView';
 import { InventoryTradeView } from './views/furniture/InventoryTradeView';
 import { InventoryPetView } from './views/pet/InventoryPetView';
+import {InventoryAchievementView} from './views/achievement/InventoryAchievementView';
 
 const TAB_FURNITURE: string = 'inventory.furni';
 const TAB_BOTS: string = 'inventory.bots';
 const TAB_PETS: string = 'inventory.furni.tab.pets';
 const TAB_BADGES: string = 'inventory.badges';
-const TABS = [ TAB_FURNITURE, TAB_BOTS, TAB_PETS, TAB_BADGES ];
-const UNSEEN_CATEGORIES = [ UnseenItemCategory.FURNI, UnseenItemCategory.BOT, UnseenItemCategory.PET, UnseenItemCategory.BADGE ];
+const TAB_ACHIEVEMENTS: string = 'inventory.achievements';
+const TABS = [ TAB_FURNITURE, TAB_BOTS, TAB_PETS, TAB_BADGES, TAB_ACHIEVEMENTS ];
+const UNSEEN_CATEGORIES = [ UnseenItemCategory.FURNI, UnseenItemCategory.BOT, UnseenItemCategory.PET, UnseenItemCategory.BADGE, UnseenItemCategory.ACHIEVEMENTS];
 
 export const InventoryView: FC<{}> = props =>
 {
@@ -141,6 +143,8 @@ export const InventoryView: FC<{}> = props =>
                             <InventoryPetView roomSession={ roomSession } roomPreviewer={ roomPreviewer } /> }
                         { (currentTab === TAB_BADGES ) && 
                             <InventoryBadgeView /> }
+                        { (currentTab === TAB_ACHIEVEMENTS ) &&
+                            <InventoryAchievementView /> }
                     </NitroCardContentView>
                 </> }
             { isTrading &&

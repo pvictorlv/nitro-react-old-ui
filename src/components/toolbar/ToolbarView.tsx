@@ -101,7 +101,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
 
     return (
         <>
-            <TransitionAnimation type={ TransitionAnimationTypes.FADE_IN } inProp={ isMeExpanded } timeout={ 0 }>
+            <TransitionAnimation type={ TransitionAnimationTypes.SLIDE_RIGHT } inProp={ isMeExpanded } timeout={ 0 }>
                 <ToolbarMeView useGuideTool={ useGuideTool } unseenAchievementCount={ getTotalUnseen }
                                setMeExpanded={ setMeExpanded }/>
             </TransitionAnimation>
