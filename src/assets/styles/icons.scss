@@ -70,6 +70,14 @@
       background-image: url('@/assets/images/toolbar/icons/friends-5.png');
     }
   }
+
+  &.icon-friends-requests {
+    background-image: url('@/assets/images/toolbar/icons/friends-request.png');
+    width: 32px;
+    height: 42px;
+
+  }
+
   &.icon-catalog {
     background-image: url('@/assets/images/toolbar/icons/catalog-1.png');
     width: 42px;

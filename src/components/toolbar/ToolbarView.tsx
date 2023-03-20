@@ -14,7 +14,7 @@ import {FC, useState} from 'react';
 import {
     CreateLinkEvent,
     GetConfiguration,
-    GetSessionDataManager,
+    GetSessionDataManager, LocalizeText,
     MessengerIconState,
     OpenMessengerChat,
     VisitDesktop
@@ -22,6 +22,7 @@ import {
 import {
     Base,
     Flex,
+    Text,
     LayoutAvatarImageView,
     LayoutItemCountView,
     TransitionAnimation,
@@ -105,30 +106,40 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                 <ToolbarMeView useGuideTool={ useGuideTool } unseenAchievementCount={ getTotalUnseen }
                                setMeExpanded={ setMeExpanded }/>
             </TransitionAnimation>
-            <Flex alignItems="start" justifyContent="between" gap={ 4 } className="nitro-toolbar py-1 px-3 flex-column">
+            <Flex alignItems="center" justifyContent="between" gap={ 4 } className="nitro-toolbar py-1 px-2 flex-column">
                 <Flex gap={ 2 } alignItems="center">
-                    <Flex alignItems="center" gap={ 2 } className={ 'flex-column' }>
+                    <Flex alignItems="center" gap={ 1 } className={ 'flex-column' }>
 
                         <ToolbarIcon icon="icon-rooms" maxFrames={ 4 }
                                      onClick={ event => CreateLinkEvent('navigator/toggle') }/>
-                        <ToolbarIcon icon="icon-friends" maxFrames={ 5 }
-                                     onClick={ event => CreateLinkEvent('friends/toggle') }>
-                            { (requests.length > 0) &&
-                                <LayoutItemCountView count={ requests.length }/> }
-                        </ToolbarIcon>
-                        { isInRoom &&
-                            <Base pointer className="navigation-item icon icon-habbo"
-                                  onClick={ event => VisitDesktop() }/> }
-                        { !isInRoom &&
-                            <Base pointer className="navigation-item icon icon-house"
-                                  onClick={ event => CreateLinkEvent('navigator/goto/home') }/> }
+                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            { LocalizeText('toolbar.icon.label.navigator') }
+                        </Text>
+                        { (requests.length > 0) ?
+                            <ToolbarIcon icon="icon-friends-requests" maxFrames={ 0 }
+                                         onClick={ event => CreateLinkEvent('friends/toggle') }/> :
+                            <ToolbarIcon icon="icon-friends" maxFrames={ 5 }
+                                         onClick={ event => CreateLinkEvent('friends/toggle') }/> }
+                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            { LocalizeText('toolbar.icon.label.friendlist') }
+                        </Text>
+
+
                         <ToolbarIcon icon={ 'icon-catalog' } maxFrames={ 7 }
                                      onClick={ event => CreateLinkEvent('catalog/toggle') }/>
+                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            { LocalizeText('toolbar.icon.label.catalogue') }
+                        </Text>
+
+
                         <Base pointer className="navigation-item icon icon-inventory"
                               onClick={ event => CreateLinkEvent('inventory/toggle') }>
                             { (getFullCount > 0) &&
                                 <LayoutItemCountView count={ getFullCount }/> }
                         </Base>
+                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            { LocalizeText('toolbar.icon.label.inventory') }
+                        </Text>
 
                         { isMod &&
                             <Base pointer className="navigation-item icon icon-modtools"
@@ -138,27 +149,46 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                             <Base pointer
                                   className={ `navigation-item icon icon-message ${ (iconState === MessengerIconState.UNREAD) && 'is-unseen' }` }
                                   onClick={ event => OpenMessengerChat() }/> }
+                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            { LocalizeText('toolbar.icon.label.messenger') }
+                        </Text>
                         { isInRoom &&
                             <Base pointer className="navigation-item icon icon-camera"
                                   onClick={ event => CreateLinkEvent('camera/toggle') }/> }
+                        { isInRoom &&
+                            <Base pointer className="navigation-item icon icon-habbo"
+                                  onClick={ event => VisitDesktop() }/> }
+                        { !isInRoom &&
+                            <Base pointer className="navigation-item icon icon-house"
+                                  onClick={ event => CreateLinkEvent('navigator/goto/home') }/> }
                     </Flex>
                 </Flex>
 
-                <Flex alignItems="center" gap={ 2 } className={ 'flex-column' }>
-                    { isInRoom &&
-                        <Base pointer className="navigation-item icon icon-room-info"
-                              onClick={ event => CreateLinkEvent('navigator/toggle-room-info') }/> }
+                <Flex gap={ 2 } alignItems="center">
+                    <Flex alignItems="center" gap={ 2 } className={ 'flex-column' }>
+                        { isInRoom &&
+                            <Base pointer className="navigation-item icon icon-room-info"
+                                  onClick={ event => CreateLinkEvent('navigator/toggle-room-info') }/> }
 
-                    <Flex center pointer
-                          className={ 'navigation-item item-avatar ' + (isMeExpanded ? 'active ' : '') }
-                          onClick={ event => setMeExpanded(!isMeExpanded) }>
-                        <LayoutAvatarImageView figure={ userFigure } direction={ 2 } position="absolute"/>
-                        { (getTotalUnseen > 0) &&
-                            <LayoutItemCountView count={ getTotalUnseen }/> }
+                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            { LocalizeText('toolbar.icon.label.roominfo') }
+                        </Text>
+
+                        <Flex center pointer
+                              className={ 'navigation-item item-avatar ' + (isMeExpanded ? 'active ' : '') }
+                              onClick={ event => setMeExpanded(!isMeExpanded) }>
+                            <LayoutAvatarImageView figure={ userFigure } direction={ 2 } position="absolute"/>
+                            { (getTotalUnseen > 0) &&
+                                <LayoutItemCountView count={ getTotalUnseen }/> }
+                        </Flex>
+
+                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            { LocalizeText('toolbar.icon.label.memenu') }
+                        </Text>
                     </Flex>
-                </Flex>
-                <Flex alignItems="center" id="toolbar-chat-input-container"/>
+                    <Flex alignItems="center" id="toolbar-chat-input-container"/>
 
+                </Flex>
             </Flex>
         </>
     );

@@ -46,6 +46,9 @@ export const ToolbarIcon: FC<PropsWithChildren<ToolbarIconProps>> = props =>
         <Base innerRef={ elementRef } pointer className={ 'navigation-item icon ' + icon } data-frame={ currFrame }
             onMouseEnter={ event =>
             {
+                if (maxFrames <= 0)
+                    return;
+
                 if (currInterval)
                     clearInterval(currInterval);
 
@@ -62,6 +65,9 @@ export const ToolbarIcon: FC<PropsWithChildren<ToolbarIconProps>> = props =>
 
             } } onMouseLeave={ event =>
             {
+                if (maxFrames <= 0)
+                    return;
+
                 clearInterval(currInterval);
 
                 currInterval = setInterval(() =>
