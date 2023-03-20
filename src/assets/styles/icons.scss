@@ -44,11 +44,24 @@
     &[data-frame="2"] {
       background-image: url('@/assets/images/toolbar/icons/rooms-2.png');
     }
+
     &[data-frame="3"] {
       background-image: url('@/assets/images/toolbar/icons/rooms-3.png');
     }
+
     &[data-frame="4"] {
       background-image: url('@/assets/images/toolbar/icons/rooms-4.png');
+    }
+  }
+
+  &.icon-hotel-view {
+    background-image: url('@/assets/images/navigator/icons/hotel_view.png');
+    width: 21px;
+    height: 22px;
+    z-index: 10;
+
+    &:hover {
+      background-image: url('@/assets/images/navigator/icons/hotel_view-hover.png');
     }
   }
 
@@ -60,12 +73,15 @@
     &[data-frame="2"] {
       background-image: url('@/assets/images/toolbar/icons/friends-2.png');
     }
+
     &[data-frame="3"] {
       background-image: url('@/assets/images/toolbar/icons/friends-3.png');
     }
+
     &[data-frame="4"] {
       background-image: url('@/assets/images/toolbar/icons/friends-4.png');
     }
+
     &[data-frame="5"] {
       background-image: url('@/assets/images/toolbar/icons/friends-5.png');
     }
@@ -86,18 +102,23 @@
     &[data-frame="2"] {
       background-image: url('@/assets/images/toolbar/icons/catalog-2.png');
     }
+
     &[data-frame="3"] {
       background-image: url('@/assets/images/toolbar/icons/catalog-3.png');
     }
+
     &[data-frame="4"] {
       background-image: url('@/assets/images/toolbar/icons/catalog-4.png');
     }
+
     &[data-frame="5"] {
       background-image: url('@/assets/images/toolbar/icons/catalog-5.png');
     }
+
     &[data-frame="6"] {
       background-image: url('@/assets/images/toolbar/icons/catalog-6.png');
     }
+
     &[data-frame="7"] {
       background-image: url('@/assets/images/toolbar/icons/catalog-7.png');
     }
@@ -568,6 +589,7 @@
     width: 13px;
     height: 16px;
   }
+
   &.icon-navigator-room-home {
     background: url('@/assets/images/navigator/icons/home_room.png');
     width: 18px;

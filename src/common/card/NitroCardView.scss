@@ -119,7 +119,7 @@ $nitro-card-tabs-height: 33px;
     }
 
     .nitro-card-tabs {
-
+      z-index: 100;
       .nav-item {
 
         &:not(:first-child) {

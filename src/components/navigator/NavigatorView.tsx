@@ -1,8 +1,15 @@
 import { ConvertGlobalRoomIdMessageComposer, HabboWebTools, ILinkEventTracker, LegacyExternalInterface, NavigatorInitComposer, NavigatorSearchComposer, RoomSessionEvent } from '@nitrots/nitro-renderer';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import { AddEventLinkTracker, LocalizeText, RemoveLinkEventTracker, SendMessageComposer, TryVisitRoom } from '../../api';
-import { Base, Column, NitroCardContentView, NitroCardHeaderView, NitroCardTabsItemView, NitroCardTabsView, NitroCardView } from '../../common';
+import {
+    AddEventLinkTracker,
+    LocalizeText,
+    RemoveLinkEventTracker,
+    SendMessageComposer,
+    TryVisitRoom,
+    VisitDesktop
+} from '../../api';
+import { Base, Column, NitroCardContentView, NitroCardHeaderView, NitroCardTabsItemView, NitroCardTabsView, NitroCardView, Flex } from '../../common';
 import { useNavigator, useRoomSessionManagerEvent } from '../../hooks';
 import { NavigatorDoorStateView } from './views/NavigatorDoorStateView';
 import { NavigatorRoomCreatorView } from './views/NavigatorRoomCreatorView';
@@ -210,6 +217,10 @@ export const NavigatorView: FC<{}> = props =>
                         <NitroCardTabsItemView isActive={ isCreatorOpen } onClick={ event => setCreatorOpen(true) }>
                             <FaPlus className="fa-icon" />
                         </NitroCardTabsItemView>
+                        <Flex>
+                            <Base pointer className="icon icon-hotel-view"
+                                onClick={ event => VisitDesktop() }/>
+                        </Flex>
                     </NitroCardTabsView>
                     <NitroCardContentView position="relative">
                         { isLoading &&
