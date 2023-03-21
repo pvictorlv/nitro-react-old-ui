@@ -155,9 +155,8 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                         { isInRoom &&
                             <Base pointer className="navigation-item icon icon-camera"
                                   onClick={ event => CreateLinkEvent('camera/toggle') }/> }
-                        { isInRoom &&
-                            <Base pointer className="navigation-item icon icon-habbo"
-                                  onClick={ event => VisitDesktop() }/> }
+
+
                         { !isInRoom &&
                             <Base pointer className="navigation-item icon icon-house"
                                   onClick={ event => CreateLinkEvent('navigator/goto/home') }/> }
@@ -170,9 +169,9 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                             <Base pointer className="navigation-item icon icon-room-info"
                                   onClick={ event => CreateLinkEvent('navigator/toggle-room-info') }/> }
 
-                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        { isInRoom && <Text truncate className="text-volter-bold" variant={ 'white' }>
                             { LocalizeText('toolbar.icon.label.roominfo') }
-                        </Text>
+                        </Text> }
 
                         <Flex center pointer
                               className={ 'navigation-item item-avatar ' + (isMeExpanded ? 'active ' : '') }

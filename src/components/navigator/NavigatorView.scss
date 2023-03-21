@@ -26,33 +26,36 @@
         background-color: #3D3D3D !important;
         border-radius: 5px;
         color: white;
+        margin-bottom: 5px;
+    }
+
+    .room-bg-primary {
+        background: url('@/assets/images/navigator/icons/bg-primary.png');
+
+    }
+    .room-bg-success {
+        background: url('@/assets/images/navigator/icons/bg-success.png');
+    }
+    .room-bg-warning {
+        background: url('@/assets/images/navigator/icons/bg-warning.png');
+    }
+    .room-bg-danger {
+        background: url('@/assets/images/navigator/icons/bg-danger.png');
+    }
+    .room-bg-full {
+        background: url('@/assets/images/navigator/icons/bg-full.png');
+    }
+
+    .user-count-badge {
+        width: 34px;
+        height: 13px;
+        padding-left: 8px;
+        padding-top: 1px;
     }
     .navigator-grid {
-
         .navigator-item {
 
-            .room-bg-primary {
-                background: url('@/assets/images/navigator/icons/bg-primary.png');
 
-            }
-            .room-bg-success {
-                background: url('@/assets/images/navigator/icons/bg-success.png');
-            }
-            .room-bg-warning {
-                background: url('@/assets/images/navigator/icons/bg-warning.png');
-            }
-            .room-bg-danger {
-                background: url('@/assets/images/navigator/icons/bg-danger.png');
-            }
-            .room-bg-full {
-                background: url('@/assets/images/navigator/icons/bg-full.png');
-            }
-
-            .user-count-badge {
-                width: 34px;
-                height: 13px;
-                padding-left: 5px;
-            }
         }
 
         &:not(.two-columns) {

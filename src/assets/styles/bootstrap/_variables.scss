@@ -620,7 +620,7 @@ $font-family-code:            var(--#{$variable-prefix}font-monospace) !default;
 // $font-size-base affects the font size of the body text
 $font-size-root:              null !default;
 $font-size-base:              .9rem !default; // Assumes the browser default, typically `16px`
-$font-size-sm:                $font-size-base * .875 !default;
+$font-size-sm:                9.3px !default;
 $font-size-lg:                $font-size-base * 1.25 !default;
 
 $font-weight-lighter:         lighter !default;
@@ -1394,13 +1394,13 @@ $popover-header-color:              $headings-color !default;
 $popover-header-padding-y:          .5rem !default;
 $popover-header-padding-x:          $spacer !default;
 
-$popover-body-color:                $body-color !default;
+$popover-body-color:                white !default;
 $popover-body-padding-y:            $spacer !default;
 $popover-body-padding-x:            $spacer !default;
 
 $popover-arrow-width:               1rem !default;
 $popover-arrow-height:              .5rem !default;
-$popover-arrow-color:               $popover-bg !default;
+$popover-arrow-color:               white !default;
 
 $popover-arrow-outer-color:         fade-in($popover-border-color, .05) !default;
 // scss-docs-end popover-variables

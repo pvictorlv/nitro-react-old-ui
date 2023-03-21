@@ -11,7 +11,7 @@
   @include font-size($popover-font-size);
   // Allow breaking very long words so they don't overflow the popover's bounds
   word-wrap: break-word;
-  background-color: $popover-bg;
+  background-color: white;
   background-clip: padding-box;
   border: $popover-border-width solid $popover-border-color;
   @include border-radius($popover-border-radius);
@@ -126,12 +126,15 @@
   &[data-popper-placement^="top"] {
     @extend .bs-popover-top;
   }
+
   &[data-popper-placement^="right"] {
     @extend .bs-popover-end;
   }
+
   &[data-popper-placement^="bottom"] {
     @extend .bs-popover-bottom;
   }
+
   &[data-popper-placement^="left"] {
     @extend .bs-popover-start;
   }

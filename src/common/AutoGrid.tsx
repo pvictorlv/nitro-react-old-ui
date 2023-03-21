@@ -17,7 +17,7 @@ export const AutoGrid: FC<AutoGridProps> = props =>
 
         newStyle['--nitro-grid-column-min-height'] = (columnMinHeight + 'px');
         
-        if(columnCount > 1) newStyle.gridTemplateColumns = `repeat(auto-fill, minmax(${ columnMinWidth }px, 1fr))`;
+        if(columnCount > 1) newStyle.gridTemplateColumns = `repeat(auto-fill, minmax(${ columnMinWidth }px, ${ columnMinWidth }px))`;
 
         if(Object.keys(style).length) newStyle = { ...newStyle, ...style };
 
