@@ -19,7 +19,7 @@ export const CatalogNavigationItemView: FC<CatalogNavigationItemViewProps> = pro
     
     return (
         <Base className="nitro-catalog-navigation-section">
-            <LayoutGridItem gap={ 1 } column={ false } itemActive={ node.isActive } onClick={ event => activateNode(node) } className={ child ? 'inset' : '' }>
+            <LayoutGridItem gap={ 1 } column={ false } itemActive={ node.isActive } onClick={ event => activateNode(node) } className={ child ? 'catalog-nav-item inset' : 'catalog-nav-item ' }>
                 <CatalogIconView icon={ node.iconId } />
                 <Text grow truncate>{ node.localization }</Text>
                 { node.isBranch &&

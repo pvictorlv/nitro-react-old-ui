@@ -1,17 +1,42 @@
 import { ILinkEventTracker } from '@nitrots/nitro-renderer';
 import { FC, useEffect } from 'react';
 import { AddEventLinkTracker, GetConfiguration, LocalizeText, RemoveLinkEventTracker } from '../../api';
-import { Column, Flex, Grid, NitroCardContentView, NitroCardHeaderView, NitroCardTabsItemView, NitroCardTabsView, NitroCardView } from '../../common';
+import {
+    AutoGrid,
+    Column, DraggableWindow, DraggableWindowPosition,
+    Flex,
+    Grid,
+    NitroCardContentView,
+    NitroCardHeaderView,
+    NitroCardTabsItemView,
+    NitroCardTabsView,
+    NitroCardView
+} from '../../common';
 import { useCatalog } from '../../hooks';
 import { CatalogIconView } from './views/catalog-icon/CatalogIconView';
 import { CatalogGiftView } from './views/gift/CatalogGiftView';
 import { CatalogNavigationView } from './views/navigation/CatalogNavigationView';
 import { GetCatalogLayout } from './views/page/layout/GetCatalogLayout';
 import { MarketplacePostOfferView } from './views/page/layout/marketplace/MarketplacePostOfferView';
+import { CatalogSearchView } from './views/page/common/CatalogSearchView';
 
 export const CatalogView: FC<{}> = props =>
 {
-    const { isVisible = false, setIsVisible = null, rootNode = null, currentPage = null, navigationHidden = false, setNavigationHidden = null, activeNodes = [], searchResult = null, setSearchResult = null, openPageByName = null, openPageByOfferId = null, activateNode = null, getNodeById } = useCatalog();
+    const {
+        isVisible = false,
+        setIsVisible = null,
+        rootNode = null,
+        currentPage = null,
+        navigationHidden = false,
+        setNavigationHidden = null,
+        activeNodes = [],
+        searchResult = null,
+        setSearchResult = null,
+        openPageByName = null,
+        openPageByOfferId = null,
+        activateNode = null,
+        getNodeById
+    } = useCatalog();
 
     useEffect(() =>
     {
@@ -19,10 +44,10 @@ export const CatalogView: FC<{}> = props =>
             linkReceived: (url: string) =>
             {
                 const parts = url.split('/');
-        
-                if(parts.length < 2) return;
-        
-                switch(parts[1])
+
+                if (parts.length < 2) return;
+
+                switch (parts[1])
                 {
                     case 'show':
                         setIsVisible(true);
@@ -34,11 +59,11 @@ export const CatalogView: FC<{}> = props =>
                         setIsVisible(prevValue => !prevValue);
                         return;
                     case 'open':
-                        if(parts.length > 2)
+                        if (parts.length > 2)
                         {
-                            if(parts.length === 4)
+                            if (parts.length === 4)
                             {
-                                switch(parts[2])
+                                switch (parts[2])
                                 {
                                     case 'offerId':
                                         openPageByOfferId(parseInt(parts[3]));
@@ -54,7 +79,7 @@ export const CatalogView: FC<{}> = props =>
                         {
                             setIsVisible(true);
                         }
-        
+
                         return;
                 }
             },
@@ -69,49 +94,48 @@ export const CatalogView: FC<{}> = props =>
     return (
         <>
             { isVisible &&
-                <NitroCardView uniqueKey="catalog" className="nitro-catalog" style={ GetConfiguration('catalog.headers') ? { width: 710 } : {} }>
+                <DraggableWindow uniqueKey={ 'catalog' } handleSelector={ '.drag-handler' } windowPosition={ DraggableWindowPosition.TOP_LEFT } disableDrag={ false }>
 
-                    <Flex className={ 'catalog-main-header drag-handler' }></Flex>
+                    <div className="nitro-catalog">
 
-                    <NitroCardContentView>
-                        <Grid>
-                            { !navigationHidden &&
-                                <Column size={ 3 } overflow="hidden">
-                                    { rootNode && (rootNode.children.length > 0) && rootNode.children.map(child =>
+                        <Flex className={ 'catalog-main-header drag-handler' }></Flex>
+
+                    <Flex className={ 'h-100 grid gap-0' } gap={ 0 }>
+
+                            <div className={ 'catalog-content' }>
+                                <Column size={ 12 } overflow={ 'hidden' } gap={ 2 } className={ 'catalog-background' }>
+                                    { GetCatalogLayout(currentPage, () => setNavigationHidden(true)) }
+                                </Column>
+                            </div>
+                            <Flex overflow={ 'hidden' }
+                                className={ 'overflow-hidden position-relative flex-column nitro-card theme-primary-slim catalog-nav' }>
+                                <NitroCardHeaderView headerText={ LocalizeText('catalog') }
+                                    onCloseClick={ function ()
                                     {
-                                        if(!child.isVisible) return null;
+                                    } }/>
+                                <Column fullHeight size={ 12 } overflow="hidden" gap={ 1 }>
+                                    <Column fullHeight
+                                        className="nitro-catalog-navigation-grid-container p-0"
+                                        overflow="hidden">
+                                        <AutoGrid id="nitro-catalog-main-navigation" gap={ 0 } columnCount={ 1 }>
+                                            <CatalogNavigationView key={ rootNode.pageId } node={ rootNode }/>
+                                            { rootNode && (rootNode.children.length > 0) && rootNode.children.map(child =>
+                                            {
+                                                return (
+                                                    <CatalogNavigationView key={ child.pageId } node={ child }/>
+                                                )
+                                            }) }
+                                        </AutoGrid>
+                                    </Column>
+                                    <CatalogSearchView/>
+                                </Column>
+                            </Flex>
 
-                                        return (<CatalogNavigationView key={ child.pageId } node={ child[0] } />)
-                                    }) }
-                                </Column> }
-                            <Column size={ !navigationHidden ? 9 : 12 } overflow="hidden">
-                                { GetCatalogLayout(currentPage, () => setNavigationHidden(true)) }
-                            </Column>
-                        </Grid>
-                    </NitroCardContentView>
-                    <Flex>
-                        { rootNode && (rootNode.children.length > 0) && rootNode.children.map(child =>
-                        {
-                            if(!child.isVisible) return null;
-
-                            return (
-                                <NitroCardTabsItemView key={ child.pageId } isActive={ child.isActive } onClick={ event =>
-                                {
-                                    if(searchResult) setSearchResult(null);
-
-                                    activateNode(child);
-                                } } >
-                                    <Flex gap={ GetConfiguration('catalog.tab.icons') ? 1 : 0 } alignItems="center">
-                                        { GetConfiguration('catalog.tab.icons') && <CatalogIconView icon={ child.iconId } /> }
-                                        { child.localization }
-                                    </Flex>
-                                </NitroCardTabsItemView>
-                            );
-                        }) }
-                    </Flex>
-                </NitroCardView> }
-            <CatalogGiftView />
-            <MarketplacePostOfferView />
+                        </Flex>
+                    </div>
+                </DraggableWindow> }
+            <CatalogGiftView/>
+            <MarketplacePostOfferView/>
         </>
     );
 }

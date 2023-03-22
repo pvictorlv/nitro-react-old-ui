@@ -43,6 +43,9 @@ export const CatalogLayoutFrontpage4View: FC<CatalogLayoutProps> = props =>
                     <CatalogLayoutFrontPageItemView item={ frontPageItems[2] } onClick={ event => selectItem(frontPageItems[2]) } /> }
                 { frontPageItems[3] &&
                     <CatalogLayoutFrontPageItemView item={ frontPageItems[3] } onClick={ event => selectItem(frontPageItems[3]) } /> }
+
+            </Column>
+            <Column size={ 12 }>
                 <CatalogRedeemVoucherView text={ page.localization.getText(1) } />
             </Column>
         </Grid>
