@@ -37,7 +37,7 @@ export const InventoryFurnitureSearchView: FC<InventoryFurnitureSearchViewProps>
     }, [ groupItems, setGroupItems, searchValue ]);
 
     return (
-        <Flex gap={ 1 }>
+        <Flex gap={ 1 } justifyContent="end">
             <input type="text" className="form-control form-control-sm" placeholder={ LocalizeText('generic.search') } value={ searchValue } onChange={ event => setSearchValue(event.target.value) } />
             <Button variant="primary">
                 <FaSearch className="fa-icon" />

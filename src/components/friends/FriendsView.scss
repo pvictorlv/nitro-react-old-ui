@@ -214,6 +214,7 @@
 .nitro-friends-messenger {
   width: $messenger-width;
   height: $messenger-height;
+  resize: none;
 
   .layout-grid-item {
     min-height: 50px;
@@ -324,20 +325,27 @@
 .offline-friends {
   .nitro-card-accordion-set-header {
     color: #443fbd;
-    background: linear-gradient(0deg,rgb(183,183,183) 0%,rgb(183,183,183) 50%,rgb(213,213,212) 50%,rgb(213,213,212) 100%);
+    background: linear-gradient(0deg, rgb(183, 183, 183) 0%, rgb(183, 183, 183) 50%, rgb(213, 213, 212) 50%, rgb(213, 213, 212) 100%);
   }
 }
+
 .request-friends {
   .nitro-card-accordion-set-header {
     color: white;
-    background: linear-gradient(0deg,rgb(84,85,85) 0%,rgb(84,85,85) 50%,rgb(107,107,107) 50%,rgb(107,107,107) 100%);
+    background: linear-gradient(0deg, rgb(84, 85, 85) 0%, rgb(84, 85, 85) 50%, rgb(107, 107, 107) 50%, rgb(107, 107, 107) 100%);
   }
 }
+
 .search-friends {
   .nitro-card-accordion-set-header {
     color: white;
-    background: linear-gradient(0deg,rgb(84,85,85) 0%,rgb(84,85,85) 50%,rgb(107,107,107) 50%,rgb(107,107,107) 100%);
+    background: linear-gradient(0deg, rgb(84, 85, 85) 0%, rgb(84, 85, 85) 50%, rgb(107, 107, 107) 50%, rgb(107, 107, 107) 100%);
   }
+}
+
+.chat-input-form {
+  height: 35px;
+
 }
 
 

@@ -70,8 +70,26 @@ export const CatalogView: FC<{}> = props =>
         <>
             { isVisible &&
                 <NitroCardView uniqueKey="catalog" className="nitro-catalog" style={ GetConfiguration('catalog.headers') ? { width: 710 } : {} }>
-                    <NitroCardHeaderView headerText={ LocalizeText('catalog.title') } onCloseClick={ event => setIsVisible(false) } />
-                    <NitroCardTabsView>
+
+                    <Flex className={ 'catalog-main-header drag-handler' }></Flex>
+
+                    <NitroCardContentView>
+                        <Grid>
+                            { !navigationHidden &&
+                                <Column size={ 3 } overflow="hidden">
+                                    { rootNode && (rootNode.children.length > 0) && rootNode.children.map(child =>
+                                    {
+                                        if(!child.isVisible) return null;
+
+                                        return (<CatalogNavigationView key={ child.pageId } node={ child[0] } />)
+                                    }) }
+                                </Column> }
+                            <Column size={ !navigationHidden ? 9 : 12 } overflow="hidden">
+                                { GetCatalogLayout(currentPage, () => setNavigationHidden(true)) }
+                            </Column>
+                        </Grid>
+                    </NitroCardContentView>
+                    <Flex>
                         { rootNode && (rootNode.children.length > 0) && rootNode.children.map(child =>
                         {
                             if(!child.isVisible) return null;
@@ -90,19 +108,7 @@ export const CatalogView: FC<{}> = props =>
                                 </NitroCardTabsItemView>
                             );
                         }) }
-                    </NitroCardTabsView>
-                    <NitroCardContentView>
-                        <Grid>
-                            { !navigationHidden &&
-                                <Column size={ 3 } overflow="hidden">
-                                    { activeNodes && (activeNodes.length > 0) &&
-                                        <CatalogNavigationView node={ activeNodes[0] } /> }
-                                </Column> }
-                            <Column size={ !navigationHidden ? 9 : 12 } overflow="hidden">
-                                { GetCatalogLayout(currentPage, () => setNavigationHidden(true)) }
-                            </Column>
-                        </Grid>
-                    </NitroCardContentView>
+                    </Flex>
                 </NitroCardView> }
             <CatalogGiftView />
             <MarketplacePostOfferView />

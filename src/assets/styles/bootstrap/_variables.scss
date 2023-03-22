@@ -619,7 +619,7 @@ $font-family-code:            var(--#{$variable-prefix}font-monospace) !default;
 // $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
 // $font-size-base affects the font size of the body text
 $font-size-root:              null !default;
-$font-size-base:              .9rem !default; // Assumes the browser default, typically `16px`
+$font-size-base:              0.581rem !default; // Assumes the browser default, typically `16px`
 $font-size-sm:                9.3px !default;
 $font-size-lg:                $font-size-base * 1.25 !default;
 

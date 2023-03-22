@@ -176,7 +176,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                         <Flex center pointer
                               className={ 'navigation-item item-avatar ' + (isMeExpanded ? 'active ' : '') }
                               onClick={ event => setMeExpanded(!isMeExpanded) }>
-                            <LayoutAvatarImageView figure={ userFigure } direction={ 2 } position="absolute"/>
+                            <LayoutAvatarImageView headOnly={ true } figure={ userFigure } direction={ 3 } position="absolute"/>
                             { (getTotalUnseen > 0) &&
                                 <LayoutItemCountView count={ getTotalUnseen }/> }
                         </Flex>
