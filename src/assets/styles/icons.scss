@@ -87,6 +87,55 @@
     }
   }
 
+
+  &.icon-room-zoom {
+    background-image: url('@/assets/images/toolbar/icons/plus-1.png');
+    width: 36px;
+    height: 34px;
+
+    &[data-frame="2"] {
+      background-image: url('@/assets/images/toolbar/icons/plus-2.png');
+    }
+
+    &[data-frame="3"] {
+      background-image: url('@/assets/images/toolbar/icons/minus-3.png');
+    }
+
+    &[data-frame="4"] {
+      background-image: url('@/assets/images/toolbar/icons/minus-2.png');
+    }
+
+    &[data-frame="5"] {
+      background-image: url('@/assets/images/toolbar/icons/minus-1.png');
+    }
+  }
+
+  &.icon-room-zoom-inverse {
+    background-image: url('@/assets/images/toolbar/icons/minus-1.png');
+    width: 36px;
+    height: 34px;
+
+    &[data-frame="2"] {
+      background-image: url('@/assets/images/toolbar/icons/minus-3.png');
+    }
+
+    &[data-frame="3"] {
+      background-image: url('@/assets/images/toolbar/icons/minus-2.png');
+    }
+
+    &[data-frame="4"] {
+      background-image: url('@/assets/images/toolbar/icons/minus-1.png');
+    }
+
+    &[data-frame="5"] {
+      background-image: url('@/assets/images/toolbar/icons/plus-2.png');
+    }
+
+    &[data-frame="6"] {
+      background-image: url('@/assets/images/toolbar/icons/plus-1.png');
+    }
+  }
+
   &.icon-friends-requests {
     background-image: url('@/assets/images/toolbar/icons/friends-request.png');
     width: 32px;
@@ -248,6 +297,7 @@
     width: 36px;
     height: 34px;
   }
+
 
   &.icon-message {
     background-image: url('@/assets/images/toolbar/icons/message.png');

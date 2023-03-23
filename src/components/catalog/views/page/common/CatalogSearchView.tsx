@@ -79,18 +79,10 @@ export const CatalogSearchView: FC<{}> = props =>
     }, [ offersToNodes, currentType, rootNode, searchValue, setCurrentPage, setSearchResult ]);
 
     return (
-        <Flex gap={ 1 }>
+        <Flex gap={ 1 } className={'catalog-search-input'}>
             <Flex fullWidth alignItems="center" position="relative">
                 <input type="text" className="form-control form-control-sm" placeholder={ LocalizeText('generic.search') } value={ searchValue } onChange={ event => setSearchValue(event.target.value) } />
             </Flex>
-            { (!searchValue || !searchValue.length) &&
-                <Button variant="primary" className="catalog-search-button">
-                    <FaSearch className="fa-icon" />
-                </Button> }
-            { searchValue && !!searchValue.length &&
-                <Button variant="primary" className="catalog-search-button" onClick={ event => setSearchValue('') }>
-                    <FaTimes className="fa-icon" />
-                </Button> }
         </Flex>
     );
 }

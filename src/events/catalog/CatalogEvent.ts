@@ -9,6 +9,7 @@ export class CatalogEvent extends NitroEvent
     public static APPROVE_NAME_RESULT: string = 'CE_APPROVE_NAME_RESULT';
     public static PURCHASE_APPROVED: string = 'CE_PURCHASE_APPROVED';
     public static INIT_GIFT: string = 'CE_INIT_GIFT';
+    public static INIT_PURCHASE: string = 'CE_INIT_PURCHASE';
     public static CATALOG_RESET: string = 'CE_RESET';
     public static CATALOG_INVISIBLE_PAGE_VISITED: string = 'CE_CATALOG_INVISIBLE_PAGE_VISITED';
 }

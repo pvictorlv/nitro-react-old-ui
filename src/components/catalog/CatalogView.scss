@@ -1,17 +1,32 @@
 #nitro-catalog-main-navigation {
-  border-bottom: 1px solid #000;
   border-right: 1px solid #000;
   overflow-y: auto;
   overflow-x: hidden;
-  height: 100%;
   background: #fff;
   border-top: 1px solid #000;
+}
+.catalog-grid{
+  gap: 0.15rem !important;
+  .layout-grid-item {
+    background-color: white;
+    border: 0 !important;
+  }
 }
 .nitro-catalog {
   width: $catalog-width;
   height: $catalog-height;
   font-family: Volter, sans-serif;
 
+  .catalog-select-text {
+    padding-left: 16px;
+  }
+.catalog-flex-content {
+  height: 95%;
+  padding-top: 2px;
+}
+  .catalog-search-input {
+    padding-left: 12px;
+  }
   .catalog-nav-item {
     border-radius: 0 !important;
   }
@@ -86,6 +101,7 @@
 .nitro-catalog-navigation-grid-container {
   background-color: white;
 
+  height: 380px;
   .nitro-catalog-navigation-section {
     display: grid;
 
@@ -99,13 +115,23 @@
     font-size: $font-size-sm;
     height: 23px !important;
     background: transparent !important;
-    border: 1px solid #ccc !important;
+    border-bottom: 1px solid black !important;
     padding: 2px 3px 2px 8px;
 
     .svg-inline--fa {
       color: $black;
       font-size: 9.3px;
       padding: 1px;
+    }
+
+    &:hover {
+      background: #82d1ed !important;
+      filter: brightness(1.2);
+    }
+
+    &.active {
+      background: #82d1ed !important;
+
     }
   }
 }
@@ -129,6 +155,7 @@
   .layout-grid-item {
     height: 50px !important;
     max-height: 50px !important;
+
 
     .icon-hc-banner {
       width: 68px;
@@ -171,12 +198,12 @@
   background: #fff;
   padding: 8px;
   list-style-type: none;
-  min-width: 307px;
+  min-width: 313px;
   border-radius: 0.2rem;
   position: absolute;
-  font-size: 0.7875rem;
-  top: 81px;
-  left: 8px;
+
+  top: 67px;
+  left: 14px;
   border: 1px solid #b6c1ce;
   margin: 0;
   border-radius: 2px;

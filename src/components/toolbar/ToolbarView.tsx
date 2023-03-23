@@ -7,13 +7,13 @@ import {
     NitroToolbarAnimateIconEvent,
     PerkAllowancesMessageEvent,
     PerkEnum,
-    Queue,
+    Queue, RoomEntryInfoMessageEvent,
     Wait
 } from '@nitrots/nitro-renderer';
-import {FC, useState} from 'react';
+import { FC, useState } from 'react';
 import {
     CreateLinkEvent,
-    GetConfiguration,
+    GetConfiguration, GetRoomEngine,
     GetSessionDataManager, LocalizeText,
     MessengerIconState,
     OpenMessengerChat,
@@ -26,32 +26,33 @@ import {
     LayoutAvatarImageView,
     LayoutItemCountView,
     TransitionAnimation,
-    TransitionAnimationTypes
+    TransitionAnimationTypes, classNames
 } from '../../common';
 import {
     useAchievements,
     useFriends,
     useInventoryUnseenTracker,
     useMessageEvent,
-    useMessenger,
+    useMessenger, useRoom,
     useRoomEngineEvent,
     useSessionInfo
 } from '../../hooks';
-import {ToolbarMeView} from './ToolbarMeView';
-import {ToolbarIcon} from './ToolbarIcon';
+import { ToolbarMeView } from './ToolbarMeView';
+import { ToolbarIcon } from './ToolbarIcon';
 
 export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
 {
-    const {isInRoom} = props;
+    const { isInRoom } = props;
     const [ isMeExpanded, setMeExpanded ] = useState(false);
     const [ useGuideTool, setUseGuideTool ] = useState(false);
     const [ hoverFrame, setHoverFrame ] = useState(0);
-    const {userFigure = null} = useSessionInfo();
-    const {getFullCount = 0} = useInventoryUnseenTracker();
-    const {getTotalUnseen = 0} = useAchievements();
-    const {requests = []} = useFriends();
-    const {iconState = MessengerIconState.HIDDEN} = useMessenger();
+    const { userFigure = null } = useSessionInfo();
+    const { getFullCount = 0 } = useInventoryUnseenTracker();
+    const { getTotalUnseen = 0 } = useAchievements();
+    const { requests = [] } = useFriends();
+    const { iconState = MessengerIconState.HIDDEN } = useMessenger();
     const isMod = GetSessionDataManager().isModerator;
+    const [ isZoomedIn, setIsZoomedIn ] = useState<boolean>(false);
 
 
     useMessageEvent<PerkAllowancesMessageEvent>(PerkAllowancesMessageEvent, event =>
@@ -59,6 +60,11 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
         const parser = event.getParser();
 
         setUseGuideTool(parser.isAllowed(PerkEnum.USE_GUIDE_TOOL));
+    });
+
+    useMessageEvent<RoomEntryInfoMessageEvent>(RoomEntryInfoMessageEvent, event =>
+    {
+        setIsZoomedIn(false);
     });
 
     useRoomEngineEvent<NitroToolbarAnimateIconEvent>(NitroToolbarAnimateIconEvent.ANIMATE_ICON, event =>
@@ -100,40 +106,65 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
         animationIconToToolbar('icon-inventory', event.image, event.x, event.y);
     });
 
+    const { roomSession = null } = useRoom();
+
+    var lastRoomClick = null;
+    const handleToolClick = (action: string, value?: string) =>
+    {
+        switch (action)
+        {
+            case 'zoom':
+                lastRoomClick = roomSession.roomId;
+                setIsZoomedIn(prevValue =>
+                {
+                    let scale = GetRoomEngine().getRoomInstanceRenderingCanvasScale(roomSession.roomId, 1);
+
+                    if (!prevValue) scale /= 2;
+                    else scale *= 2;
+
+                    GetRoomEngine().setRoomInstanceRenderingCanvasScale(roomSession.roomId, 1, scale);
+
+                    return !prevValue;
+                });
+                return;
+        }
+    };
+
     return (
         <>
             <TransitionAnimation type={ TransitionAnimationTypes.SLIDE_RIGHT } inProp={ isMeExpanded } timeout={ 0 }>
                 <ToolbarMeView useGuideTool={ useGuideTool } unseenAchievementCount={ getTotalUnseen }
-                               setMeExpanded={ setMeExpanded }/>
+                    setMeExpanded={ setMeExpanded }/>
             </TransitionAnimation>
-            <Flex alignItems="center" justifyContent="between" gap={ 4 } className="nitro-toolbar py-1 px-2 flex-column">
+            <Flex alignItems="center" justifyContent="between" gap={ 4 }
+                className="nitro-toolbar py-1 px-2 flex-column">
                 <Flex gap={ 2 } alignItems="center">
                     <Flex alignItems="center" gap={ 1 } className={ 'flex-column' }>
 
                         <ToolbarIcon icon="icon-rooms" maxFrames={ 4 }
-                                     onClick={ event => CreateLinkEvent('navigator/toggle') }/>
+                            onClick={ event => CreateLinkEvent('navigator/toggle') }/>
                         <Text truncate className="text-volter-bold" variant={ 'white' }>
                             { LocalizeText('toolbar.icon.label.navigator') }
                         </Text>
                         { (requests.length > 0) ?
                             <ToolbarIcon icon="icon-friends-requests" maxFrames={ 0 }
-                                         onClick={ event => CreateLinkEvent('friends/toggle') }/> :
+                                onClick={ event => CreateLinkEvent('friends/toggle') }/> :
                             <ToolbarIcon icon="icon-friends" maxFrames={ 5 }
-                                         onClick={ event => CreateLinkEvent('friends/toggle') }/> }
+                                onClick={ event => CreateLinkEvent('friends/toggle') }/> }
                         <Text truncate className="text-volter-bold" variant={ 'white' }>
                             { LocalizeText('toolbar.icon.label.friendlist') }
                         </Text>
 
 
                         <ToolbarIcon icon={ 'icon-catalog' } maxFrames={ 7 }
-                                     onClick={ event => CreateLinkEvent('catalog/toggle') }/>
+                            onClick={ event => CreateLinkEvent('catalog/toggle') }/>
                         <Text truncate className="text-volter-bold" variant={ 'white' }>
                             { LocalizeText('toolbar.icon.label.catalogue') }
                         </Text>
 
 
                         <Base pointer className="navigation-item icon icon-inventory"
-                              onClick={ event => CreateLinkEvent('inventory/toggle') }>
+                            onClick={ event => CreateLinkEvent('inventory/toggle') }>
                             { (getFullCount > 0) &&
                                 <LayoutItemCountView count={ getFullCount }/> }
                         </Base>
@@ -141,42 +172,52 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                             { LocalizeText('toolbar.icon.label.inventory') }
                         </Text>
 
-                        { isMod &&
-                            <Base pointer className="navigation-item icon icon-modtools"
-                                  onClick={ event => CreateLinkEvent('mod-tools/toggle') }/> }
+
 
                         { ((iconState === MessengerIconState.SHOW) || (iconState === MessengerIconState.UNREAD)) &&
                             <Base pointer
-                                  className={ `navigation-item icon icon-message ${ (iconState === MessengerIconState.UNREAD) && 'is-unseen' }` }
-                                  onClick={ event => OpenMessengerChat() }/> }
+                                className={ `navigation-item icon icon-message ${ (iconState === MessengerIconState.UNREAD) && 'is-unseen' }` }
+                                onClick={ event => OpenMessengerChat() }/> }
                         <Text truncate className="text-volter-bold" variant={ 'white' }>
                             { LocalizeText('toolbar.icon.label.messenger') }
                         </Text>
                         { isInRoom &&
                             <Base pointer className="navigation-item icon icon-camera"
-                                  onClick={ event => CreateLinkEvent('camera/toggle') }/> }
+                                onClick={ event => CreateLinkEvent('camera/toggle') }/> }
 
 
                         { !isInRoom &&
                             <Base pointer className="navigation-item icon icon-house"
-                                  onClick={ event => CreateLinkEvent('navigator/goto/home') }/> }
+                                onClick={ event => CreateLinkEvent('navigator/goto/home') }/> }
+
+                        { isMod &&
+                            <Base pointer className="navigation-item icon icon-modtools"
+                                  onClick={ event => CreateLinkEvent('mod-tools/toggle') }/> }
                     </Flex>
                 </Flex>
 
                 <Flex gap={ 2 } alignItems="center">
                     <Flex alignItems="center" gap={ 2 } className={ 'flex-column' }>
                         { isInRoom &&
+                            <ToolbarIcon icon={ (!isZoomedIn ? 'icon-room-zoom' : 'icon-room-zoom-inverse') }
+                                onClick={ () => handleToolClick('zoom') }
+                                maxFrames={ !isZoomedIn ? 5 : 6 }></ToolbarIcon> }
+                        { isInRoom && <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            { LocalizeText('toolbar.icon.label.zoom') }
+                        </Text> }
+                        { isInRoom &&
                             <Base pointer className="navigation-item icon icon-room-info"
-                                  onClick={ event => CreateLinkEvent('navigator/toggle-room-info') }/> }
+                                onClick={ event => CreateLinkEvent('navigator/toggle-room-info') }/> }
 
                         { isInRoom && <Text truncate className="text-volter-bold" variant={ 'white' }>
                             { LocalizeText('toolbar.icon.label.roominfo') }
                         </Text> }
 
                         <Flex center pointer
-                              className={ 'navigation-item item-avatar ' + (isMeExpanded ? 'active ' : '') }
-                              onClick={ event => setMeExpanded(!isMeExpanded) }>
-                            <LayoutAvatarImageView headOnly={ true } figure={ userFigure } direction={ 3 } position="absolute"/>
+                            className={ 'navigation-item item-avatar ' + (isMeExpanded ? 'active ' : '') }
+                            onClick={ event => setMeExpanded(!isMeExpanded) }>
+                            <LayoutAvatarImageView headOnly={ true } figure={ userFigure } direction={ 3 }
+                                position="absolute"/>
                             { (getTotalUnseen > 0) &&
                                 <LayoutItemCountView count={ getTotalUnseen }/> }
                         </Flex>

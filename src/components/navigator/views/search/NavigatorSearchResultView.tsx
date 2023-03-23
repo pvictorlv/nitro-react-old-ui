@@ -1,6 +1,16 @@
 import { NavigatorSearchComposer, NavigatorSearchResultList } from '@nitrots/nitro-renderer';
 import { FC, useEffect, useState } from 'react';
-import { FaChevronDown, FaChevronUp, FaBars, FaMinus, FaPlus, FaTh, FaWindowMaximize, FaWindowRestore } from 'react-icons/fa';
+import {
+    FaChevronDown,
+    FaChevronUp,
+    FaBars,
+    FaMinus,
+    FaPlus,
+    FaTh,
+    FaWindowMaximize,
+    FaWindowRestore,
+    FaCaretDown, FaCaretUp
+} from 'react-icons/fa';
 import { LocalizeText, NavigatorSearchResultViewDisplayMode, SendMessageComposer } from '../../../../api';
 import { AutoGrid, AutoGridProps, Column, Flex, Grid, Text } from '../../../../common';
 import { useNavigator } from '../../../../hooks';
@@ -67,8 +77,8 @@ export const NavigatorSearchResultView: FC<NavigatorSearchResultViewProps> = pro
                 </Flex>
                 <Flex gap={ 2 }>
 
-                    { isExtended && <FaChevronUp className="white fa-icon"/> }
-                    { !isExtended && <FaChevronDown className="white fa-icon"/> }
+                    { isExtended && <FaCaretUp className="white fa-icon"/> }
+                    { !isExtended && <FaCaretDown className="white fa-icon"/> }
                 </Flex>
 
             </Flex> { isExtended &&

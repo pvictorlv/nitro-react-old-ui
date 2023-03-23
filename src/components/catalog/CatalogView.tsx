@@ -19,6 +19,7 @@ import { CatalogNavigationView } from './views/navigation/CatalogNavigationView'
 import { GetCatalogLayout } from './views/page/layout/GetCatalogLayout';
 import { MarketplacePostOfferView } from './views/page/layout/marketplace/MarketplacePostOfferView';
 import { CatalogSearchView } from './views/page/common/CatalogSearchView';
+import {CatalogPurchaseConfirmView} from './views/CatalogPurchaseConfirmView';
 
 export const CatalogView: FC<{}> = props =>
 {
@@ -114,12 +115,12 @@ export const CatalogView: FC<{}> = props =>
                                     {
                                     } }/>
                                 <Column fullHeight size={ 12 } overflow="hidden" gap={ 1 }>
-                                    <Column fullHeight
+                                    <Column
                                         className="nitro-catalog-navigation-grid-container p-0"
                                         overflow="hidden">
                                         <AutoGrid id="nitro-catalog-main-navigation" gap={ 0 } columnCount={ 1 }>
-                                            <CatalogNavigationView key={ rootNode.pageId } node={ rootNode }/>
-                                            { rootNode && (rootNode.children.length > 0) && rootNode.children.map(child =>
+                                            { rootNode && <CatalogNavigationView key={ rootNode.pageId } node={ rootNode }/>}
+                                            { rootNode && !searchResult && (rootNode.children.length > 0) && rootNode.children.map(child =>
                                             {
                                                 return (
                                                     <CatalogNavigationView key={ child.pageId } node={ child }/>
@@ -135,6 +136,7 @@ export const CatalogView: FC<{}> = props =>
                     </div>
                 </DraggableWindow> }
             <CatalogGiftView/>
+            <CatalogPurchaseConfirmView/>
             <MarketplacePostOfferView/>
         </>
     );

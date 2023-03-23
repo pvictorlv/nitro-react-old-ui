@@ -4,10 +4,6 @@
     background-repeat: no-repeat;
     background-color: $grid-bg-color;
 
-    &.active {
-        border: 1px solid black !important;
-
-    }
 
     &.disabled {
         cursor: not-allowed;

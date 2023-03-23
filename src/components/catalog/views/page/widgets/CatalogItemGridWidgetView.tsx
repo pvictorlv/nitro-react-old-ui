@@ -44,7 +44,7 @@ export const CatalogItemGridWidgetView: FC<CatalogItemGridWidgetViewProps> = pro
     }
 
     return (
-        <AutoGrid innerRef={ elementRef } columnCount={ columnCount } { ...rest }>
+        <AutoGrid innerRef={ elementRef } justifyContent={'center'} columnCount={ columnCount } className={'catalog-grid'} gap={ 1} { ...rest }>
             { currentPage.offers && (currentPage.offers.length > 0) && currentPage.offers.map((offer, index) => <CatalogGridOfferView key={ index } itemActive={ (currentOffer && (currentOffer.offerId === offer.offerId)) } offer={ offer } selectOffer={ selectOffer } />) }
             { children }
         </AutoGrid>

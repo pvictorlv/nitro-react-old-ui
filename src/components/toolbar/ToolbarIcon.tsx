@@ -6,7 +6,7 @@ import {
     PropsWithChildren,
     ReactNode,
     SetStateAction,
-    useEffect,
+    useEffect, useMemo,
     useRef,
     useState
 } from 'react';
@@ -28,12 +28,13 @@ interface ToolbarIconProps
     maxFrames: number;
     onClick: MouseEventHandler;
     children?: ReactNode;
-
+    classNames?: string[];
+    className?: string | undefined;
 }
 
 export const ToolbarIcon: FC<PropsWithChildren<ToolbarIconProps>> = props =>
 {
-    const { icon = '', onClick = null, children = null, maxFrames = 1, ...rest } = props;
+    const { icon = '', onClick = null, className = '', classNames = [], children = null, maxFrames = 1, ...rest } = props;
     const elementRef = useRef<HTMLDivElement>();
 
 
@@ -41,9 +42,27 @@ export const ToolbarIcon: FC<PropsWithChildren<ToolbarIconProps>> = props =>
     let
         [ currFrame, setCurrFrame ] = useState<number>(0);
 
+    const getClassNames = useMemo(() =>
+    {
+        const newClassNames: string[] = [ 'navigation-item', 'icon' ];
+
+        newClassNames.push(icon)
+
+        return newClassNames;
+    }, [ icon ]);
+
+    const getClassName = useMemo(() =>
+    {
+        let newClassName = getClassNames.join(' ');
+
+        if (className.length) newClassName += (' ' + className);
+
+        return newClassName.trim();
+    }, [ className, getClassNames ]);
 
     return (
-        <Base innerRef={ elementRef } pointer className={ 'navigation-item icon ' + icon } data-frame={ currFrame }
+        <Base innerRef={ elementRef } pointer className={ getClassName }
+            data-frame={ currFrame }
             onMouseEnter={ event =>
             {
                 if (maxFrames <= 0)
@@ -61,7 +80,7 @@ export const ToolbarIcon: FC<PropsWithChildren<ToolbarIconProps>> = props =>
                     }
 
                     setCurrFrame(currFrame++);
-                }, 50);
+                }, 55);
 
             } } onMouseLeave={ event =>
             {
@@ -80,10 +99,10 @@ export const ToolbarIcon: FC<PropsWithChildren<ToolbarIconProps>> = props =>
                     }
 
                     setCurrFrame(currFrame--);
-                }, 50);
+                }, 55);
             } }
             onClick={ onClick }>
-            {children}
+            { children }
         </Base>
     );
 }

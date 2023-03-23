@@ -150,7 +150,7 @@ export const FriendsMessengerView: FC<{}> = props =>
                                         <Flex alignItems="center" className="friend-head px-1">
                                             { (thread.participant.id > 0) &&
                                                 <LayoutAvatarImageView figure={ thread.participant.figure }
-                                                    headOnly={ true } direction={ 2 }/> }
+                                                    headOnly={ true } direction={ 3 }/> }
                                             { (thread.participant.id <= 0) &&
                                                 <LayoutBadgeImageView
                                                     style={ { backgroundImage: `url(${ Nitro.instance.getConfiguration<string>('badge.asset.grouparts.url') }/${ thread.participant.figure }.gif` } }
