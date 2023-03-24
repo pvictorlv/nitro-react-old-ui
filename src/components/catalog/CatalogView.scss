@@ -5,12 +5,33 @@
   background: #fff;
   border-top: 1px solid #000;
 }
-.catalog-grid{
-  gap: 0.15rem !important;
+.catalog-price-info {
+  background: #FFC900;
+  border-radius: 8px;
+  padding: 8px;
+  .btn {
+    margin-top: 5px;
+  }
+}
+.catalog-grid {
+  gap: 0.20rem !important;
+
   .layout-grid-item {
     background-color: white;
     border: 0 !important;
   }
+}
+.catalog-confirmation-view {
+  .layout-grid-item {
+    width: 50px;
+    height: 50px;
+
+    background-color: white;
+    border: .5px solid #ccc !important;
+  }
+}
+.catalog-padding-top {
+  padding-top: 15px;
 }
 .nitro-catalog {
   width: $catalog-width;
@@ -20,16 +41,25 @@
   .catalog-select-text {
     padding-left: 16px;
   }
-.catalog-flex-content {
-  height: 95%;
-  padding-top: 2px;
-}
+
+  .catalog-flex-content {
+    height: 95%;
+
+    .catalog-furni-info {
+      max-width: 45%;
+    }
+
+    padding-top: 2px;
+  }
+
   .catalog-search-input {
     padding-left: 12px;
   }
+
   .catalog-nav-item {
     border-radius: 0 !important;
   }
+
   .catalog-main-header {
     position: absolute;
     top: 15px;
@@ -102,6 +132,7 @@
   background-color: white;
 
   height: 380px;
+
   .nitro-catalog-navigation-section {
     display: grid;
 
@@ -192,6 +223,14 @@
 .nitro-catalog-header {
   width: 290px;
   height: 60px;
+}
+
+.gift-color-btn {
+  outline: 1px solid #000;
+  border: 3px solid #fff;
+  min-height: 22px;
+  min-width: 23px;
+
 }
 
 .autocomplete-gift-container {

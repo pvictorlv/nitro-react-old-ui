@@ -22,14 +22,14 @@ export const CatalogPriceDisplayWidgetView: FC<CatalogPriceDisplayWidgetViewProp
         <>
             { (offer.priceInCredits > 0) &&
                 <Flex alignItems="center" gap={ 1 }>
-                    <Text bold>{ (offer.priceInCredits * quantity) }</Text>
+                    <Text className={'text-volter-bold'}>{ (offer.priceInCredits * quantity) }</Text>
                     <LayoutCurrencyIcon type={ -1 } />
                 </Flex> }
             { separator && (offer.priceInCredits > 0) && (offer.priceInActivityPoints > 0) &&
                 <FaPlus size="xs" color="black" className="fa-icon" /> }
             { (offer.priceInActivityPoints > 0) &&
                 <Flex alignItems="center" gap={ 1 }>
-                    <Text bold>{ (offer.priceInActivityPoints * quantity) }</Text>
+                    <Text className={'text-volter-bold'}>{ (offer.priceInActivityPoints * quantity) }</Text>
                     <LayoutCurrencyIcon type={ offer.activityPointType } />
                 </Flex> }
         </>
