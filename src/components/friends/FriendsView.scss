@@ -98,6 +98,21 @@
   }
 }
 
+.icon-home {
+  background: url('@/assets/images/infostand/home-icon.png') no-repeat;
+  width: 13px;
+  height: 11px;
+  cursor: pointer;
+  &:hover {
+    background: url('@/assets/images/infostand/home-icon-hover.png');
+
+  }
+}
+
+.nitro-messenger-messages {
+  height: calc(100% - 36px);
+}
+
 .messenger-notification-icon {
   background: url('@/assets/images/friends/messenger_notification_icon.png') transparent no-repeat;
   width: 25px;
@@ -105,6 +120,23 @@
 }
 
 .nitro-friends {
+
+  .close-messenger {
+    background: url('@/assets/images/friends/icon-close.png') transparent no-repeat;
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    border: 0;
+    margin-right: 5px;
+  }
+
+  .follow {
+    background-image: url('@/assets/images/friends/icon-follow.png');
+    width: 16px;
+    height: 14px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
 
   .content-area {
     border: none;
@@ -212,37 +244,69 @@
 }
 
 .nitro-friends-messenger {
-  width: $messenger-width;
-  height: $messenger-height;
-  resize: none;
+  min-width: $messenger-width;
+  min-height: $messenger-height;
+
+  .chat-message {
+    padding-top: 0.2rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .messenger-friend-heads {
+    background: rgba(0, 0, 0, .1);
+    position: relative;
+    border-bottom: 1px solid #999;
+
+    &:after {
+      z-index: -1;
+      content: "";
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 50%;
+      position: absolute;
+      background-color: #0000001a;
+    }
+
+    .active {
+      box-shadow: 0 1px #fff;
+      background-color: #fff;
+      border-right: 1px solid #999;
+
+    }
+  }
+
+  .nitro-friends-messenger-content {
+    background: white !important;
+  }
 
   .layout-grid-item {
     min-height: 50px;
   }
 
   .friend-head {
-    width: 50px;
-    height: 45px;
+    width: 38px;
+    height: 28px;
     overflow: hidden;
 
     .avatar-image {
-      margin-top: 90px;
+      margin-top: 24px;
     }
   }
 
   .open-chat-entry {
     position: relative;
     border: 2px solid;
-    border-color: $light;
 
-    &.active {
-      border-color: #fffde9;
-      background-color: #ececec
-    }
+    border-color: #fffde9;
+    background-color: #ececec;
+    border-bottom: 0;
 
     .friend-head {
-      width: 45px;
-      height: 45px;
+      width: 38px;
+      height: 28px;
       overflow: hidden;
 
       .avatar-image {
@@ -281,6 +345,8 @@
       position: relative;
       user-select: text;
 
+      background: #dbf3ff;
+
       &:before {
         position: absolute;
         content: ' ';
@@ -303,11 +369,11 @@
         content: ' ';
         width: 0;
         height: 0;
-        border-left: 8px solid rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+        border-right: 8px solid rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
         border-top: 8px solid transparent;
         border-bottom: 8px solid transparent;
         top: 10px;
-        right: -8px;
+        left: -8px;
       }
     }
   }
@@ -344,8 +410,9 @@
 }
 
 .chat-input-form {
-  height: 35px;
-
+  height: 50px;
+  z-index: 100;
+  padding-top: 3px;
 }
 
 

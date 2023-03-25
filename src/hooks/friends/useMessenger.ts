@@ -65,6 +65,8 @@ const useMessengerState = () =>
 
     const closeThread = (threadId: number) =>
     {
+        if (visibleThreads.length <= 1) return;
+
         setHiddenThreadIds(prevValue =>
         {
             const newValue = [ ...prevValue ];

@@ -132,7 +132,7 @@ export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
                                         <Text variant="white" center small wrap>{ LocalizeText('pet.level', [ 'level', 'maxlevel' ], [ avatarInfo.level.toString(), avatarInfo.maximumLevel.toString() ]) }</Text>
                                         <Column alignItems="center" gap={ 1 }>
                                             <Text variant="white" small truncate>{ LocalizeText('infostand.pet.text.happiness') }</Text>
-                                            <Base fullWidth overflow="hidden" position="relative" className="bg-light-dark rounded">
+                                            <Base fullWidth overflow="hidden" position="relative">
                                                 <Flex fit center position="absolute">
                                                     <Text variant="white" small>{ avatarInfo.happyness + '/' + avatarInfo.maximumHappyness }</Text>
                                                 </Flex>

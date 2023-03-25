@@ -151,7 +151,7 @@ export const InfoStandWidgetUserView: FC<InfoStandWidgetUserViewProps> = props =
                 <Column gap={ 1 }>
                     <Flex alignItems="center" justifyContent="between">
                         <Flex alignItems="center" gap={ 1 }>
-                            <UserProfileIconView userId={ avatarInfo.webID }/>
+                            <div className={ 'icon-home' } onClick={ () => window.open('/home/' + avatarInfo.webID) }></div>
                             <Text variant="white" className={ 'text-volter-bold' } wrap>{ avatarInfo.name }</Text>
                         </Flex>
                         <FaTimes className="cursor-pointer fa-icon" onClick={ onClose }/>
@@ -201,14 +201,13 @@ export const InfoStandWidgetUserView: FC<InfoStandWidgetUserViewProps> = props =
                     <hr className="m-0"/>
                 </Column>
                 <Column gap={ 1 }>
-                    <Flex alignItems="center" className="bg-light-dark rounded py-1 px-2">
+                    <Flex alignItems="center" className="px-1">
                         { (avatarInfo.type !== AvatarInfoUser.OWN_USER) &&
                             <Flex grow alignItems="center" className="motto-content">
                                 <Text fullWidth pointer wrap textBreak variant="white">{ motto }</Text>
                             </Flex> }
                         { avatarInfo.type === AvatarInfoUser.OWN_USER &&
                             <Flex grow alignItems="center" gap={ 2 }>
-                                <FaPencilAlt className=" fa-icon"/>
                                 <Flex grow alignItems="center" className="motto-content">
                                     { !isEditingMotto &&
                                         <Text fullWidth pointer wrap textBreak variant="white"
@@ -224,7 +223,7 @@ export const InfoStandWidgetUserView: FC<InfoStandWidgetUserViewProps> = props =
                     </Flex>
                     <hr className="m-0"/>
                 </Column>
-                <Column gap={ 1 }>
+                <Column gap={ 1 } className={ 'px-1' }>
                     <Text variant="white" wrap>
                         { LocalizeText('infostand.text.achievement_score') + ' ' + avatarInfo.achievementScore }
                     </Text>
@@ -236,14 +235,15 @@ export const InfoStandWidgetUserView: FC<InfoStandWidgetUserViewProps> = props =
                             </Text>
                         </> }
                 </Column>
+
                 <Column gap={ 1 }>
                     <InfoStandWidgetUserRelationshipsView relationships={ relationships }/>
                 </Column>
-                { GetConfiguration('user.tags.enabled') &&
-                    <Column gap={ 1 } className="mt-1">
-                        <InfoStandWidgetUserTagsView tags={ GetSessionDataManager().tags }/>
-                    </Column>
-                }
+
+                <Column gap={ 1 } className="mt-1 px-1">
+                    <InfoStandWidgetUserTagsView tags={ GetSessionDataManager().tags }/>
+                </Column>
+
             </Column>
         </Column>
     );

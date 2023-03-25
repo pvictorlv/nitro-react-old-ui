@@ -27,7 +27,7 @@ export const InfoStandWidgetBotView: FC<InfoStandWidgetBotViewProps> = props =>
                 </Column>
                 <Column gap={ 1 }>
                     <Flex gap={ 1 }>
-                        <Column fullWidth className="body-image bot">
+                        <Column fullWidth className="body-image">
                             <LayoutAvatarImageView figure={ avatarInfo.figure } direction={ 4 } />
                         </Column>
                         <Column grow center gap={ 0 }>
@@ -39,7 +39,7 @@ export const InfoStandWidgetBotView: FC<InfoStandWidgetBotViewProps> = props =>
                     </Flex>
                     <hr className="m-0" />
                 </Column>
-                <Flex alignItems="center" className="bg-light-dark rounded py-1 px-2">
+                <Flex alignItems="center" className=" px-1">
                     <Text fullWidth wrap textBreak variant="white" className="motto-content">{ avatarInfo.motto }</Text>
                 </Flex>
                 { (avatarInfo.carryItem > 0) &&

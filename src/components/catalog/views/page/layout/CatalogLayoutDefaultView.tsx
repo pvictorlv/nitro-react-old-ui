@@ -27,8 +27,8 @@ export const CatalogLayoutDefaultView: FC<CatalogLayoutProps> = props =>
                           center> { LocalizeText('catalog_selectproduct') }</Text>
 
                     <Flex fullWidth className={ 'catalog-flex-content' } justifyContent={ 'center' }
-                          overflow={ 'hidden' } gap={ 4 }>
-                        <Column size={ 5 } gap={ 1 } overflow="hidden">
+                          overflow={ 'hidden' } gap={ 2 }>
+                        <Column size={ 6 } gap={ 1 } overflow="hidden">
                             <CatalogItemGridWidgetView/>
                         </Column>
                         <Column center={ !currentOffer } size={ 6 } overflow="hidden"

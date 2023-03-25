@@ -40,7 +40,7 @@ export const InfoStandWidgetRentableBotView: FC<InfoStandWidgetRentableBotViewPr
                     </Column>
                     <Column gap={ 1 }>
                         <Flex gap={ 1 }>
-                            <Column fullWidth className="body-image bot">
+                            <Column fullWidth className="body-image">
                                 <LayoutAvatarImageView figure={ avatarInfo.figure } direction={ 4 } />
                             </Column>
                             <Column grow center gap={ 0 }>
@@ -53,7 +53,7 @@ export const InfoStandWidgetRentableBotView: FC<InfoStandWidgetRentableBotViewPr
                         <hr className="m-0" />
                     </Column>
                     <Column gap={ 1 }>
-                        <Flex alignItems="center" className="bg-light-dark rounded py-1 px-2">
+                        <Flex alignItems="center" className="py-1 px-2">
                             <Text fullWidth wrap textBreak variant="white" small className="motto-content">{ avatarInfo.motto }</Text>
                         </Flex>
                         <hr className="m-0" />
