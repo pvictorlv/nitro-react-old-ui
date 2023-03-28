@@ -3,6 +3,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   background: #fff;
+  z-index: 1000;
   border-top: 1px solid #000;
 }
 .catalog-price-info {
@@ -14,6 +15,7 @@
   }
 }
 .catalog-grid {
+  overflow-y: scroll;
   gap: 0.20rem !important;
 
   .layout-grid-item {
@@ -54,6 +56,13 @@
 
   .catalog-search-input {
     padding-left: 12px;
+    input {
+      background: #376C84;
+      border: 0;
+      border-radius: 8px;
+      box-shadow: none;
+      color: #fff;
+    }
   }
 
   .catalog-nav-item {

@@ -4,11 +4,13 @@ import { useBetween } from 'use-between';
 import { CreateLinkEvent, CreateRoomSession, DoorStateType, GetConfiguration, GetSessionDataManager, INavigatorData, LocalizeText, NotificationAlertType, SendMessageComposer, TryVisitRoom, VisitDesktop } from '../../api';
 import { useMessageEvent } from '../events';
 import { useNotification } from '../notification';
+import {FavouritesEvent} from '@nitrots/nitro-renderer/src/nitro/communication/messages';
 
 const useNavigatorState = () =>
 {
     const [ categories, setCategories ] = useState<NavigatorCategoryDataParser[]>(null);
     const [ eventCategories, setEventCategories ] = useState<NavigatorEventCategoryDataParser[]>(null);
+    const [ favouriteRooms, setFavouriteRooms ] = useState<number[]>(null);
     const [ topLevelContext, setTopLevelContext ] = useState<NavigatorTopLevelContext>(null);
     const [ topLevelContexts, setTopLevelContexts ] = useState<NavigatorTopLevelContext[]>(null);
     const [ doorData, setDoorData ] = useState<{ roomInfo: RoomDataParser, state: number }>({ roomInfo: null, state: DoorStateType.NONE });
@@ -407,6 +409,13 @@ const useNavigatorState = () =>
         }
     });
 
+    useMessageEvent<FavouritesEvent>(FavouritesEvent, event =>
+    {
+        const parser = event.getParser();
+
+        setFavouriteRooms(parser.favoriteRoomIds);
+    });
+
     useMessageEvent<RoomEnterErrorEvent>(RoomEnterErrorEvent, event =>
     {
         const parser = event.getParser();
@@ -436,7 +445,7 @@ const useNavigatorState = () =>
 
     useMessageEvent<NavigatorOpenRoomCreatorEvent>(NavigatorOpenRoomCreatorEvent, event => CreateLinkEvent('navigator/show'));
 
-    return { categories, doorData, setDoorData, topLevelContext, topLevelContexts, searchResult, navigatorData };
+    return { categories, doorData, setDoorData, topLevelContext, topLevelContexts, searchResult, navigatorData, favouriteRooms };
 }
 
 export const useNavigator = () => useBetween(useNavigatorState);
