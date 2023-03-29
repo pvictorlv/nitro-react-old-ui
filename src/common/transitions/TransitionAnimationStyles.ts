@@ -35,8 +35,8 @@ export function getTransitionAnimationStyle(type: string, transition: Transition
                     }
                 case EXITING:
                     return {
-                        animationName: 'slideOutLeft',
-                        animationDuration: `${ timeout }ms`
+                        animationName: '',
+                        animationDuration: '0ms'
                     }
             }
         case TransitionAnimationTypes.SLIDE_RIGHT:
@@ -51,8 +51,8 @@ export function getTransitionAnimationStyle(type: string, transition: Transition
                     }
                 case EXITING:
                     return {
-                        animationName: 'slideOutRight',
-                        animationDuration: `${ timeout }ms`
+                        animationName: 'fadeOut',
+                        animationDuration: `1ms`
                     }
             }
         case TransitionAnimationTypes.FLIP_X:

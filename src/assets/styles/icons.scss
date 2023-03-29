@@ -454,9 +454,12 @@
   }
 
   &.icon-house-small {
-    background: url('@/assets/images/navigator/icons/home_room.png');
+    background: url('@/assets/images/navigator/icons/home_room.png') no-repeat;
     width: 18px;
     height: 16px;
+
+    margin-right: 4px;
+    margin-top: -2px;
   }
 
   &.icon-camera-small {

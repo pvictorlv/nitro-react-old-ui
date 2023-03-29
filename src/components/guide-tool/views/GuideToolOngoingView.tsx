@@ -83,7 +83,7 @@ export const GuideToolOngoingView: FC<GuideToolOngoingViewProps> = props =>
                         <Text bold>{ userName }</Text>
                         <Text>{ LocalizeText('guide.help.request.user.ongoing.guide.desc') }</Text>
                     </Column> }
-                <Button variant="danger" disabled>{ LocalizeText('guide.help.common.report.link') }</Button>
+                <Button disabled>{ LocalizeText('guide.help.common.report.link') }</Button>
             </Flex>
             <Column overflow="hidden" gap={ 1 } className="bg-muted rounded chat-messages p-2">
                 <Column overflow="auto">
@@ -115,14 +115,14 @@ export const GuideToolOngoingView: FC<GuideToolOngoingViewProps> = props =>
             <Column gap={ 1 }>
                 <Flex gap={ 1 }>
                     <input type="text" className="form-control form-control-sm" placeholder={ LocalizeText('guide.help.request.guide.ongoing.input.empty', [ 'name' ], [ userName ]) } value={ messageText } onChange={ event => setMessageText(event.target.value) } onKeyDown={ onKeyDown } />
-                    <Button variant="success" onClick={ sendMessage }>
+                    <Button onClick={ sendMessage }>
                         { LocalizeText('widgets.chatinput.say') }
                     </Button>
                 </Flex>
                 { isTyping &&
                     <Text variant="muted">{ LocalizeText('guide.help.common.typing') }</Text> }
             </Column>
-            <Button fullWidth variant="success" onClick={ resolve }>
+            <Button fullWidth onClick={ resolve }>
                 { LocalizeText('guide.help.request.' + (isGuide ? 'guide' : 'user') + '.ongoing.close.link') }
             </Button>
         </Column>

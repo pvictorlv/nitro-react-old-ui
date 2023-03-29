@@ -80,7 +80,7 @@ export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
                     <Column gap={ 1 }>
                         <Flex alignItems="center" justifyContent="between" gap={ 1 }>
                             <Text variant="white" small wrap>{ avatarInfo.name }</Text>
-                            <FaTimes className="cursor-pointer fa-icon" onClick={ onClose } />
+                            <i className="infostand-close" onClick={ onClose }/>
                         </Flex>
                         <Text variant="white" small wrap>{ LocalizeText(`pet.breed.${ avatarInfo.petType }.${ avatarInfo.petBreed }`) }</Text>
                         <hr className="m-0" />

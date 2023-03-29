@@ -34,7 +34,7 @@ export const InfoStandWidgetRentableBotView: FC<InfoStandWidgetRentableBotViewPr
                     <Column gap={ 1 }>
                         <Flex alignItems="center" justifyContent="between" gap={ 1 }>
                             <Text variant="white" small wrap>{ avatarInfo.name }</Text>
-                            <FaTimes className="cursor-pointer fa-icon" onClick={ onClose } />
+                            <i className="infostand-close" onClick={ onClose }/>
                         </Flex>
                         <hr className="m-0" />
                     </Column>

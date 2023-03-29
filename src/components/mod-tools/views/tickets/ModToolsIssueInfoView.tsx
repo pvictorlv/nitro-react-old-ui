@@ -72,8 +72,8 @@ export const ModToolsIssueInfoView: FC<IssueInfoViewProps> = props =>
                         <Column size={ 4 } gap={ 1 }>
                             <Button variant="secondary" onClick={ () => setcfhChatlogOpen(!cfhChatlogOpen) }>Chatlog</Button>
                             <Button onClick={ event => closeIssue(CloseIssuesMessageComposer.RESOLUTION_USELESS) }>Close as useless</Button>
-                            <Button variant="danger" onClick={ event => closeIssue(CloseIssuesMessageComposer.RESOLUTION_ABUSIVE) }>Close as abusive</Button>
-                            <Button variant="success" onClick={ event => closeIssue(CloseIssuesMessageComposer.RESOLUTION_RESOLVED) }>Close as resolved</Button> 
+                            <Button onClick={ event => closeIssue(CloseIssuesMessageComposer.RESOLUTION_ABUSIVE) }>Close as abusive</Button>
+                            <Button onClick={ event => closeIssue(CloseIssuesMessageComposer.RESOLUTION_RESOLVED) }>Close as resolved</Button> 
                             <Button variant="secondary" onClick={ event => releaseIssue(issueId) } >Release</Button>
                         </Column>
                     </Grid>

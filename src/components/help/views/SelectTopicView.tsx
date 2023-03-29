@@ -36,9 +36,9 @@ export const SelectTopicView: FC<{}> = props =>
             </Column>
             <Column gap={ 1 } overflow="auto">
                 { (selectedCategory < 0) &&
-                    cfhCategories.map((category, index) => <Button key={ index } variant="danger" onClick={ event => setSelectedCategory(index) }>{ LocalizeText(`help.cfh.reason.${ category.name }`) }</Button>) }
+                    cfhCategories.map((category, index) => <Button key={ index } onClick={ event => setSelectedCategory(index) }>{ LocalizeText(`help.cfh.reason.${ category.name }`) }</Button>) }
                 { (selectedCategory >= 0) &&
-                    cfhCategories[selectedCategory].topics.map((topic, index) => <Button key={ index } variant="danger" onClick={ event => setSelectedTopic(index) } active={ (selectedTopic === index) }>{ LocalizeText(`help.cfh.topic.${ topic.id }`) }</Button>) }
+                    cfhCategories[selectedCategory].topics.map((topic, index) => <Button key={ index } onClick={ event => setSelectedTopic(index) } active={ (selectedTopic === index) }>{ LocalizeText(`help.cfh.topic.${ topic.id }`) }</Button>) }
             </Column>
             <Flex gap={ 2 } justifyContent="between">
                 <Button variant="secondary" onClick={ back }>

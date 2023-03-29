@@ -29,8 +29,8 @@ export const EffectBoxConfirmView: FC<EffectBoxConfirmViewProps> = props =>
                     <Column justifyContent="between">
                         <Text>{ LocalizeText('effectbox.header.description') }</Text>
                         <Flex alignItems="center" justifyContent="between">
-                            <Button variant="danger" onClick={ onClose }>{ LocalizeText('generic.cancel') }</Button>
-                            <Button variant="success" onClick={ useProduct }>{ LocalizeText('generic.ok') }</Button>
+                            <Button onClick={ onClose }>{ LocalizeText('generic.cancel') }</Button>
+                            <Button onClick={ useProduct }>{ LocalizeText('generic.ok') }</Button>
                         </Flex>
                     </Column>
                 </Flex>

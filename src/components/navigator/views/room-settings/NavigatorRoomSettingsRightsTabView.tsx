@@ -1,8 +1,15 @@
-import { FlatControllerAddedEvent, FlatControllerRemovedEvent, FlatControllersEvent, RemoveAllRightsMessageComposer, RoomTakeRightsComposer, RoomUsersWithRightsComposer } from '@nitrots/nitro-renderer';
-import { FC, useEffect, useState } from 'react';
-import { IRoomData, LocalizeText, SendMessageComposer } from '../../../../api';
-import { Button, Column, Flex, Grid, Text, UserProfileIconView } from '../../../../common';
-import { useMessageEvent } from '../../../../hooks';
+import {
+    FlatControllerAddedEvent,
+    FlatControllerRemovedEvent,
+    FlatControllersEvent,
+    RemoveAllRightsMessageComposer,
+    RoomTakeRightsComposer,
+    RoomUsersWithRightsComposer
+} from '@nitrots/nitro-renderer';
+import {FC, useEffect, useState} from 'react';
+import {IRoomData, LocalizeText, SendMessageComposer} from '../../../../api';
+import {Button, Column, Flex, Grid, Text, UserProfileIconView} from '../../../../common';
+import {useMessageEvent} from '../../../../hooks';
 
 interface NavigatorRoomSettingsTabViewProps
 {
@@ -12,14 +19,14 @@ interface NavigatorRoomSettingsTabViewProps
 
 export const NavigatorRoomSettingsRightsTabView: FC<NavigatorRoomSettingsTabViewProps> = props =>
 {
-    const { roomData = null } = props;
+    const {roomData = null} = props;
     const [ usersWithRights, setUsersWithRights ] = useState<Map<number, string>>(new Map());
 
     useMessageEvent<FlatControllersEvent>(FlatControllersEvent, event =>
     {
         const parser = event.getParser();
 
-        if(!roomData || (roomData.roomId !== parser.roomId)) return;
+        if (!roomData || (roomData.roomId !== parser.roomId)) return;
 
         setUsersWithRights(parser.users);
     });
@@ -28,7 +35,7 @@ export const NavigatorRoomSettingsRightsTabView: FC<NavigatorRoomSettingsTabView
     {
         const parser = event.getParser();
 
-        if(!roomData || (roomData.roomId !== parser.roomId)) return;
+        if (!roomData || (roomData.roomId !== parser.roomId)) return;
 
         setUsersWithRights(prevValue =>
         {
@@ -44,7 +51,7 @@ export const NavigatorRoomSettingsRightsTabView: FC<NavigatorRoomSettingsTabView
     {
         const parser = event.getParser();
 
-        if(!roomData || (roomData.roomId !== parser.roomId)) return;
+        if (!roomData || (roomData.roomId !== parser.roomId)) return;
 
         setUsersWithRights(prevValue =>
         {
@@ -53,7 +60,7 @@ export const NavigatorRoomSettingsRightsTabView: FC<NavigatorRoomSettingsTabView
             newValue.delete(parser.userId);
 
             return newValue;
-        }); 
+        });
     });
 
     useEffect(() =>
@@ -62,9 +69,9 @@ export const NavigatorRoomSettingsRightsTabView: FC<NavigatorRoomSettingsTabView
     }, [ roomData.roomId ]);
 
     return (
-        <Grid>
-            <Column size={ 6 }>
-                <Text bold>
+        <Grid className={'p-2'}>
+            <Column size={ 12 }>
+                <Text variant={ 'white' } className={ 'text-volter-bold' }>
                     { LocalizeText('navigator.flatctrls.userswithrights', [ 'displayed', 'total' ], [ usersWithRights.size.toString(), usersWithRights.size.toString() ]) }
                 </Text>
                 <Flex overflow="hidden" className="bg-white rounded list-container p-2">
@@ -73,16 +80,18 @@ export const NavigatorRoomSettingsRightsTabView: FC<NavigatorRoomSettingsTabView
                         {
                             return (
                                 <Flex key={ index } shrink alignItems="center" gap={ 1 } overflow="hidden">
-                                    <UserProfileIconView userName={ name } />
-                                    <Text pointer grow onClick={ event => SendMessageComposer(new RoomTakeRightsComposer(id)) }> { name }</Text>
+                                    <UserProfileIconView userName={ name }/>
+                                    <Text pointer grow
+                                          onClick={ event => SendMessageComposer(new RoomTakeRightsComposer(id)) }> { name }</Text>
                                 </Flex>
                             );
                         }) }
                     </Column>
                 </Flex>
             </Column>
-            <Column size={ 6 } justifyContent="end">
-                <Button variant="danger" disabled={ !usersWithRights.size } onClick={ event => SendMessageComposer(new RemoveAllRightsMessageComposer(roomData.roomId)) } >
+            <Column size={ 12 } justifyContent="end">
+                <Button  disabled={ !usersWithRights.size }
+                        onClick={ event => SendMessageComposer(new RemoveAllRightsMessageComposer(roomData.roomId)) }>
                     { LocalizeText('navigator.flatctrls.clear') }
                 </Button>
             </Column>

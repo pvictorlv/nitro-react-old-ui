@@ -97,10 +97,10 @@ export const FurnitureMannequinView: FC<{}> = props =>
                             <>
                                 <input type="text" className="form-control form-control-sm" value={ name } onChange={ event => setName(event.target.value) } onBlur={ saveName } />
                                 <Column gap={ 1 }>
-                                    <Button variant="success" onClick={ event => setMode(MODE_UPDATE) }>
+                                    <Button onClick={ event => setMode(MODE_UPDATE) }>
                                         { LocalizeText('mannequin.widget.style') }
                                     </Button>
-                                    <Button variant="success" onClick={ wearFigure }>
+                                    <Button onClick={ wearFigure }>
                                         { LocalizeText('mannequin.widget.wear') }
                                     </Button>
                                 </Column>
@@ -115,7 +115,7 @@ export const FurnitureMannequinView: FC<{}> = props =>
                                     <Text underline pointer onClick={ event => setMode(MODE_CONTROLLER) }>
                                         { LocalizeText('mannequin.widget.back') }
                                     </Text>
-                                    <Button variant="success" onClick={ saveFigure }>
+                                    <Button onClick={ saveFigure }>
                                         { LocalizeText('mannequin.widget.save') }
                                     </Button>
                                 </Flex>
@@ -126,7 +126,7 @@ export const FurnitureMannequinView: FC<{}> = props =>
                                     <Text bold>{ name }</Text>
                                     <Text>{ LocalizeText('mannequin.widget.weartext') }</Text>
                                 </Column>
-                                <Button variant="success" onClick={ wearFigure }>
+                                <Button onClick={ wearFigure }>
                                     { LocalizeText('mannequin.widget.wear') }
                                 </Button>
                             </> }

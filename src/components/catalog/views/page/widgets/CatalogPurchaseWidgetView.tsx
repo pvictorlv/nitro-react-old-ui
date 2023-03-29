@@ -149,16 +149,16 @@ export const CatalogPurchaseWidgetView: FC<CatalogPurchaseWidgetViewProps> = pro
         const priceCredits = (currentOffer.priceInCredits * purchaseOptions.quantity);
         const pricePoints = (currentOffer.priceInActivityPoints * purchaseOptions.quantity);
 
-        if (GetClubMemberLevel() < currentOffer.clubLevel) return <Button variant="danger"
+        if (GetClubMemberLevel() < currentOffer.clubLevel) return <Button 
                                                                           disabled>{ LocalizeText('catalog.alert.hc.required') }</Button>;
 
-        if (isLimitedSoldOut) return <Button variant="danger"
+        if (isLimitedSoldOut) return <Button 
                                              disabled>{ LocalizeText('catalog.alert.limited_edition_sold_out.title') }</Button>;
 
-        if (priceCredits > getCurrencyAmount(-1)) return <Button variant="danger"
+        if (priceCredits > getCurrencyAmount(-1)) return <Button 
                                                                  disabled>{ LocalizeText('catalog.alert.notenough.title') }</Button>;
 
-        if (pricePoints > getCurrencyAmount(currentOffer.activityPointType)) return <Button variant="danger"
+        if (pricePoints > getCurrencyAmount(currentOffer.activityPointType)) return <Button 
                                                                                             disabled>{ LocalizeText('catalog.alert.notenough.activitypoints.title.' + currentOffer.activityPointType) }</Button>;
 
         switch (purchaseState)
@@ -171,10 +171,10 @@ export const CatalogPurchaseWidgetView: FC<CatalogPurchaseWidgetViewProps> = pro
                     disabled={ (purchaseOptions.extraParamRequired && (!purchaseOptions.extraData || !purchaseOptions.extraData.length)) }
                     onClick={ event => setPurchaseState(CatalogPurchaseState.CONFIRM) }>{ LocalizeText('catalog.purchase_confirmation.' + (currentOffer.isRentOffer ? 'rent' : 'buy')) }</Button>);
             case CatalogPurchaseState.FAILED:
-                return <Button variant="danger">{ LocalizeText('generic.failed') }</Button>;
+                return <Button >{ LocalizeText('generic.failed') }</Button>;
             case CatalogPurchaseState.SOLD_OUT:
                 return <Button
-                    variant="danger">{ LocalizeText('generic.failed') + ' - ' + LocalizeText('catalog.alert.limited_edition_sold_out.title') }</Button>;
+                    >{ LocalizeText('generic.failed') + ' - ' + LocalizeText('catalog.alert.limited_edition_sold_out.title') }</Button>;
             case CatalogPurchaseState.NONE:
             default:
                 return <Button

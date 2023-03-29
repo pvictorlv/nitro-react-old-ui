@@ -135,7 +135,7 @@ export const HcCenterView: FC<{}> = props =>
                 <Column gap={ 1 }>
                     <div className="hc-logo" />
                     <Flex>
-                        <Button variant="success" onClick={ event => CreateLinkEvent('catalog/open/' + GetConfiguration('catalog.links')['hc.buy_hc']) }>
+                        <Button onClick={ event => CreateLinkEvent('catalog/open/' + GetConfiguration('catalog.links')['hc.buy_hc']) }>
                             { LocalizeText((clubStatus === ClubStatus.ACTIVE) ? 'hccenter.btn.extend' : 'hccenter.btn.buy') }
                         </Button>
                     </Flex>

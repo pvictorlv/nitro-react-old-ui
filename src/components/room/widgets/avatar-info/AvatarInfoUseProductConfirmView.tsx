@@ -270,8 +270,8 @@ export const AvatarInfoUseProductConfirmView: FC<AvatarInfoUseProductConfirmView
                                 </> }
                         </Column>
                         <Flex alignItems="center" justifyContent="between">
-                            <Button variant="danger" onClick={ onClose }>{ LocalizeText('useproduct.widget.cancel') }</Button>
-                            <Button variant="success" onClick={ useProduct }>{ LocalizeText('useproduct.widget.use') }</Button>
+                            <Button onClick={ onClose }>{ LocalizeText('useproduct.widget.cancel') }</Button>
+                            <Button onClick={ useProduct }>{ LocalizeText('useproduct.widget.use') }</Button>
                         </Flex>
                     </Column>
                 </Flex>

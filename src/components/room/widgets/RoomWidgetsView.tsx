@@ -159,7 +159,6 @@ export const RoomWidgetsView: FC<{}> = props =>
             <ChatInputView />
             <DoorbellWidgetView />
             <FurnitureWidgetsView />
-            <RoomToolsWidgetView />
             <RoomFilterWordsWidgetView />
             <RoomThumbnailWidgetView />
             <FurniChooserWidgetView />

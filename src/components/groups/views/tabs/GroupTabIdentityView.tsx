@@ -108,7 +108,7 @@ export const GroupTabIdentityView: FC<GroupTabIdentityViewProps> = props =>
                     </> }
             </Column>
             { !isCreator &&
-                <Button variant="danger" onClick={ deleteGroup }>{ LocalizeText('group.delete') }</Button> }
+                <Button onClick={ deleteGroup }>{ LocalizeText('group.delete') }</Button> }
             { isCreator &&
                 <Text underline center fullWidth pointer onClick={ event => CreateLinkEvent('navigator/create') }>{ LocalizeText('group.createroom') }</Text> }
         </Column>

@@ -22,7 +22,7 @@ export const FurnitureExchangeCreditView: FC<{}> = props =>
                             <Text fontWeight="bold">{ LocalizeText('creditfurni.description', [ 'credits' ], [ value.toString() ]) }</Text>
                             <Text>{ LocalizeText('creditfurni.prompt') }</Text>
                         </Column>
-                        <Button variant="success" onClick={ redeem }>
+                        <Button onClick={ redeem }>
                             { LocalizeText('catalog.redeem.dialog.button.exchange') }
                         </Button>
                     </Column>

@@ -168,7 +168,7 @@ export const ModToolsUserModActionView: FC<ModToolsUserModActionViewProps> = pro
                 </Column>
                 <Flex justifyContent="between" gap={ 1 }>
                     <Button variant="primary" onClick={ sendDefaultSanction }>Default Sanction</Button>
-                    <Button variant="success" onClick={ sendSanction }>Sanction</Button>
+                    <Button onClick={ sendSanction }>Sanction</Button>
                 </Flex>
             </NitroCardContentView>
         </NitroCardView>

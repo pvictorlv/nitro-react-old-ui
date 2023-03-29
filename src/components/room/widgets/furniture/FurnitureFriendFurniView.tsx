@@ -25,7 +25,7 @@ export const FurnitureFriendFurniView: FC<{}> = props =>
                         <div className="text-small text-black text-center mb-2">{ LocalizeText('friend.furniture.confirm.lock.other.locked') }</div> }
                     <Flex gap={ 1 }>
                         <Button fullWidth onClick={ event => respond(false) }>{ LocalizeText('friend.furniture.confirm.lock.button.cancel') }</Button>
-                        <Button fullWidth variant="success" onClick={ event => respond(true) }>{ LocalizeText('friend.furniture.confirm.lock.button.confirm') }</Button>
+                        <Button fullWidth onClick={ event => respond(true) }>{ LocalizeText('friend.furniture.confirm.lock.button.confirm') }</Button>
                     </Flex>
                 </NitroCardContentView>
             </NitroCardView>

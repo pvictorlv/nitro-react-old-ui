@@ -20,7 +20,7 @@ export const FriendsRemoveConfirmationView: FC<FriendsRemoveConfirmationViewProp
             <NitroCardContentView className="text-black">
                 <div>{ removeFriendsText }</div>
                 <Flex gap={ 1 }>
-                    <Button fullWidth variant="danger" disabled={ (selectedFriendsIds.length === 0) } onClick={ removeSelectedFriends }>{ LocalizeText('generic.ok') }</Button>
+                    <Button fullWidth disabled={ (selectedFriendsIds.length === 0) } onClick={ removeSelectedFriends }>{ LocalizeText('generic.ok') }</Button>
                     <Button fullWidth onClick={ onCloseClick }>{ LocalizeText('generic.cancel') }</Button>
                 </Flex>
             </NitroCardContentView>

@@ -33,10 +33,10 @@ export const DoorbellWidgetView: FC<{}> = props =>
                                 <Base className="g-col-6">{ userName }</Base>
                                 <Base className="g-col-6">
                                     <Flex alignItems="center" justifyContent="end" gap={ 1 }>
-                                        <Button variant="success" onClick={ () => answer(userName, true) }>
+                                        <Button onClick={ () => answer(userName, true) }>
                                             { LocalizeText('generic.accept') }
                                         </Button>
-                                        <Button variant="danger" onClick={ () => answer(userName, false) }>
+                                        <Button onClick={ () => answer(userName, false) }>
                                             { LocalizeText('generic.deny') }
                                         </Button>
                                     </Flex>

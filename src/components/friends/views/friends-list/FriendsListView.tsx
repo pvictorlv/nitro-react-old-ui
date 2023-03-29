@@ -160,7 +160,7 @@ export const FriendsListView: FC<{}> = props =>
                         <Flex gap={ 1 } className="p-1">
                             <Button fullWidth
                                     onClick={ () => setShowRoomInvite(true) }>{ LocalizeText('friendlist.tip.invite') }</Button>
-                            <Button fullWidth variant="danger"
+                            <Button fullWidth 
                                     onClick={ event => setShowRemoveFriendsConfirmation(true) }>{ LocalizeText('generic.delete') }</Button>
                         </Flex> }
                 </NitroCardContentView>

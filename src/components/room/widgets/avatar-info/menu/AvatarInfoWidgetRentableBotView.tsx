@@ -180,7 +180,7 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
                     <input type="text" className="form-control form-control-sm" value={ newName } maxLength={ GetConfiguration<number>('bot.name.max.length', 15) } onChange={ event => setNewName(event.target.value) } />
                     <Flex alignItems="center" justifyContent="between" gap={ 1 }>
                         <Button fullWidth variant="secondary" onClick={ event => processAction(null) }>{ LocalizeText('cancel') }</Button>
-                        <Button fullWidth variant="success" onClick={ event => processAction('save_bot_name') }>{ LocalizeText('save') }</Button>
+                        <Button fullWidth onClick={ event => processAction('save_bot_name') }>{ LocalizeText('save') }</Button>
                     </Flex>
                 </Column> }
             { (mode === MODE_CHANGE_MOTTO) &&
@@ -189,7 +189,7 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
                     <input type="text" className="form-control form-control-sm" value={ newMotto } maxLength={ GetConfiguration<number>('motto.max.length', 38) } onChange={ event => setNewMotto(event.target.value) } />
                     <Flex alignItems="center" justifyContent="between" gap={ 1 }>
                         <Button fullWidth variant="secondary" onClick={ event => processAction(null) }>{ LocalizeText('cancel') }</Button>
-                        <Button fullWidth variant="success" onClick={ event => processAction('save_bot_motto') }>{ LocalizeText('save') }</Button>
+                        <Button fullWidth onClick={ event => processAction('save_bot_motto') }>{ LocalizeText('save') }</Button>
                     </Flex>
                 </Column> }
         </ContextMenuView>

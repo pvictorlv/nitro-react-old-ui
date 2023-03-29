@@ -36,7 +36,7 @@ export const ModToolsMyIssuesTabView: FC<ModToolsMyIssuesTabViewProps> = props =
                                 <Button variant="primary" onClick={ event => handleIssue(issue.issueId) }>Handle</Button>
                             </Base>
                             <Base className="g-col-2">
-                                <Button variant="danger" onClick={ event => SendMessageComposer(new ReleaseIssuesMessageComposer([ issue.issueId ])) }>Release</Button>
+                                <Button onClick={ event => SendMessageComposer(new ReleaseIssuesMessageComposer([ issue.issueId ])) }>Release</Button>
                             </Base>
                         </Grid>
                     );

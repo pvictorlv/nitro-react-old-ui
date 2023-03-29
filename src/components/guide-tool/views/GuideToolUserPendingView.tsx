@@ -27,7 +27,7 @@ export const GuideToolUserPendingView: FC<GuideToolUserPendingViewProps> = props
                 <Text>{ LocalizeText('guide.help.request.user.pending.info.message') }</Text>
                 <Text>{ LocalizeText('guide.help.request.user.pending.info.waiting', [ 'waitingtime' ], [ helpRequestAverageTime.toString() ]) }</Text>
             </Column>
-            <Button variant="danger" onClick={ cancelRequest }>{ LocalizeText('guide.help.request.user.pending.cancel.button') }</Button>
+            <Button onClick={ cancelRequest }>{ LocalizeText('guide.help.request.user.pending.cancel.button') }</Button>
         </Column>
     );
 };

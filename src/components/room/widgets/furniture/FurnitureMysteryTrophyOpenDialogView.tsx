@@ -40,7 +40,7 @@ export const FurnitureMysteryTrophyOpenDialogView: FC<FurnitureMysteryTrophyOpen
                         </Flex>
                         <Flex className="mt-2" gap={ 5 } display="flex" justifyContent="center" alignItems="center">
                             <Text pointer className="text-decoration" onClick={ () => onClose() }>{ LocalizeText('cancel') }</Text>
-                            <Button variant="success" onClick={ () => onConfirm() }>{ LocalizeText('generic.ok') }</Button>
+                            <Button onClick={ () => onConfirm() }>{ LocalizeText('generic.ok') }</Button>
                         </Flex>
                     </Column>
                 </Flex>

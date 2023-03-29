@@ -333,7 +333,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                     <Column gap={ 1 }>
                         <Flex alignItems="center" justifyContent="between" gap={ 1 }>
                             <Text className={'text-volter-bold'} variant="white" wrap>{ avatarInfo.name }</Text>
-                            <FaTimes className="cursor-pointer fa-icon" onClick={ onClose } />
+                            <i className="infostand-close" onClick={ onClose }/>
                         </Flex>
                         <hr className="m-0" />
                     </Column>
@@ -354,8 +354,16 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                     </Column>
                     <Column gap={ 1 }>
                         <Text fullWidth wrap textBreak variant="white" >{ avatarInfo.description }</Text>
+                        <hr className="m-0" />
                     </Column>
 
+                    <Column gap={ 1 }>
+                        <Flex alignItems="center" className="cursor-pointer" gap={ 1 }>
+                            <Text variant="white" wrap>
+                                { LocalizeText('navigator.roomownercaption') } { [ avatarInfo.ownerName ] }
+                            </Text>
+                        </Flex>
+                    </Column>
                     { (isJukeBox || isSongDisk) &&
                         <Column gap={ 1 }>
                             <hr className="m-0" />

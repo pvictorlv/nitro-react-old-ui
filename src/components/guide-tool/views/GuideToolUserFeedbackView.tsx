@@ -21,7 +21,7 @@ export const GuideToolUserFeedbackView: FC<GuideToolUserFeedbackViewProps> = pro
                     <Text bold>{ userName }</Text>
                     <Text>{ LocalizeText('guide.help.request.user.feedback.guide.desc') }</Text>
                 </Column>
-                <Button variant="danger" disabled>{ LocalizeText('guide.help.common.report.link') }</Button>
+                <Button disabled>{ LocalizeText('guide.help.common.report.link') }</Button>
             </Flex>
             <Column gap={ 1 }>
                 <Text bold>{ LocalizeText('guide.help.request.user.feedback.closed.title') }</Text>
@@ -33,8 +33,8 @@ export const GuideToolUserFeedbackView: FC<GuideToolUserFeedbackViewProps> = pro
                     <Column>
                         <Text center bold>{ LocalizeText('guide.help.request.user.feedback.question') }</Text>
                         <Flex gap={ 1 }>
-                            <Button fullWidth variant="success" onClick={ event => giveFeedback(true) }>{ LocalizeText('guide.help.request.user.feedback.positive.button') }</Button>
-                            <Button fullWidth variant="danger" onClick={ event => giveFeedback(false) }>{ LocalizeText('guide.help.request.user.feedback.negative.button') }</Button>
+                            <Button fullWidth onClick={ event => giveFeedback(true) }>{ LocalizeText('guide.help.request.user.feedback.positive.button') }</Button>
+                            <Button fullWidth onClick={ event => giveFeedback(false) }>{ LocalizeText('guide.help.request.user.feedback.negative.button') }</Button>
                         </Flex>
                     </Column>
                 </> }

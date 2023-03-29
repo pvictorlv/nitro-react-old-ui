@@ -2,6 +2,12 @@
     width: $inventory-width;
     height: $inventory-height;
 
+    resize: none;
+
+    .nav-item {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
     .empty-image {
         background: url('@/assets/images/inventory/empty.png');
         width: 129px;

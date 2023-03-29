@@ -274,7 +274,7 @@ export const ChatInputView: FC<{}> = props => {
                                onMouseDown={event => setInputFocus()}/>}
                     {floodBlocked &&
                         <Text
-                            variant="danger">{LocalizeText('chat.input.alert.flood', ['time'], [floodBlockedSeconds.toString()])} </Text>}
+                            >{LocalizeText('chat.input.alert.flood', ['time'], [floodBlockedSeconds.toString()])} </Text>}
                 </div>
                 <ChatInputStyleSelectorView chatStyleId={chatStyleId} chatStyleIds={chatStyleIds}
                                             selectChatStyleId={updateChatStyleId}/>

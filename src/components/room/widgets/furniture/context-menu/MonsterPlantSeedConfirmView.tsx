@@ -74,8 +74,8 @@ export const MonsterPlantSeedConfirmView: FC<MonsterPlantSeedConfirmViewProps> =
                             <Text>{ LocalizeText('useproduct.widget.info.plant_seed') }</Text>
                         </Column>
                         <Flex alignItems="center" justifyContent="between">
-                            <Button variant="danger" onClick={ onClose }>{ LocalizeText('useproduct.widget.cancel') }</Button>
-                            <Button variant="success" onClick={ useProduct }>{ LocalizeText('widget.monsterplant_seed.button.use') }</Button>
+                            <Button onClick={ onClose }>{ LocalizeText('useproduct.widget.cancel') }</Button>
+                            <Button onClick={ useProduct }>{ LocalizeText('widget.monsterplant_seed.button.use') }</Button>
                         </Flex>
                     </Column>
                 </Flex>

@@ -108,7 +108,7 @@ export const ModToolsRoomView: FC<ModToolsRoomViewProps> = props =>
                 </Column>
                 <textarea className="form-control" placeholder="Type a mandatory message to the users in this text box..." value={ message } onChange={ event => setMessage(event.target.value) }></textarea>
                 <Flex justifyContent="between">
-                    <Button variant="danger" onClick={ event => handleClick('send_message') }>Send Caution</Button>
+                    <Button onClick={ event => handleClick('send_message') }>Send Caution</Button>
                     <Button onClick={ event => handleClick('alert_only') }>Send Alert only</Button>
                 </Flex>
             </NitroCardContentView>

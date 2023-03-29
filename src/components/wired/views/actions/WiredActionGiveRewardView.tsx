@@ -132,7 +132,7 @@ export const WiredActionGiveRewardView: FC<{}> = props =>
             <hr className="m-0 bg-dark" />
             <Flex justifyContent="between" alignItems="center">
                 <Text bold>Rewards</Text>
-                <Button variant="success" onClick={ addReward }>
+                <Button onClick={ addReward }>
                     <FaPlus className="fa-icon" />
                 </Button>
             </Flex>
@@ -148,7 +148,7 @@ export const WiredActionGiveRewardView: FC<{}> = props =>
                             <input type="text" className="form-control form-control-sm" value={ reward.itemCode } onChange={ e => updateReward(index, reward.isBadge, e.target.value, reward.probability) } placeholder="Item Code" />
                             <input type="number" className="form-control form-control-sm" value={ reward.probability } onChange={ e => updateReward(index, reward.isBadge, reward.itemCode, Number(e.target.value)) } placeholder="Probability" />
                             { (index > 0) &&
-                            <Button variant="danger" onClick={ event => removeReward(index) }>
+                            <Button onClick={ event => removeReward(index) }>
                                 <FaTrash className="fa-icon" />
                             </Button> }
                         </Flex>

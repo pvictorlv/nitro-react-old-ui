@@ -104,7 +104,7 @@ export const WiredBaseView: FC<PropsWithChildren<WiredBaseViewProps>> = props =>
                         <WiredFurniSelectorView />
                     </> }
                 <Flex alignItems="center" gap={ 1 }>
-                    <Button fullWidth variant="success" onClick={ onSave }>{ LocalizeText('wiredfurni.ready') }</Button>
+                    <Button fullWidth onClick={ onSave }>{ LocalizeText('wiredfurni.ready') }</Button>
                     <Button fullWidth variant="secondary" onClick={ onClose }>{ LocalizeText('cancel') }</Button>
                 </Flex>
             </NitroCardContentView>

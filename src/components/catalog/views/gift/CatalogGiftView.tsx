@@ -279,7 +279,7 @@ export const CatalogGiftView: FC<{}> = props =>
                     <Button variant="link" onClick={ onClose } className="text-black">
                         { LocalizeText('cancel') }
                     </Button>
-                    <Button variant="success" onClick={ () => handleAction('buy') }>
+                    <Button onClick={ () => handleAction('buy') }>
                         { LocalizeText('catalog.gift_wrapping.give_gift') }
                     </Button>
                 </Flex>

@@ -54,13 +54,13 @@ export const SongPlaylistView: FC<SongPlaylistViewProps> = props =>
         { (playlist && playlist.length > 0) &&
             <>
                 { (currentPlayingIndex === -1) &&
-                <Button variant="success" size="lg" onClick={ () => playPause(furniId, selectedItem) }>
+                <Button size="lg" onClick={ () => playPause(furniId, selectedItem) }>
                     { LocalizeText('playlist.editor.button.play.now') }
                 </Button>
                 }
                 { (currentPlayingIndex !== -1) &&
                     <Flex gap={ 1 }>
-                        <Button variant="danger" onClick={ () => playPause(furniId, selectedItem) }>
+                        <Button onClick={ () => playPause(furniId, selectedItem) }>
                             <Base className="pause-song"/>
                         </Button>
                         <Flex column>

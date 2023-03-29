@@ -22,7 +22,7 @@ export const FriendsRoomInviteView: FC<FriendsRoomInviteViewProps> = props =>
                 <textarea className="form-control" value={ roomInviteMessage } maxLength={ 255 } onChange={ event => setRoomInviteMessage(event.target.value) }></textarea>
                 <Text center className="bg-muted rounded p-1">{ LocalizeText('friendlist.invite.note') }</Text>
                 <Flex gap={ 1 }>
-                    <Button fullWidth variant="success" disabled={ ((roomInviteMessage.length === 0) || (selectedFriendsIds.length === 0)) } onClick={ () => sendRoomInvite(roomInviteMessage) }>{ LocalizeText('friendlist.invite.send') }</Button>
+                    <Button fullWidth disabled={ ((roomInviteMessage.length === 0) || (selectedFriendsIds.length === 0)) } onClick={ () => sendRoomInvite(roomInviteMessage) }>{ LocalizeText('friendlist.invite.send') }</Button>
                     <Button fullWidth onClick={ onCloseClick }>{ LocalizeText('generic.cancel') }</Button>
                 </Flex>
             </NitroCardContentView>

@@ -4,10 +4,8 @@
 @import './slider';
 @import './icons';
 @import './utils';
+@import '../node_modules/animate.css/animate.min.css';
 
-.btn-sm {
-  min-height: 28px;
-}
 
 textarea {
   resize: none;

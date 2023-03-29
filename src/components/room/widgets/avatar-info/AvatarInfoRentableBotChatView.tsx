@@ -59,7 +59,7 @@ export const AvatarInfoRentableBotChatView: FC<AvatarInfoRentableBotChatViewProp
                     </Column>
                     <Flex alignItems="center" justifyContent="between" gap={ 1 }>
                         <Button fullWidth variant="primary" onClick={ onClose }>{ LocalizeText('cancel') }</Button>
-                        <Button fullWidth variant="success" onClick={ save }>{ LocalizeText('save') }</Button>
+                        <Button fullWidth onClick={ save }>{ LocalizeText('save') }</Button>
                     </Flex>
                 </Column>
             </Base>

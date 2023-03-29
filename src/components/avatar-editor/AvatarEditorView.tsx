@@ -304,7 +304,7 @@ export const AvatarEditorView: FC<{}> = props =>
                                     <FaDice className="fa-icon" />
                                 </Button>
                             </ButtonGroup>
-                            <Button className="w-100" variant="success" onClick={ event => processAction(AvatarEditorAction.ACTION_SAVE) }>
+                            <Button className="w-100" onClick={ event => processAction(AvatarEditorAction.ACTION_SAVE) }>
                                 { LocalizeText('avatareditor.save') }
                             </Button>
                         </Column>

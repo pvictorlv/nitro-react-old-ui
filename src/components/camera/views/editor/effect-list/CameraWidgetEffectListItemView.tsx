@@ -21,7 +21,7 @@ export const CameraWidgetEffectListItemView: FC<CameraWidgetEffectListItemViewPr
     return (
         <LayoutGridItem title={ LocalizeText(!isLocked ? (`camera.effect.name.${ effect.name }`) : `camera.effect.required.level ${ effect.minLevel }`) } itemActive={ isActive } onClick={ event => (!isActive && selectEffect()) }>
             { isActive &&
-                <Button variant="danger" className="rounded-circle remove-effect" onClick={ removeEffect }>
+                <Button className="rounded-circle remove-effect" onClick={ removeEffect }>
                     <FaTimes className="fa-icon" />
                 </Button> }
             { !isLocked && (thumbnailUrl && thumbnailUrl.length > 0) &&

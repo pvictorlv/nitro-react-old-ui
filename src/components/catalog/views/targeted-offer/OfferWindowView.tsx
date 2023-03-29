@@ -45,7 +45,7 @@ export const OfferWindowView = (props: { offer: TargetedOfferData, setOpen: Disp
 
     return <NitroCardView theme="primary-slim" uniqueKey="targeted-offer" className="nitro-targeted-offer">
         <NitroCardHeaderView headerText={ LocalizeText(offer.title) } onCloseClick={ event => setOpen(false) } />
-        <NitroCardSubHeaderView position="relative" className="justify-content-center align-items-center cursor-pointer" variant="danger" gap={ 3 }>
+        <NitroCardSubHeaderView position="relative" className="justify-content-center align-items-center cursor-pointer" gap={ 3 }>
             { LocalizeText('targeted.offer.timeleft',[ 'timeleft' ],[ expirationTime() ]) }
         </NitroCardSubHeaderView>
         <NitroCardContentView gap={ 1 }>

@@ -154,7 +154,8 @@ export const InfoStandWidgetUserView: FC<InfoStandWidgetUserViewProps> = props =
                             <div className={ 'icon-home' } onClick={ () => window.open('/home/' + avatarInfo.webID) }></div>
                             <Text variant="white" className={ 'text-volter-bold' } wrap>{ avatarInfo.name }</Text>
                         </Flex>
-                        <FaTimes className="cursor-pointer fa-icon" onClick={ onClose }/>
+                        <i className="infostand-close" onClick={ onClose }/>
+
                     </Flex>
                     <hr className="m-0"/>
                 </Column>

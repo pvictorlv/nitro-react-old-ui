@@ -66,7 +66,7 @@ export const RoomFilterWordsWidgetView: FC<{}> = props =>
                     }) }
                 </Column>
                 <Grid className="d-flex align-items-center justify-content-end gap-2">
-                    <Button variant="danger" onClick={ () => processAction(false) } disabled={ wordsFilter.length === 0 || !isSelectingWord }>{ LocalizeText('navigator.roomsettings.roomfilter.removeword') }</Button>
+                    <Button onClick={ () => processAction(false) } disabled={ wordsFilter.length === 0 || !isSelectingWord }>{ LocalizeText('navigator.roomsettings.roomfilter.removeword') }</Button>
                 </Grid>
             </NitroCardContentView>
         </NitroCardView>

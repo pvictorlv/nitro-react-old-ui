@@ -18,8 +18,8 @@ export const FriendRequestDialogView: FC<{ roomIndex: number, request: Messenger
                         <FaTimes className="cursor-pointer fa-icon" onClick={ event => hideFriendRequest(request.requesterUserId) } />
                     </Flex>
                     <Flex justifyContent="end" gap={ 1 }>
-                        <Button variant="danger" onClick={ event => requestResponse(request.requesterUserId, false) }>{ LocalizeText('widget.friendrequest.decline') }</Button>
-                        <Button variant="success" onClick={ event => requestResponse(request.requesterUserId, true) }>{ LocalizeText('widget.friendrequest.accept') }</Button>
+                        <Button onClick={ event => requestResponse(request.requesterUserId, false) }>{ LocalizeText('widget.friendrequest.decline') }</Button>
+                        <Button onClick={ event => requestResponse(request.requesterUserId, true) }>{ LocalizeText('widget.friendrequest.accept') }</Button>
                     </Flex>
                 </Column>
             </Base>

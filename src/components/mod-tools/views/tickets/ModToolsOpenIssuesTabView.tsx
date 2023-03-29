@@ -31,7 +31,7 @@ export const ModToolsOpenIssuesTabView: FC<ModToolsOpenIssuesTabViewProps> = pro
                             <Base className="g-col-3">{ issue.reportedUserName }</Base>
                             <Base className="g-col-4">{ new Date(Date.now() - issue.issueAgeInMilliseconds).toLocaleTimeString() }</Base>
                             <Base className="g-col-3">
-                                <Button variant="success" onClick={ event => SendMessageComposer(new PickIssuesMessageComposer([ issue.issueId ], false, 0, 'pick issue button')) }>Pick Issue</Button>
+                                <Button onClick={ event => SendMessageComposer(new PickIssuesMessageComposer([ issue.issueId ], false, 0, 'pick issue button')) }>Pick Issue</Button>
                             </Base>
                         </Grid>
                     );

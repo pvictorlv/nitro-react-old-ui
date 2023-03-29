@@ -109,7 +109,7 @@ export const CalendarView: FC<CalendarViewProps> = props =>
                             </Column>
                             <div>
                                 { GetSessionDataManager().isModerator &&
-                                    <Button variant="danger" onClick={ forceOpen }>Force open</Button> }
+                                    <Button onClick={ forceOpen }>Force open</Button> }
                             </div>
                         </Flex>
                     </Column>

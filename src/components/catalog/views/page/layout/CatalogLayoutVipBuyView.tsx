@@ -101,12 +101,12 @@ export const CatalogLayoutVipBuyView: FC<CatalogLayoutProps> = props =>
 
         if(pendingOffer.priceCredits > getCurrencyAmount(-1))
         {
-            return <Button fullWidth variant="danger">{ LocalizeText('catalog.alert.notenough.title') }</Button>;
+            return <Button fullWidth >{ LocalizeText('catalog.alert.notenough.title') }</Button>;
         }
 
         if(pendingOffer.priceActivityPoints > getCurrencyAmount(pendingOffer.priceActivityPointsType))
         {
-            return <Button fullWidth variant="danger">{ LocalizeText('catalog.alert.notenough.activitypoints.title.' + pendingOffer.priceActivityPointsType) }</Button>;
+            return <Button fullWidth >{ LocalizeText('catalog.alert.notenough.activitypoints.title.' + pendingOffer.priceActivityPointsType) }</Button>;
         }
 
         switch(purchaseState)
@@ -116,10 +116,10 @@ export const CatalogLayoutVipBuyView: FC<CatalogLayoutProps> = props =>
             case CatalogPurchaseState.PURCHASE:
                 return <Button fullWidth variant="primary" disabled><LayoutLoadingSpinnerView /></Button>;
             case CatalogPurchaseState.FAILED:
-                return <Button fullWidth variant="danger" disabled>{ LocalizeText('generic.failed') }</Button>;
+                return <Button fullWidth disabled>{ LocalizeText('generic.failed') }</Button>;
             case CatalogPurchaseState.NONE:
             default:
-                return <Button fullWidth variant="success" onClick={ () => setPurchaseState(CatalogPurchaseState.CONFIRM) }>{ LocalizeText('buy') }</Button>;
+                return <Button fullWidth onClick={ () => setPurchaseState(CatalogPurchaseState.CONFIRM) }>{ LocalizeText('buy') }</Button>;
         }
     }, [ pendingOffer, purchaseState, purchaseSubscription, getCurrencyAmount ]);
 

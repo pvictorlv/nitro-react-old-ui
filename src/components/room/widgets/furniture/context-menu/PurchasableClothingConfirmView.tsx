@@ -93,8 +93,8 @@ export const PurchasableClothingConfirmView: FC<PurchasableClothingConfirmViewPr
                             <Text>{ LocalizeText('useproduct.widget.info.bind_clothing') }</Text>
                         </Column>
                         <Flex alignItems="center" justifyContent="between">
-                            <Button variant="danger" onClick={ onClose }>{ LocalizeText('useproduct.widget.cancel') }</Button>
-                            <Button variant="success" onClick={ useProduct }>{ LocalizeText('useproduct.widget.bind_clothing') }</Button>
+                            <Button onClick={ onClose }>{ LocalizeText('useproduct.widget.cancel') }</Button>
+                            <Button onClick={ useProduct }>{ LocalizeText('useproduct.widget.bind_clothing') }</Button>
                         </Flex>
                     </Column>
                 </Flex>

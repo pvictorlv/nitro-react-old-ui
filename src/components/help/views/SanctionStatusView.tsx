@@ -66,7 +66,7 @@ export const SanctionSatusView:FC<{}> = props =>
                             <div className="col-12 fw-bold">{ LocalizeText('trade.locked.until') } { sanctionInfo.tradeLockExpiryTime }</div>
                         }
                         <div className="col-12">{ sanctionLocalization('next', sanctionInfo.nextSanctionName, sanctionInfo.nextSanctionLengthHours) }</div>
-                        <Button variant="success" onClick={ event => setSanctionInfo(null) }>{ LocalizeText('habbo.way.ok.button') }</Button>
+                        <Button onClick={ event => setSanctionInfo(null) }>{ LocalizeText('habbo.way.ok.button') }</Button>
                     </Column>
                 </Grid>
             </NitroCardContentView>

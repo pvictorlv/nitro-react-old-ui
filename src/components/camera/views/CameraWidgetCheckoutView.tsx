@@ -119,7 +119,7 @@ export const CameraWidgetCheckoutView: FC<CameraWidgetCheckoutViewProps> = props
                             </Text> }
                     </Column>
                     <Flex alignItems="center">
-                        <Button variant="success" disabled={ isWaiting } onClick={ event => processAction('buy') }>{ LocalizeText(!picturesBought ? 'buy' : 'camera.buy.another.button.text') }</Button>
+                        <Button disabled={ isWaiting } onClick={ event => processAction('buy') }>{ LocalizeText(!picturesBought ? 'buy' : 'camera.buy.another.button.text') }</Button>
                     </Flex>
                 </Flex>
                 { !publishDisabled &&
@@ -144,7 +144,7 @@ export const CameraWidgetCheckoutView: FC<CameraWidgetCheckoutViewProps> = props
                     </Column>
                     { !wasPicturePublished &&
                         <Flex className="d-flex align-items-end">
-                            <Button variant="success" disabled={ (isWaiting || (publishCooldown > 0)) } onClick={ event => processAction('publish') }>
+                            <Button disabled={ (isWaiting || (publishCooldown > 0)) } onClick={ event => processAction('publish') }>
                                 { LocalizeText('camera.publish.button.text') }
                             </Button>
                         </Flex> }

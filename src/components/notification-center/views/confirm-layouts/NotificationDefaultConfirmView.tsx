@@ -32,7 +32,7 @@ export const NotificationDefaultConfirmView: FC<NotificationDefaultConfirmViewPr
                 <Text>{ message }</Text>
             </Flex>
             <Flex gap={ 1 }>
-                <Button fullWidth variant="danger" onClick={ cancel }>{ cancelText }</Button>
+                <Button fullWidth onClick={ cancel }>{ cancelText }</Button>
                 <Button fullWidth onClick={ confirm }>{ confirmText }</Button>
             </Flex>
         </LayoutNotificationAlertView>
