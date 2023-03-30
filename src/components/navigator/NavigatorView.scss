@@ -13,6 +13,118 @@
   border-image-repeat: repeat repeat;
 }
 
+
+.nitro-room-creator {
+  width: $nitro-room-creator-width;
+  min-width: $nitro-room-creator-width;
+  max-width: $nitro-room-creator-width * 2;
+  height: $nitro-room-creator-height;
+  min-height: $nitro-room-creator-height;
+  max-height: $nitro-room-creator-height * 2;
+
+  textarea:focus, input:focus {
+    outline: none;
+  }
+
+  .room-creator-form-name {
+    height: 20px;
+    border: 1px solid grey;
+  }
+
+  .room-creator-form-desc {
+    height: 60px;
+    border: 1px solid grey;
+  }
+
+  .headline {
+    font-family: VolterBold, sans-serif;
+  }
+
+  .content-area {
+    font-family: Volter, sans-serif;
+    font-size: 9px;
+  }
+
+  .room-creator-info {
+    width: 240px;
+  }
+
+  .form-select {
+    width: 100%;
+  }
+
+  .room-creator-grid {
+    width: 100%
+  }
+
+  .room-creator-grid-item {
+    height: var(--nitro-grid-column-min-height, unset);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-image-source: url(@/assets/flash/navigator/room-creator/room-bg.png);
+    border-image-slice:6 6 6 6 fill;
+    border-image-width:6px 6px 6px 6px;
+    overflow: hidden;
+
+    &.active {
+      border-image-source: url(@/assets/flash/navigator/room-creator/room-bg-active.png) !important;
+      color: #fff !important;
+
+      .active-arrow {
+        background-image: url(@/assets/flash/navigator/room-creator/arrow.png);
+        width: 18px;
+        height: 20px;
+        position: absolute;
+        top: 1px;
+        animation: MoveUpDown 1s linear infinite;
+
+        @keyframes MoveUpDown {
+          0%, 100% {
+            top: 1px;
+          }
+          50% {
+            top: 10px;
+          }
+        }
+
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+
+      img {
+        opacity: 0.5;
+        filter: grayscale(1);
+      }
+    }
+
+    &.unseen {
+      background-color: rgba($success, 0.4);
+    }
+
+    .avatar-image {
+      background-position-y: -35px;
+    }
+
+    &.has-highlight {
+      &:after {
+        content: "";
+        z-index: 2;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        height: 1px;
+        width: 9px;
+        background-color: #fff;
+        opacity: 0.1;
+      }
+    }
+  }
+
+}
+
+
 .nitro-navigator {
 
 
@@ -103,11 +215,18 @@
     padding: 0.1rem 0.25rem;
     font-size: 0.58125rem;
     border-radius: 0.2rem;
-    background: transparent;
+    background: #3D3D3D;
     color: white;
+    & option {
+      border-radius: 0;
+    }
   }
 
   .nitro-room-info-content {
+
+  .room-thumbnail {
+    width: 100%;
+  }
     border-radius: 8px;
     background: #3D3D3D;
 

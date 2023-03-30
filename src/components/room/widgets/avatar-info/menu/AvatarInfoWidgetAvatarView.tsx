@@ -226,162 +226,151 @@ export const AvatarInfoWidgetAvatarView: FC<AvatarInfoWidgetAvatarViewProps> = p
             { (mode === MODE_NORMAL) &&
                 <>
                     { canRequestFriend(avatarInfo.webID) &&
-                        <Button onClick={ event => processAction('friend') }>
+                        <Button variant={'dark'} onClick={ event => processAction('friend') }>
                             { LocalizeText('infostand.button.friend') }
                         </Button> }
-                    <Button onClick={ event => processAction('trade') }>
+                    <Button variant={'dark'} onClick={ event => processAction('trade') }>
                         { LocalizeText('infostand.button.trade') }
                     </Button>
-                    <Button onClick={ event => processAction('whisper') }>
+                    <Button variant={'dark'} onClick={ event => processAction('whisper') }>
                         { LocalizeText('infostand.button.whisper') }
                     </Button>
                     { (userRespectRemaining > 0) &&
-                        <Button onClick={ event => processAction('respect') }>
+                        <Button variant={'dark'} onClick={ event => processAction('respect') }>
                             { LocalizeText('infostand.button.respect', [ 'count' ], [ userRespectRemaining.toString() ]) }
                         </Button> }
                     { !canRequestFriend(avatarInfo.webID) &&
-                        <Button onClick={ event => processAction('relationship') }>
+                        <Button variant={'dark'} onClick={ event => processAction('relationship') }>
                             { LocalizeText('infostand.link.relationship') }
                             <FaChevronRight className="right fa-icon"/>
                         </Button> }
                     { !avatarInfo.isIgnored &&
-                        <Button onClick={ event => processAction('ignore') }>
+                        <Button variant={'dark'} onClick={ event => processAction('ignore') }>
                             { LocalizeText('infostand.button.ignore') }
                         </Button> }
                     { avatarInfo.isIgnored &&
-                        <Button onClick={ event => processAction('unignore') }>
+                        <Button variant={'dark'} onClick={ event => processAction('unignore') }>
                             { LocalizeText('infostand.button.unignore') }
                         </Button> }
-                    <Button onClick={ event => processAction('report') }>
+                    <Button variant={'dark'} onClick={ event => processAction('report') }>
                         { LocalizeText('infostand.button.report') }
                     </Button>
                     { moderateMenuHasContent &&
-                        <Button onClick={ event => processAction('moderate') }>
-                            <FaChevronRight className="right fa-icon"/>
+                        <Button variant={'dark'} onClick={ event => processAction('moderate') }>
                             { LocalizeText('infostand.link.moderate') }
                         </Button> }
                     { avatarInfo.isAmbassador &&
-                        <Button onClick={ event => processAction('ambassador') }>
-                            <FaChevronRight className="right fa-icon"/>
+                        <Button variant={'dark'} onClick={ event => processAction('ambassador') }>
                             { LocalizeText('infostand.link.ambassador') }
                         </Button> }
                     { canGiveHandItem &&
-                        <Button onClick={ event => processAction('pass_hand_item') }>
+                        <Button variant={'dark'} onClick={ event => processAction('pass_hand_item') }>
                             { LocalizeText('avatar.widget.pass_hand_item') }
                         </Button> }
                 </> }
             { (mode === MODE_MODERATE) &&
                 <>
-                    <Button onClick={ event => processAction('kick') }>
+                    <Button variant={'dark'} onClick={ event => processAction('kick') }>
                         { LocalizeText('infostand.button.kick') }
                     </Button>
-                    <Button onClick={ event => processAction('mute') }>
-                        <FaChevronRight className="right fa-icon"/>
+                    <Button variant={'dark'} onClick={ event => processAction('mute') }>
                         { LocalizeText('infostand.button.mute') }
                     </Button>
-                    <Button onClick={ event => processAction('ban') }>
-                        <FaChevronRight className="right fa-icon"/>
+                    <Button variant={'dark'} onClick={ event => processAction('ban') }>
                         { LocalizeText('infostand.button.ban') }
                     </Button>
                     { isShowGiveRights &&
-                        <Button onClick={ event => processAction('give_rights') }>
+                        <Button variant={'dark'} onClick={ event => processAction('give_rights') }>
                             { LocalizeText('infostand.button.giverights') }
                         </Button> }
                     { isShowRemoveRights &&
-                        <Button onClick={ event => processAction('remove_rights') }>
+                        <Button variant={'dark'} onClick={ event => processAction('remove_rights') }>
                             { LocalizeText('infostand.button.removerights') }
                         </Button> }
-                    <Button onClick={ event => processAction('back') }>
-                        <FaChevronLeft className="left fa-icon"/>
+                    <Button variant={'dark'} onClick={ event => processAction('back') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }
             { (mode === MODE_MODERATE_BAN) &&
                 <>
-                    <Button onClick={ event => processAction('ban_hour') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ban_hour') }>
                         { LocalizeText('infostand.button.ban_hour') }
                     </Button>
-                    <Button onClick={ event => processAction('ban_day') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ban_day') }>
                         { LocalizeText('infostand.button.ban_day') }
                     </Button>
-                    <Button onClick={ event => processAction('perm_ban') }>
+                    <Button variant={'dark'} onClick={ event => processAction('perm_ban') }>
                         { LocalizeText('infostand.button.perm_ban') }
                     </Button>
-                    <Button onClick={ event => processAction('back_moderate') }>
-                        <FaChevronLeft className="left fa-icon"/>
+                    <Button variant={'dark'} onClick={ event => processAction('back_moderate') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }
             { (mode === MODE_MODERATE_MUTE) &&
                 <>
-                    <Button onClick={ event => processAction('mute_2min') }>
+                    <Button variant={'dark'} onClick={ event => processAction('mute_2min') }>
                         { LocalizeText('infostand.button.mute_2min') }
                     </Button>
-                    <Button onClick={ event => processAction('mute_5min') }>
+                    <Button variant={'dark'} onClick={ event => processAction('mute_5min') }>
                         { LocalizeText('infostand.button.mute_5min') }
                     </Button>
-                    <Button onClick={ event => processAction('mute_10min') }>
+                    <Button variant={'dark'} onClick={ event => processAction('mute_10min') }>
                         { LocalizeText('infostand.button.mute_10min') }
                     </Button>
-                    <Button onClick={ event => processAction('back_moderate') }>
-                        <FaChevronLeft className="left fa-icon"/>
+                    <Button variant={'dark'} onClick={ event => processAction('back_moderate') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }
             { (mode === MODE_AMBASSADOR) &&
                 <>
-                    <Button onClick={ event => processAction('ambassador_alert') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ambassador_alert') }>
                         { LocalizeText('infostand.button.alert') }
                     </Button>
-                    <Button onClick={ event => processAction('ambassador_kick') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ambassador_kick') }>
                         { LocalizeText('infostand.button.kick') }
                     </Button>
-                    <Button onClick={ event => processAction('ambassador_mute') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ambassador_mute') }>
                         { LocalizeText('infostand.button.mute') }
-                        <FaChevronRight className="right fa-icon"/>
                     </Button>
-                    <Button onClick={ event => processAction('back') }>
-                        <FaChevronLeft className="left fa-icon"/>
+                    <Button variant={'dark'} onClick={ event => processAction('back') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }
             { (mode === MODE_AMBASSADOR_MUTE) &&
                 <>
-                    <Button onClick={ event => processAction('ambassador_mute_2min') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ambassador_mute_2min') }>
                         { LocalizeText('infostand.button.mute_2min') }
                     </Button>
-                    <Button onClick={ event => processAction('ambassador_mute_10min') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ambassador_mute_10min') }>
                         { LocalizeText('infostand.button.mute_10min') }
                     </Button>
-                    <Button onClick={ event => processAction('ambassador_mute_60min') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ambassador_mute_60min') }>
                         { LocalizeText('infostand.button.mute_60min') }
                     </Button>
-                    <Button onClick={ event => processAction('ambassador_mute_18hr') }>
+                    <Button variant={'dark'} onClick={ event => processAction('ambassador_mute_18hr') }>
                         { LocalizeText('infostand.button.mute_18hour') }
                     </Button>
-                    <Button onClick={ event => processAction('back_ambassador') }>
-                        <FaChevronLeft className="left fa-icon"/>
+                    <Button variant={'dark'} onClick={ event => processAction('back_ambassador') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }
             { (mode === MODE_RELATIONSHIP) &&
                 <>
                     <Flex className="menu-list-split-3">
-                        <Button onClick={ event => processAction('rship_heart') }>
+                        <Button variant={'dark'} onClick={ event => processAction('rship_heart') }>
                             <Base pointer className="nitro-friends-spritesheet icon-heart"/>
                         </Button>
-                        <Button onClick={ event => processAction('rship_smile') }>
+                        <Button variant={'dark'} onClick={ event => processAction('rship_smile') }>
                             <Base pointer className="nitro-friends-spritesheet icon-smile"/>
                         </Button>
-                        <Button onClick={ event => processAction('rship_bobba') }>
+                        <Button variant={'dark'} onClick={ event => processAction('rship_bobba') }>
                             <Base pointer className="nitro-friends-spritesheet icon-bobba"/>
                         </Button>
                     </Flex>
-                    <Button onClick={ event => processAction('rship_none') }>
+                    <Button variant={'dark'} onClick={ event => processAction('rship_none') }>
                         { LocalizeText('avatar.widget.clear_relationship') }
                     </Button>
-                    <Button onClick={ event => processAction('back') }>
-                        <FaChevronLeft className="left fa-icon"/>
+                    <Button variant={'dark'} onClick={ event => processAction('back') }>
                         { LocalizeText('generic.back') }
                     </Button>
                 </> }

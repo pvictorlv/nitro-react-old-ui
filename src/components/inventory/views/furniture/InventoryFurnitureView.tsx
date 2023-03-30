@@ -152,6 +152,10 @@ export const InventoryFurnitureView: FC<InventoryFurnitureViewProps> = props =>
                     { (selectedItem && selectedItem.stuffData.rarityLevel > -1) &&
                         <LayoutRarityLevelView className="top-2 end-2" position="absolute"
                                                level={ selectedItem.stuffData.rarityLevel }/> }
+                    { (selectedItem && selectedItem.getLastItem().isTradable) &&
+                        <i className={'top-2 start-2 position-absolute icon icon-tradeable'}/> }
+                    { (selectedItem && !selectedItem.getLastItem().isTradable) &&
+                        <i className={'top-2 start-2 position-absolute icon icon-no-tradeable'}/> }
                 </Column>
                 { selectedItem &&
                     <Column grow justifyContent="between" gap={ 2 }>

@@ -113,7 +113,9 @@ body {
   height: 13px;
   cursor: pointer;
 }
-
+.bigger-hr {
+ height: 2px !important;
+}
 img {
   object-fit: none;
 }

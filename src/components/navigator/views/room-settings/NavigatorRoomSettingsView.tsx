@@ -4,8 +4,8 @@ import {
     RoomSettingsDataEvent,
     SaveRoomSettingsComposer
 } from '@nitrots/nitro-renderer';
-import { FC, useState } from 'react';
-import { IRoomData, LocalizeText, SendMessageComposer } from '../../../../api';
+import {FC, useState} from 'react';
+import {IRoomData, LocalizeText, SendMessageComposer} from '../../../../api';
 import {
     Column,
     Flex, LayoutRoomThumbnailView,
@@ -13,14 +13,14 @@ import {
     NitroCardHeaderView,
     NitroCardTabsItemView,
     NitroCardTabsView,
-    NitroCardView
+    NitroCardView, Text
 } from '../../../../common';
-import { useMessageEvent, useNavigator } from '../../../../hooks';
-import { NavigatorRoomSettingsAccessTabView } from './NavigatorRoomSettingsAccessTabView';
-import { NavigatorRoomSettingsBasicTabView } from './NavigatorRoomSettingsBasicTabView';
-import { NavigatorRoomSettingsModTabView } from './NavigatorRoomSettingsModTabView';
-import { NavigatorRoomSettingsRightsTabView } from './NavigatorRoomSettingsRightsTabView';
-import { NavigatorRoomSettingsVipChatTabView } from './NavigatorRoomSettingsVipChatTabView';
+import {useMessageEvent, useNavigator} from '../../../../hooks';
+import {NavigatorRoomSettingsAccessTabView} from './NavigatorRoomSettingsAccessTabView';
+import {NavigatorRoomSettingsBasicTabView} from './NavigatorRoomSettingsBasicTabView';
+import {NavigatorRoomSettingsModTabView} from './NavigatorRoomSettingsModTabView';
+import {NavigatorRoomSettingsRightsTabView} from './NavigatorRoomSettingsRightsTabView';
+import {NavigatorRoomSettingsVipChatTabView} from './NavigatorRoomSettingsVipChatTabView';
 
 const TABS: string[] = [
     'navigator.roomsettings.tab.1',
@@ -86,7 +86,7 @@ export const NavigatorRoomSettingsView: FC<{}> = props =>
     {
         setRoomData(prevValue =>
         {
-            const newValue = { ...prevValue };
+            const newValue = {...prevValue};
 
             switch (field)
             {
@@ -196,27 +196,41 @@ export const NavigatorRoomSettingsView: FC<{}> = props =>
     return (
 
         <Column className="nitro-room-info">
-            <div className={ 'nitro-room-info-content p-1' }>
-                <Flex>
-                    <Column center position="relative" className={ 'container-fluid' }>
+            <div className={ 'nitro-room-info-content' }>
+                <Flex className={'m-1'}>
+                    <Column center position="relative" className={ 'container-fluid' } gap={ 0 }>
 
-                        <NitroCardHeaderView headerText={ LocalizeText('navigator.roomsettings') }
-                            onCloseClick={ onClose }/>
+                        <Flex >
+                            <Text className={ 'text-volter-bold' }
+                                  variant={ 'white' }>{ LocalizeText('navigator.roomsettings') }</Text>
+                        </Flex>
+
 
                     </Column>
+
+                    <i className="end-2 infostand-close p-2"
+                       onMouseDownCapture={ event =>
+                       {
+                           event.stopPropagation();
+                           event.nativeEvent.stopImmediatePropagation();
+                       } } onClick={ () => onClose() }/>
+
+
                 </Flex>
+                <hr className="m-0 w-100 bigger-hr"/>
+
                 <NitroCardTabsView>
                     { TABS.map(tab =>
                     {
                         return <NitroCardTabsItemView key={ tab } isActive={ (currentTab === tab) }
-                            onClick={ event => setCurrentTab(tab) }>{ LocalizeText(tab) }</NitroCardTabsItemView>
+                                                      onClick={ event => setCurrentTab(tab) }>{ LocalizeText(tab) }</NitroCardTabsItemView>
                     }) }
                 </NitroCardTabsView>
 
                 <NitroCardContentView>
                     { (currentTab === TABS[0]) &&
                         <NavigatorRoomSettingsBasicTabView roomData={ roomData } handleChange={ handleChange }
-                            onClose={ onClose }/> }
+                                                           onClose={ onClose }/> }
                     { (currentTab === TABS[1]) &&
                         <NavigatorRoomSettingsAccessTabView roomData={ roomData } handleChange={ handleChange }/> }
                     { (currentTab === TABS[2]) &&
