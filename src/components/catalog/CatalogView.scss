@@ -6,14 +6,17 @@
   z-index: 1000;
   border-top: 1px solid #000;
 }
+
 .catalog-price-info {
   background: #FFC900;
   border-radius: 8px;
   padding: 8px;
+
   .btn {
     margin-top: 5px;
   }
 }
+
 .catalog-grid {
   overflow-y: scroll;
   gap: 0.20rem !important;
@@ -23,6 +26,7 @@
     border: 0 !important;
   }
 }
+
 .catalog-confirmation-view {
   .layout-grid-item {
     width: 50px;
@@ -32,18 +36,39 @@
     border: .5px solid #ccc !important;
   }
 }
+
 .catalog-padding-top {
   padding-top: 15px;
 }
+
 .nitro-catalog {
   width: $catalog-width;
   height: $catalog-height;
   font-family: Volter, sans-serif;
 
+  .catalog-badge{
+    position: absolute;
+    margin-left: 115px;
+    margin-bottom: 90px;
+
+    background-color: #CBCBCB;
+    border-radius: 8px;
+  }
+
   .catalog-select-text {
     padding-left: 16px;
   }
 
+  .catalog-alternative-flex {
+    height: 340px !important;
+  }
+  .catalog-main-content {
+    margin-top: 20px;
+    max-height: 320px !important;
+  }
+  .catalog-heading {
+    margin-bottom: 20px;
+  }
   .catalog-flex-content {
     height: 95%;
 
@@ -56,6 +81,7 @@
 
   .catalog-search-input {
     padding-left: 12px;
+
     input {
       background: #376C84;
       border: 0;
@@ -63,6 +89,12 @@
       box-shadow: none;
       color: #fff;
     }
+  }
+
+  .catalog-icon-holder {
+    box-shadow: inset 1px 3px rgba(255, 255, 255, 0.7);
+    padding: 1px;
+    background-color: #BDBCBA;
   }
 
   .catalog-nav-item {
@@ -115,6 +147,8 @@
     width: 360px;
     height: 481px;
     padding: 35px 13px 13px 5px;
+    filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.3333333333));
+
   }
 }
 

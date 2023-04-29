@@ -12,6 +12,7 @@ import { CatalogSpinnerWidgetView } from '../widgets/CatalogSpinnerWidgetView';
 import { CatalogTotalPriceWidget } from '../widgets/CatalogTotalPriceWidget';
 import { CatalogViewProductWidgetView } from '../widgets/CatalogViewProductWidgetView';
 import { CatalogLayoutProps } from './CatalogLayout.types';
+import {CatalogHeaderView} from '../../catalog-header/CatalogHeaderView';
 
 export interface CatalogLayoutColorGroupViewProps extends CatalogLayoutProps
 {
@@ -132,6 +133,11 @@ export const CatalogLayoutColorGroupingView : FC<CatalogLayoutColorGroupViewProp
 
     return (
         <Grid>
+
+            <Column size={ 12 }>
+                <CatalogHeaderView imageUrl={ page.localization.getImage(0) }/>
+                <Text variant={ 'black' } center> { page.localization.getText(0) }</Text>
+            </Column>
             <Column size={ 7 } overflow="hidden">
                 <AutoGrid columnCount={ 5 }>
                     { (!colorsShowing || !currentOffer || !colorableItems.has(currentOffer.product.furnitureData.className)) &&

@@ -144,7 +144,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
 
                         <ToolbarIcon icon="icon-rooms" maxFrames={ 4 }
                                      onClick={ event => CreateLinkEvent('navigator/toggle') }/>
-                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        <Text truncate className="text-volter-bold label-navigator" variant={ 'white-sharp' }>
                             { LocalizeText('toolbar.icon.label.navigator') }
                         </Text>
                         { (requests.length > 0) ?
@@ -152,14 +152,14 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                                          onClick={ event => CreateLinkEvent('friends/toggle') }/> :
                             <ToolbarIcon icon="icon-friends" maxFrames={ 5 }
                                          onClick={ event => CreateLinkEvent('friends/toggle') }/> }
-                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        <Text truncate className="text-volter-bold" variant={ 'white-sharp' }>
                             { LocalizeText('toolbar.icon.label.friendlist') }
                         </Text>
 
 
                         <ToolbarIcon icon={ 'icon-catalog' } maxFrames={ 7 }
                                      onClick={ event => CreateLinkEvent('catalog/toggle') }/>
-                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        <Text truncate className="text-volter-bold label-shop" variant={ 'white-sharp' }>
                             { LocalizeText('toolbar.icon.label.catalogue') }
                         </Text>
 
@@ -169,7 +169,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                             { (getFullCount > 0) &&
                                 <LayoutItemCountView count={ getFullCount }/> }
                         </ToolbarIcon>
-                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        <Text truncate className="text-volter-bold" variant={ 'white-sharp' }>
                             { LocalizeText('toolbar.icon.label.inventory') }
                         </Text>
 
@@ -180,41 +180,42 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                                   onClick={ event => OpenMessengerChat() }/> }
 
                         { ((iconState === MessengerIconState.SHOW) || (iconState === MessengerIconState.UNREAD)) &&
-                            <Text truncate className="text-volter-bold" variant={ 'white' }>
+                            <Text truncate className="text-volter-bold" variant={ 'white-sharp' }>
                                 { LocalizeText('toolbar.icon.label.messenger') }
                             </Text> }
 
                         { isMod &&
                             <Base pointer className="navigation-item icon icon-modtools"
                                   onClick={ event => CreateLinkEvent('mod-tools/toggle') }/> }
-                        { isMod && <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        { isMod && <Text truncate className="text-volter-bold" variant={ 'white-sharp' }>
                             Mod Tools
                         </Text> }
                     </Flex>
                 </Flex>
 
                 <Flex gap={ 2 } alignItems="center">
-                    <Flex alignItems="center" gap={ 2 } className={ 'flex-column' }>
+                    <Flex gap={ 2 } alignItems={ 'center' } className={ 'flex-column' }>
 
                         { isInRoom &&
                             <Base pointer className="navigation-item icon icon-camera"
                                   onClick={ event => CreateLinkEvent('camera/toggle') }/> }
 
-                        { isInRoom && <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        { isInRoom && <Text truncate className="text-volter-bold label-photo" variant={ 'white-sharp' }>
                             { LocalizeText('room.camera.button.text') }
                         </Text> }
+
                         { isInRoom &&
                             <ToolbarIcon icon={ (!isZoomedIn ? 'icon-room-zoom' : 'icon-room-zoom-inverse') }
                                          onClick={ () => handleToolClick('zoom') }
                                          maxFrames={ !isZoomedIn ? 4 : 5 }></ToolbarIcon> }
-                        { isInRoom && <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        { isInRoom && <Text truncate className="text-volter-bold" variant={ 'white-sharp' }>
                             { LocalizeText('toolbar.icon.label.zoom') }
                         </Text> }
                         { isInRoom &&
                             <Base pointer className="navigation-item icon icon-room-info"
                                   onClick={ event => CreateLinkEvent('navigator/toggle-room-info') }/> }
 
-                        { isInRoom && <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        { isInRoom && <Text truncate className="text-volter-bold label-roominfo" variant={ 'white-sharp' }>
                             { LocalizeText('toolbar.icon.label.roominfo') }
                         </Text> }
 
@@ -227,7 +228,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                                 <LayoutItemCountView count={ getTotalUnseen }/> }
                         </Flex>
 
-                        <Text truncate className="text-volter-bold" variant={ 'white' }>
+                        <Text truncate className="text-volter-bold" variant={ 'white-sharp' }>
                             { LocalizeText('toolbar.icon.label.memenu') }
                         </Text>
                     </Flex>

@@ -22,7 +22,9 @@ export const CatalogNavigationItemView: FC<CatalogNavigationItemViewProps> = pro
             <LayoutGridItem noBorder={ true } gap={ 1 } column={ false } itemActive={ node.isActive }
                             onClick={ event => activateNode(node) }
                             className={ child ? 'catalog-nav-item inset' : 'catalog-nav-item ' }>
-                <CatalogIconView icon={ node.iconId }/>
+                <div className={ child ? '' : 'catalog-icon-holder' }>
+                    <CatalogIconView icon={ node.iconId }/>
+                </div>
                 <Text grow truncate>{ node.localization }</Text>
                 { node.isBranch &&
                     <>

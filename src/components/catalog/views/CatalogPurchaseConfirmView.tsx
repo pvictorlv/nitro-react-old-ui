@@ -199,7 +199,9 @@ export const CatalogPurchaseConfirmView: FC<{}> = props =>
                     <Button fullWidth onClick={ () => purchase(false) }>
                         { LocalizeText('catalog.purchase_confirmation.buy') }
                     </Button>
-                    <Button fullWidth onClick={ () => purchase(true) } disabled={ ((purchaseOptions.quantity > 1) || !currentOffer.giftable || isLimitedSoldOut || (purchaseOptions.extraParamRequired && (!purchaseOptions.extraData || !purchaseOptions.extraData.length))) }>
+                    <Button fullWidth onClick={ () => purchase(true) } disabled={ ((purchaseOptions.quantity > 1) || !currentOffer.giftable || isLimitedSoldOut
+                        || (purchaseOptions.extraParamRequired && (!purchaseOptions.extraData || !purchaseOptions.extraData.length)) )
+                        || !!purchaseCallback || noGiftOption }>
                         { LocalizeText('catalog.purchase_confirmation.gift') }
                     </Button>
                     <Button fullWidth onClick={ () => onClose() }>

@@ -2,10 +2,11 @@ import { BuyMarketplaceOfferMessageComposer, GetMarketplaceOffersMessageComposer
 import { FC, useCallback, useMemo, useState } from 'react';
 import { IMarketplaceSearchOptions, LocalizeText, MarketplaceOfferData, MarketplaceSearchType, NotificationAlertType, SendMessageComposer } from '../../../../../../api';
 import { Button, ButtonGroup, Column, Text } from '../../../../../../common';
-import { useMessageEvent, useNotification, usePurse } from '../../../../../../hooks';
+import {useCatalog, useMessageEvent, useNotification, usePurse} from '../../../../../../hooks';
 import { CatalogLayoutProps } from '../CatalogLayout.types';
 import { CatalogLayoutMarketplaceItemView, PUBLIC_OFFER } from './CatalogLayoutMarketplaceItemView';
 import { SearchFormView } from './CatalogLayoutMarketplaceSearchFormView';
+import {CatalogHeaderView} from '../../../catalog-header/CatalogHeaderView';
 
 const SORT_TYPES_VALUE = [ 1, 2 ];
 const SORT_TYPES_ACTIVITY = [ 3, 4, 5, 6 ];
@@ -23,6 +24,7 @@ export const CatalogLayoutMarketplacePublicItemsView: FC<CatalogLayoutMarketplac
     const [ lastSearch, setLastSearch ] = useState<IMarketplaceSearchOptions>({ minPrice: -1, maxPrice: -1, query: '', type: 3 });
     const { getCurrencyAmount = null } = usePurse();
     const { simpleAlert = null, showConfirm = null } = useNotification();
+    const { currentPage = null} = useCatalog();
 
     const requestOffers = useCallback((options: IMarketplaceSearchOptions) =>
     {
@@ -134,6 +136,9 @@ export const CatalogLayoutMarketplacePublicItemsView: FC<CatalogLayoutMarketplac
     
     return (
         <>
+            <CatalogHeaderView imageUrl={ currentPage.localization.getImage(0) }/>
+            <Text variant={ 'black' } center> { currentPage.localization.getText(0) }</Text>
+
             <ButtonGroup>
                 <Button active={ (searchType === MarketplaceSearchType.BY_ACTIVITY) } onClick={ () => setSearchType(MarketplaceSearchType.BY_ACTIVITY) }>
                     { LocalizeText('catalog.marketplace.search_by_activity') }

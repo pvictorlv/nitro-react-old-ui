@@ -128,6 +128,17 @@
 .nitro-navigator {
 
 
+  .navigator-footer-create {
+
+    border-image-source: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAFlJREFUOE9jZMACzHNa/mMTh4mdnFLDiC6PIkDIAHTNyAbCDSLVEHTXgQ0i1xBkw6hnEKWugbmKcdQgfOkTLDecw2jwpWxYdJCbMGElAPWLEeSEQsh12Ao2AD/QOUPnLFOkAAAAAElFTkSuQmCC);
+    border-image-slice: 6 fill;
+    border-image-width: 6px;
+    border-image-repeat: repeat repeat;
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+
+
+  }
   .fa-icon {
     font-size: 11px;
   }

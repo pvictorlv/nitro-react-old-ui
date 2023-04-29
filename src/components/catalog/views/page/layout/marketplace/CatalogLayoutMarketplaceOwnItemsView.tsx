@@ -2,15 +2,17 @@ import { CancelMarketplaceOfferMessageComposer, GetMarketplaceOwnOffersMessageCo
 import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { LocalizeText, MarketplaceOfferData, MarketPlaceOfferState, NotificationAlertType, SendMessageComposer } from '../../../../../../api';
 import { Button, Column, Text } from '../../../../../../common';
-import { useMessageEvent, useNotification } from '../../../../../../hooks';
+import {useCatalog, useMessageEvent, useNotification} from '../../../../../../hooks';
 import { CatalogLayoutProps } from '../CatalogLayout.types';
 import { CatalogLayoutMarketplaceItemView, OWN_OFFER } from './CatalogLayoutMarketplaceItemView';
+import {CatalogHeaderView} from '../../../catalog-header/CatalogHeaderView';
 
 export const CatalogLayoutMarketplaceOwnItemsView: FC<CatalogLayoutProps> = props =>
 {
     const [ creditsWaiting, setCreditsWaiting ] = useState(0);
     const [ offers, setOffers ] = useState<MarketplaceOfferData[]>([]);
     const { simpleAlert = null } = useNotification();
+    const { currentPage = null} = useCatalog();
 
     useMessageEvent<MarketplaceOwnOffersEvent>(MarketplaceOwnOffersEvent, event =>
     {
@@ -76,6 +78,9 @@ export const CatalogLayoutMarketplaceOwnItemsView: FC<CatalogLayoutProps> = prop
 
     return (
         <Column overflow="hidden">
+            <CatalogHeaderView imageUrl={ currentPage.localization.getImage(0) }/>
+            <Text variant={ 'black' } center> { currentPage.localization.getText(0) }</Text>
+
             { (creditsWaiting <= 0) &&
                 <Text center className="bg-muted rounded p-1">
                     { LocalizeText('catalog.marketplace.redeem.no_sold_items') }

@@ -234,17 +234,17 @@
 }
 
 .nitro-item-count {
-    top: 2px;
-    right: 2px;
-    font-size: 9.5px;
+    top: 0px;
+    right: 0px;
+    font-size: 9px;
     padding: 2px 3px;
     z-index: 1;
 }
 
 .badge-image {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
     background-repeat: no-repeat;
     background-position: center;
 

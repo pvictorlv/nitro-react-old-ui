@@ -286,12 +286,11 @@ export const AvatarEditorView: FC<{}> = props =>
                 <Grid>
                     <Column size={ 9 } overflow="hidden">
                         { (activeCategory && !isWardrobeVisible) &&
-                            <AvatarEditorModelView model={ activeCategory } gender={ figureData.gender } setGender={ setGender } /> }
+                            <AvatarEditorModelView figureData={ figureData } model={ activeCategory } gender={ figureData.gender } setGender={ setGender } /> }
                         { isWardrobeVisible &&
                             <AvatarEditorWardrobeView figureData={ figureData } savedFigures={ savedFigures } setSavedFigures={ setSavedFigures } loadAvatarInEditor={ loadAvatarInEditor } /> }
                     </Column>
                     <Column size={ 3 } overflow="hidden">
-                        <AvatarEditorFigurePreviewView figureData={ figureData } />
                         <Column grow gap={ 1 }>
                             <ButtonGroup>
                                 <Button variant="secondary" onClick={ event => processAction(AvatarEditorAction.ACTION_RESET) }>

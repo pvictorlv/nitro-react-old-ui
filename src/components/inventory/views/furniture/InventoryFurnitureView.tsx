@@ -137,7 +137,7 @@ export const InventoryFurnitureView: FC<InventoryFurnitureViewProps> = props =>
 
                 <InventoryFurnitureSearchView groupItems={ groupItems } setGroupItems={ setFilteredGroupItems }/>
 
-                <AutoGrid columnCount={ 5 }>
+                <AutoGrid columnCount={ 5 } gap={ 1 } columnMinHeight={ 40 }>
                     { filteredGroupItems && (filteredGroupItems.length > 0) && filteredGroupItems.map((item, index) =>
                         <InventoryFurnitureItemView key={ index } groupItem={ item }/>) }
                 </AutoGrid>
@@ -153,9 +153,9 @@ export const InventoryFurnitureView: FC<InventoryFurnitureViewProps> = props =>
                         <LayoutRarityLevelView className="top-2 end-2" position="absolute"
                                                level={ selectedItem.stuffData.rarityLevel }/> }
                     { (selectedItem && selectedItem.getLastItem().isTradable) &&
-                        <i className={'top-2 start-2 position-absolute icon icon-tradeable'}/> }
+                        <i className={ 'top-2 start-2 position-absolute icon icon-tradeable' }/> }
                     { (selectedItem && !selectedItem.getLastItem().isTradable) &&
-                        <i className={'top-2 start-2 position-absolute icon icon-no-tradeable'}/> }
+                        <i className={ 'top-2 start-2 position-absolute icon icon-no-tradeable' }/> }
                 </Column>
                 { selectedItem &&
                     <Column grow justifyContent="between" gap={ 2 }>

@@ -130,8 +130,25 @@ export const App: FC<{}> = props =>
     
     return (
         <Base fit overflow="hidden" className={ imageRendering && 'image-rendering-pixelated' }>
+
+            <svg className="offscreen" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <defs>
+                    <filter id="crispify" >
+                        <feComponentTransfer>
+                            <feFuncA type="gamma" amplitude="3.5" exponent="2" offset="0"></feFuncA>
+
+                        </feComponentTransfer>
+                    </filter>
+                    <filter id="pixelate">
+                        <feComponentTransfer>
+                            <feFuncA type="discrete" tableValues="0 1"/>
+                        </feComponentTransfer>
+                    </filter>
+                </defs>
+            </svg>
             { (!isReady || isError) &&
                 <LoadingView isError={ isError } message={ message } percent={ percent } /> }
+
             <TransitionAnimation type={ TransitionAnimationTypes.FADE_IN } inProp={ (isReady) }>
                 <MainView />
             </TransitionAnimation>

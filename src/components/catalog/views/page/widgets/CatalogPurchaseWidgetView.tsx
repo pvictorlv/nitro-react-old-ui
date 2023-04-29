@@ -97,27 +97,6 @@ export const CatalogPurchaseWidgetView: FC<CatalogPurchaseWidgetViewProps> = pro
 
         DispatchUiEvent(new CatalogInitPurchaseEvent(currentOffer.page.pageId, currentOffer.offerId, purchaseOptions.extraData, noGiftOption, purchaseCallback));
 
-        return;
-
-        setPurchaseState(CatalogPurchaseState.PURCHASE);
-
-        if (purchaseCallback)
-        {
-            purchaseCallback();
-
-            return;
-        }
-
-        let pageId = currentOffer.page.pageId;
-
-        // if(pageId === -1)
-        // {
-        //     const nodes = getNodesByOfferId(currentOffer.offerId);
-
-        //     if(nodes) pageId = nodes[0].pageId;
-        // }
-
-        SendMessageComposer(new PurchaseFromCatalogComposer(pageId, currentOffer.offerId, purchaseOptions.extraData, purchaseOptions.quantity));
     }
 
     useEffect(() =>

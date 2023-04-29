@@ -74,22 +74,9 @@ export const ChatHistoryView: FC<{}> = props => {
                                                      style={{backgroundImage: `url(${row.imageUrl})`}}/>}
                                         </div>
                                         <div className="chat-content">
-                                            <b className="username mr-1"
+                                            <span className="username mr-1"
                                                dangerouslySetInnerHTML={{__html: `${row.name}: `}}/>
-                                            <span onClick={event => {
-                                                if (row.message.indexOf('a href') > 0) {
-                                                    var url = row.message.split('a href="')[1].split('"')[0];
-                                                    if (url.indexOf('image') > 0) {
-                                                        var image = new Image();
-                                                        image.src = url;
-
-                                                        var w = window.open("");
-                                                        w.document.write(image.outerHTML);
-                                                    } else {
-                                                        window.open(url, '_blank');
-                                                    }
-                                                }
-                                            }} className="message"
+                                            <span  className="message"
                                                   dangerouslySetInnerHTML={{__html: `${row.message}`}}/>
                                         </div>
                                     </div>

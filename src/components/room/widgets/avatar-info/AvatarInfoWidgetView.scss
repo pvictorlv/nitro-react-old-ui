@@ -35,6 +35,18 @@
   }
 
   .nitro-infostand {
+
+    .text-white {
+      color: black !important;
+      filter: url(#crispify) invert(1) !important;
+      font-size: 9px !important;
+    }
+    .text-volter, .text-volter-bold {
+      font-size: 9px !important;
+      filter: url(#crispify);
+      -webkit-font-smoothing: none !important;
+    }
+
     position: relative;
     width: 190px;
 

@@ -1,53 +1,61 @@
 .nitro-inventory {
-    width: $inventory-width;
-    height: $inventory-height;
+  width: $inventory-width;
+  height: $inventory-height;
 
-    resize: none;
+  &.trading {
+    width: 330px !important;
+    height: 480px !important;
+  }
 
-    .nav-item {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    .empty-image {
-        background: url('@/assets/images/inventory/empty.png');
-        width: 129px;
-        height: 181px;
-    }
+  resize: none;
 
-    .trade-button {
-        min-height: 0;
-        font-size: 8px;
-        padding: 1px 2px;
-        z-index: 5;
-    }
+  .nav-item {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 
-    .inventory-badge-data {
-        background: #DDE3F1;
-        border-radius: $border-secondary-radius;
-    }
+  .empty-image {
+    background: url('@/assets/images/inventory/empty.png');
+    width: 129px;
+    height: 181px;
+  }
 
-    .inventory-ach-points {
-        font-family: VolterBold, sans-serif;
-        color: white;
-        background: #3F403E;
-        border-radius: $border-secondary-radius;
-        font-size: 9.3px;
-        padding: 4px;
-    }
+  .trade-button {
+    min-height: 0;
+    font-size: 8px;
+    padding: 1px 2px;
+    z-index: 5;
+  }
 
-    .inventory-ach-main-view {
-        height: 100%;
-        }
-    .inventory-ach-item:nth-child(odd) {
-        background-color: #dee4f2;
-    }
+  .inventory-badge-data {
+    background: #DDE3F1;
+    border-radius: $border-secondary-radius;
+  }
 
-    .btn-sm {
-        line-height: 1.25;
-        min-height: 0px;
-    }
-    .inventory-ach-item:nth-child(even) {
-        background-color: #fff;
-    }
+  .inventory-ach-points {
+    font-family: VolterBold, sans-serif;
+    color: white;
+    background: #3F403E;
+    border-radius: $border-secondary-radius;
+    font-size: 9.3px;
+    padding: 4px;
+  }
+
+  .inventory-ach-main-view {
+    height: 100%;
+  }
+
+  .inventory-ach-item:nth-child(odd) {
+    background-color: #dee4f2;
+  }
+
+  .btn-sm {
+    line-height: 1.25;
+    min-height: 0px;
+  }
+
+  .inventory-ach-item:nth-child(even) {
+    background-color: #fff;
+  }
 
 }

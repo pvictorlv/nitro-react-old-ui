@@ -98,7 +98,7 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
                 return;
             case 'navigator_search_tag':
                 CreateLinkEvent(`navigator/search/hotel_view/tag:${ value }`);
-           //     SendMessageComposer(new NavigatorSearchComposer('hotel_view', `tag:${ value }`));
+                //     SendMessageComposer(new NavigatorSearchComposer('hotel_view', `tag:${ value }`));
                 return;
             case 'open_room_thumbnail_camera':
                 DispatchUiEvent(new RoomWidgetThumbnailEvent(RoomWidgetThumbnailEvent.TOGGLE_THUMBNAIL));
@@ -158,12 +158,12 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
                     <Column center position="relative" className={ 'container-fluid' } gap={ 0 }>
                         <Flex fullWidth>
                             <Text className={ 'text-volter-bold' }
-                                  variant={ 'white' }>{ navigatorData.enteredGuestRoom.roomName }</Text>
+                                  variant={ 'white-sharp' }>{ navigatorData.enteredGuestRoom.roomName }</Text>
                         </Flex>
                         <Flex fullWidth gap={ 1 } alignItems={ 'center' }>
                             <Text className={ 'text-volter-bold' }
-                                  variant={ 'white' }>{ LocalizeText('navigator.roomownercaption') } </Text>
-                            <Text variant={ 'white' }>{ navigatorData.enteredGuestRoom.ownerName }</Text>
+                                  variant={ 'white-sharp' }>{ LocalizeText('navigator.roomownercaption') } </Text>
+                            <Text variant={ 'white-sharp' }>{ navigatorData.enteredGuestRoom.ownerName }</Text>
                         </Flex>
 
 
@@ -173,11 +173,11 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
                        className={ classNames('flex-shrink-0 icon icon-house-small cursor-pointer', ((navigatorData.homeRoomId !== navigatorData.enteredGuestRoom.roomId) && 'gray')) }/>
 
                     <i className="end-2 infostand-close p-2"
-                          onMouseDownCapture={ event =>
-                          {
-                              event.stopPropagation();
-                              event.nativeEvent.stopImmediatePropagation();
-                          } } onClick={ () => processAction('close') }/>
+                       onMouseDownCapture={ event =>
+                       {
+                           event.stopPropagation();
+                           event.nativeEvent.stopImmediatePropagation();
+                       } } onClick={ () => processAction('close') }/>
                 </Flex>
 
 
@@ -203,9 +203,9 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
 
 
                                             <Flex alignItems="center" gap={ 1 } fullWidth>
-                                                <Text variant="white"
+                                                <Text variant="white-sharp"
                                                       className={ 'text-volter-bold' }>{ LocalizeText('navigator.roomrating') }</Text>
-                                                <Text variant="white">{ navigatorData.currentRoomRating }</Text>
+                                                <Text variant="white-sharp">{ navigatorData.currentRoomRating }</Text>
                                             </Flex>
                                         </Column>
 
@@ -218,7 +218,7 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
                                             <LayoutBadgeImageView className="flex-none"
                                                                   badgeCode={ navigatorData.enteredGuestRoom.groupBadgeCode }
                                                                   isGroup={ true }/>
-                                            <Text underline variant={ 'white' }>
+                                            <Text underline variant={ 'white-sharp' }>
                                                 { LocalizeText('navigator.guildbase', [ 'groupName' ], [ navigatorData.enteredGuestRoom.groupName ]) }
                                             </Text>
                                         </Flex> }
@@ -226,39 +226,47 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
                             </Flex>
 
                             { navigatorData.canRate && <Button fullWidth onClick={ () => processAction('like_room') }>
-                                { LocalizeText('room.like.button.text') }
+                                <span
+                                    className={ 'text-white-sharp label-like-room' }>    { LocalizeText('room.like.button.text') } </span>
                             </Button> }
 
                             { favouriteRooms.includes(navigatorData.enteredGuestRoom.roomId) &&
                                 <Button fullWidth onClick={ () => processAction('unfav_room') }>
-                                    { LocalizeText('navigator.roominfo.removefromfavourites') }
+                                    <span
+                                        className={ 'text-white-sharp' }>  { LocalizeText('navigator.roominfo.removefromfavourites') } </span>
                                 </Button> }
 
                             { !favouriteRooms.includes(navigatorData.enteredGuestRoom.roomId) &&
                                 <Button fullWidth onClick={ () => processAction('fav_room') }>
-                                    { LocalizeText('navigator.roominfo.addtofavourites') }
+                                    <span
+                                        className={ 'text-white-sharp' }>    { LocalizeText('navigator.roominfo.addtofavourites') } </span>
                                 </Button> }
 
                             { hasPermission('staff_pick') &&
                                 <Button fullWidth onClick={ () => processAction('toggle_pick') }>
-                                    { LocalizeText(isRoomPicked ? 'navigator.staffpicks.unpick' : 'navigator.staffpicks.pick') }
+                                    <span
+                                        className={ 'text-white-sharp' }>   { LocalizeText(isRoomPicked ? 'navigator.staffpicks.unpick' : 'navigator.staffpicks.pick') } </span>
                                 </Button> }
 
                             <Grid columnCount={ 2 } fullWidth>
                                 { hasPermission('settings') &&
                                     <Button fullWidth onClick={ () => processAction('open_room_settings') }>
-                                        { LocalizeText('navigator.roomsettings') }
+                                        <span
+                                            className={ 'text-white-sharp label-roomsettings' }>   { LocalizeText('navigator.roomsettings') } </span>
                                     </Button> }
                                 <Button fullWidth onClick={ () => processAction('report_room') }>
-                                    { LocalizeText('help.emergency.main.report.room') }
+                                    <span
+                                        className={ 'text-white-sharp' }>  { LocalizeText('help.emergency.main.report.room') }</span>
                                 </Button>
                                 { hasPermission('settings') &&
                                     <>
                                         <Button onClick={ () => processAction('toggle_mute') }>
-                                            { LocalizeText(isRoomMuted ? 'navigator.muteall_on' : 'navigator.muteall_off') }
+                                            <span
+                                                className={ 'text-white-sharp' }>    { LocalizeText(isRoomMuted ? 'navigator.muteall_on' : 'navigator.muteall_off') } </span>
                                         </Button>
                                         <Button onClick={ () => processAction('room_filter') }>
-                                            { LocalizeText('navigator.roomsettings.roomfilter') }
+                                            <span
+                                                className={ 'text-white-sharp' }>   { LocalizeText('navigator.roomsettings.roomfilter') } </span>
                                         </Button>
                                     </> }
                             </Grid>
@@ -271,14 +279,14 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
             <div className={ 'nitro-room-info-content py-1' }>
                 <Flex>
                     <Column center position="relative" className={ 'container-fluid' }>
-                        <Flex fullWidth className={ 'text-volter-bold' }>
+                        <Flex fullWidth className={ 'text-volter-bold text-white-sharp' }>
                             { LocalizeText('navigator.embed.caption') } </Flex>
                     </Column>
                 </Flex>
                 <NitroCardContentView className="d-flex align-items-center">
                     <Flex gap={ 2 }>
                         <Column center position="relative" className={ 'container-fluid' }>
-                            <Text variant={ 'white' }>{ LocalizeText('navigator.embed.info') }</Text>
+                            <Text variant={ 'white-sharp' }>{ LocalizeText('navigator.embed.info') }</Text>
                             <input type="text" readOnly className="form-control room-info-input"
                                    value={ LocalizeText('navigator.embed.src', [ 'roomId' ], [ navigatorData.enteredGuestRoom.roomId.toString() ]).replace('${url.prefix}', GetConfiguration<string>('url.prefix', '')) }/>
                         </Column>
@@ -288,14 +296,14 @@ export const NavigatorRoomInfoView: FC<NavigatorRoomInfoViewProps> = props =>
 
             <Flex fullWidth>
                 <Button fullWidth className={ 'm-1' } onClick={ () => processAction('chat_history') }>
-                    { LocalizeText('room.chathistory.button.text') }
+                    <span className={ 'text-white-sharp' }>{ LocalizeText('room.chathistory.button.text') }</span>
                 </Button>
                 <Button fullWidth className={ 'm-1' } onClick={ () =>
                 {
                     onCloseClick();
                     VisitDesktop();
                 } }>
-                    { LocalizeText('navigator.hotelview') }
+                    <span className={ 'text-white-sharp label-hotelview' }>  { LocalizeText('navigator.hotelview') } </span>
                 </Button>
             </Flex>
         </Column>

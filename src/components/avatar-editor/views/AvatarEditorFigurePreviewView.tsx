@@ -42,14 +42,9 @@ export const AvatarEditorFigurePreviewView: FC<AvatarEditorFigurePreviewViewProp
     }, [ figureData ] );
 
     return (
-        <Column className="figure-preview-container" overflow="hidden" position="relative">
-            <LayoutAvatarImageView figure={ figureData.getFigureString() } direction={ figureData.direction } scale={ 2 } />
-            <AvatarEditorIcon className="avatar-spotlight" icon="spotlight" />
+        <Column className="figure-preview-container" overflow="hidden" position="relative" size={ 4}>
+            <LayoutAvatarImageView figure={ figureData.getFigureString() } direction={ figureData.direction } scale={ 1 } />
             <Base className="avatar-shadow" />
-            <Base className="arrow-container">
-                <AvatarEditorIcon pointer icon="arrow-left" onClick={ event => rotateFigure(figureData.direction + 1) } />
-                <AvatarEditorIcon pointer icon="arrow-right" onClick={ event => rotateFigure(figureData.direction - 1) } />
-            </Base>
         </Column>
     );
 }

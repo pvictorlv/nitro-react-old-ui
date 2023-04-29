@@ -202,7 +202,7 @@ export const NavigatorRoomSettingsView: FC<{}> = props =>
 
                         <Flex >
                             <Text className={ 'text-volter-bold' }
-                                  variant={ 'white' }>{ LocalizeText('navigator.roomsettings') }</Text>
+                                  variant={ 'white-sharp' }>{ LocalizeText('navigator.roomsettings') }</Text>
                         </Flex>
 
 

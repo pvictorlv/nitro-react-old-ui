@@ -7,8 +7,8 @@ import {
     NavigatorSearchComposer,
     RoomSessionEvent
 } from '@nitrots/nitro-renderer';
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import {FC, useCallback, useEffect, useRef, useState} from 'react';
+import {FaPlus} from 'react-icons/fa';
 import {
     AddEventLinkTracker,
     LocalizeText,
@@ -28,14 +28,14 @@ import {
     Flex,
     TransitionAnimation, TransitionAnimationTypes
 } from '../../common';
-import { useNavigator, useRoomSessionManagerEvent } from '../../hooks';
-import { NavigatorDoorStateView } from './views/NavigatorDoorStateView';
-import { NavigatorRoomCreatorView } from './views/NavigatorRoomCreatorView';
-import { NavigatorRoomInfoView } from './views/NavigatorRoomInfoView';
-import { NavigatorRoomLinkView } from './views/NavigatorRoomLinkView';
-import { NavigatorRoomSettingsView } from './views/room-settings/NavigatorRoomSettingsView';
-import { NavigatorSearchResultView } from './views/search/NavigatorSearchResultView';
-import { NavigatorSearchView } from './views/search/NavigatorSearchView';
+import {useNavigator, useRoomSessionManagerEvent} from '../../hooks';
+import {NavigatorDoorStateView} from './views/NavigatorDoorStateView';
+import {NavigatorRoomCreatorView} from './views/NavigatorRoomCreatorView';
+import {NavigatorRoomInfoView} from './views/NavigatorRoomInfoView';
+import {NavigatorRoomLinkView} from './views/NavigatorRoomLinkView';
+import {NavigatorRoomSettingsView} from './views/room-settings/NavigatorRoomSettingsView';
+import {NavigatorSearchResultView} from './views/search/NavigatorSearchResultView';
+import {NavigatorSearchView} from './views/search/NavigatorSearchView';
 
 export const NavigatorView: FC<{}> = props =>
 {
@@ -47,7 +47,7 @@ export const NavigatorView: FC<{}> = props =>
     const [ isLoading, setIsLoading ] = useState(false);
     const [ needsInit, setNeedsInit ] = useState(true);
     const [ needsSearch, setNeedsSearch ] = useState(false);
-    const { searchResult = null, topLevelContext = null, topLevelContexts = null, navigatorData = null } = useNavigator();
+    const {searchResult = null, topLevelContext = null, topLevelContexts = null, navigatorData = null} = useNavigator();
     const pendingSearch = useRef<{ value: string, code: string }>(null);
     const elementRef = useRef<HTMLDivElement>();
 
@@ -166,7 +166,7 @@ export const NavigatorView: FC<{}> = props =>
 
                             if (parts.length > 3) searchValue = parts[3];
 
-                            pendingSearch.current = { value: searchValue, code: topLevelContextCode };
+                            pendingSearch.current = {value: searchValue, code: topLevelContextCode};
 
                             setIsVisible(true);
                             setNeedsSearch(true);
@@ -233,30 +233,35 @@ export const NavigatorView: FC<{}> = props =>
                         {
                             return (
                                 <NitroCardTabsItemView key={ index }
-                                    isActive={ ((topLevelContext === context)) }
-                                    onClick={ event => sendSearch('', context.code) }>
+                                                       isActive={ ((topLevelContext === context)) }
+                                                       onClick={ event => sendSearch('', context.code) }>
                                     { LocalizeText(('navigator.toplevelview.' + context.code)) }
                                 </NitroCardTabsItemView>
                             );
                         }) }
-                        <NitroCardTabsItemView onClick={ event => setCreatorOpen(true) }>
-                            <FaPlus className="fa-icon"/>
-                        </NitroCardTabsItemView>
                         <Flex>
                             <Base pointer className="icon icon-hotel-view"
-                                onClick={ event => VisitDesktop() }/>
+                                  onClick={ event => VisitDesktop() }/>
                         </Flex>
                     </NitroCardTabsView>
                     <NitroCardContentView position="relative">
                         { isLoading &&
                             <Base fit position="absolute" className="top-0 start-0 z-index-1 bg-muted opacity-0-5"/> }
-
-                        <NavigatorSearchView sendSearch={ sendSearch }/>
+                        { (topLevelContext == null || topLevelContext.code == 'hotel_view' || topLevelContext.code == 'roomads_view') &&
+                            <NavigatorSearchView sendSearch={ sendSearch }/>
+                        }
                         <Column innerRef={ elementRef } overflow="auto">
                             { (searchResult && searchResult.results.map((result, index) =>
                                 <NavigatorSearchResultView key={ index } searchResult={ result }/>)) }
                         </Column>
                     </NitroCardContentView>
+                    { topLevelContext == null || topLevelContext.code == 'myworld_view' &&
+                        <Base className={ 'navigator-footer-create' } onClick={ event => setCreatorOpen(true) }>
+                            <Flex alignItems={ 'center' }>
+                                <i className="icon icon-room-key me-1"/> { LocalizeText('navigator.moreroomscaption') }
+                                <FaPlus className="fa-icon"/>
+                            </Flex>
+                        </Base> }
                 </NitroCardView> }
             <NavigatorDoorStateView/>
             <TransitionAnimation type={ TransitionAnimationTypes.SLIDE_LEFT } inProp={ isRoomInfoOpen } timeout={ 250 }>

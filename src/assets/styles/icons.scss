@@ -9,6 +9,11 @@
   background-repeat: no-repeat;
   background-position: center;
 
+  &.icon-room-key {
+    background-image: url(data:image/gif;base64,R0lGODlhFwAXAHcAACH5BAEAAAUALAAAAAAXABcAggAAAGYzAJZjAMyZAOWxFf8A///MM///ZgibAAsIHEhwIICDBRMqLADggMODABYqbGjAgMOHEglStChgQMUDETM2vAjy4MeQEw9UXAmSoUWUCUeSfAhgQMuFNVWuPCkAI06dOy2qvJly5swBMDWqJEAgqEWkEhsSCHCRJdSfU1UOsOnwasqsBpDW3JpUY0OqBhAyVPsVbdmoB8C+xXlW5dy2djMWlOpW714Dff1qDCzY7N2MAQEAOw==);
+    width: 23px;
+    height: 23px;
+  }
 
   &.icon-nitro-light {
     background-image: url('@/assets/images/nitro/nitro-n-light.svg');
@@ -182,6 +187,7 @@
   }
 
   &.icon-inventory {
+
     background-image: url('@/assets/images/toolbar/icons/inventory-1.png');
     width: 40px;
     height: 46px;
@@ -257,6 +263,7 @@
     width: 30px;
     height: 30px;
   }
+
   &.icon-tradeable {
     background-image: url('@/assets/images/inventory/tradeable.png');
     width: 40px;
@@ -498,6 +505,7 @@
     width: 18px;
     height: 10px;
   }
+
   &.icon-small-room {
     background: url('@/assets/images/icons/small-room.png');
     width: 17px;
@@ -813,4 +821,36 @@
       transform: rotate(360deg);
     }
   }
+}
+
+.label-navigator {
+  width: 48px;
+}
+
+.label-shop {
+  width: 26px;
+}
+
+.label-photo {
+  width: 44px;
+}
+
+.label-roominfo {
+  width: 52px;
+}
+
+.label-hotelview {
+  width: 70px;
+}
+
+.label-roomsettings {
+  width: 64px;
+}
+
+.label-like-room {
+  width: 28px;
+}
+
+.label-roomsettings {
+  width: 64px;
 }

@@ -62,7 +62,7 @@ export const CatalogBadgeSelectorWidgetView: FC<CatalogBadgeSelectorWidgetViewPr
     }, []);
 
     return (
-        <AutoGrid columnCount={ columnCount } { ...rest }>
+        <AutoGrid className={ 'catalog-grid' } columnCount={ columnCount } { ...rest }>
             { badgeCodes && (badgeCodes.length > 0) && badgeCodes.map((badgeCode, index) =>
             {
                 return (

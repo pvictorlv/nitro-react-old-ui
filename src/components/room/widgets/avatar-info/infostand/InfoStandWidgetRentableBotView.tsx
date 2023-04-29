@@ -75,10 +75,6 @@ export const InfoStandWidgetRentableBotView: FC<InfoStandWidgetRentableBotViewPr
                     </Column>
                 </Column>
             </Column>
-            { canPickup &&
-                <Flex justifyContent="end">
-                    <Button variant="dark" onClick={ pickupBot }>{ LocalizeText('infostand.button.pickup') }</Button>
-                </Flex> }
         </Column>
     );
 }

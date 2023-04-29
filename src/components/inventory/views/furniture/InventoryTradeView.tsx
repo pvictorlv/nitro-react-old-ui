@@ -178,7 +178,7 @@ export const InventoryTradeView: FC<InventoryTradeViewProps> = props =>
 
     return (
         <Grid>
-            <Column size={ 4 } overflow="hidden">
+            <Column size={ 12 } overflow="hidden">
                 <InventoryFurnitureSearchView groupItems={ groupItems } setGroupItems={ setFilteredGroupItems } />
                 <Flex column fullHeight justifyContent="between" overflow="hidden" gap={ 2 }>
                     <AutoGrid columnCount={ 3 }>
@@ -212,7 +212,7 @@ export const InventoryTradeView: FC<InventoryTradeViewProps> = props =>
                     </Column>
                 </Flex>
             </Column>
-            <Column size={ 8 } overflow="hidden">
+            <Column size={ 12 } overflow="hidden">
                 <Grid overflow="hidden">
                     <Column size={ 6 } overflow="hidden">
                         <Flex justifyContent="between" alignItems="center">

@@ -1,10 +1,33 @@
-import { BotCommandConfigurationEvent, BotRemoveComposer, BotSkillSaveComposer, RequestBotCommandConfigurationComposer, RoomObjectCategory, RoomObjectType } from '@nitrots/nitro-renderer';
+import {
+    BotCommandConfigurationEvent,
+    BotRemoveComposer,
+    BotSkillSaveComposer,
+    RequestBotCommandConfigurationComposer,
+    RoomObjectCategory,
+    RoomObjectType
+} from '@nitrots/nitro-renderer';
 import { FC, useEffect, useState } from 'react';
-import { AvatarInfoRentableBot, BotSkillsEnum, DispatchUiEvent, GetConfiguration, GetNitroInstance, LocalizeText, RoomWidgetUpdateRentableBotChatEvent, SendMessageComposer } from '../../../../../api';
-import { Button, Column, Flex, Text } from '../../../../../common';
+import {
+    AvatarInfoRentableBot,
+    BotSkillsEnum,
+    DispatchUiEvent,
+    GetConfiguration,
+    GetNitroInstance,
+    LocalizeText,
+    RoomWidgetUpdateRentableBotChatEvent,
+    SendMessageComposer
+} from '../../../../../api';
+import {
+    Button,
+    Column,
+    Flex,
+    NitroCardContentView,
+    NitroCardHeaderView,
+    NitroCardView,
+    Text
+} from '../../../../../common';
 import { useMessageEvent } from '../../../../../hooks';
 import { ContextMenuHeaderView } from '../../context-menu/ContextMenuHeaderView';
-import { ContextMenuListItemView } from '../../context-menu/ContextMenuListItemView';
 import { ContextMenuView } from '../../context-menu/ContextMenuView';
 
 interface AvatarInfoWidgetRentableBotViewProps
@@ -28,9 +51,9 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
     {
         const parser = event.getParser();
 
-        if(parser.botId !== avatarInfo.webID) return;
+        if (parser.botId !== avatarInfo.webID) return;
 
-        switch(parser.commandId)
+        switch (parser.commandId)
         {
             case BotSkillsEnum.CHANGE_BOT_NAME:
                 setNewName(parser.data);
@@ -40,11 +63,12 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
                 setNewMotto(parser.data);
                 setMode(MODE_CHANGE_MOTTO);
                 return;
-            case BotSkillsEnum.SETUP_CHAT: {
+            case BotSkillsEnum.SETUP_CHAT:
+            {
                 const data = parser.data;
                 const pieces = data.split(((data.indexOf(';#;') === -1) ? ';' : ';#;'));
 
-                if((pieces.length === 3) || (pieces.length === 4))
+                if ((pieces.length === 3) || (pieces.length === 4))
                 {
                     DispatchUiEvent(new RoomWidgetUpdateRentableBotChatEvent(
                         avatarInfo.roomIndex,
@@ -69,9 +93,9 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
     {
         let hideMenu = true;
 
-        if(name)
+        if (name)
         {
-            switch(name)
+            switch (name)
             {
                 case 'donate_to_all':
                     requestBotCommandConfiguration(BotSkillsEnum.DONATE_TO_ALL);
@@ -120,7 +144,7 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
             }
         }
 
-        if(hideMenu) onClose();
+        if (hideMenu) onClose();
     }
 
     useEffect(() =>
@@ -131,67 +155,77 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
     const canControl = (avatarInfo.amIOwner || avatarInfo.amIAnyRoomController);
 
     return (
-        <ContextMenuView objectId={ avatarInfo.roomIndex } category={ RoomObjectCategory.UNIT } userType={ RoomObjectType.RENTABLE_BOT } onClose={ onClose } collapsable={ true }>
-            <ContextMenuHeaderView>
-                { avatarInfo.name }
-            </ContextMenuHeaderView>
+        <Flex gap={ 1 } justifyContent="end">
             { (mode === MODE_NORMAL) && canControl &&
                 <>
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.DONATE_TO_ALL) >= 0) &&
-                        <ContextMenuListItemView onClick={ event => processAction('donate_to_all') }>
+                        <Button variant="dark" onClick={ event => processAction('donate_to_all') }>
                             { LocalizeText('avatar.widget.donate_to_all') }
-                        </ContextMenuListItemView> }
+                        </Button> }
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.DONATE_TO_USER) >= 0) &&
-                        <ContextMenuListItemView onClick={ event => processAction('donate_to_user') }>
+                        <Button variant="dark" onClick={ event => processAction('donate_to_user') }>
                             { LocalizeText('avatar.widget.donate_to_user') }
-                        </ContextMenuListItemView> }
+                        </Button> }
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.CHANGE_BOT_NAME) >= 0) &&
-                        <ContextMenuListItemView onClick={ event => processAction('change_bot_name') }>
+                        <Button variant="dark" onClick={ event => processAction('change_bot_name') }>
                             { LocalizeText('avatar.widget.change_bot_name') }
-                        </ContextMenuListItemView> }
+                        </Button> }
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.CHANGE_BOT_MOTTO) >= 0) &&
-                        <ContextMenuListItemView onClick={ event => processAction('change_bot_motto') }>
+                        <Button variant="dark" onClick={ event => processAction('change_bot_motto') }>
                             { LocalizeText('avatar.widget.change_bot_motto') }
-                        </ContextMenuListItemView> }
+                        </Button> }
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.DRESS_UP) >= 0) &&
-                        <ContextMenuListItemView onClick={ event => processAction('dress_up') }>
+                        <Button variant="dark" onClick={ event => processAction('dress_up') }>
                             { LocalizeText('avatar.widget.dress_up') }
-                        </ContextMenuListItemView> }
+                        </Button> }
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.RANDOM_WALK) >= 0) &&
-                        <ContextMenuListItemView onClick={ event => processAction('random_walk') }>
+                        <Button variant="dark" onClick={ event => processAction('random_walk') }>
                             { LocalizeText('avatar.widget.random_walk') }
-                        </ContextMenuListItemView> }
+                        </Button> }
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.SETUP_CHAT) >= 0) &&
-                        <ContextMenuListItemView onClick={ event => processAction('setup_chat') }>
+                        <Button variant="dark" onClick={ event => processAction('setup_chat') }>
                             { LocalizeText('avatar.widget.setup_chat') }
-                        </ContextMenuListItemView> }
+                        </Button> }
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.DANCE) >= 0) &&
-                        <ContextMenuListItemView onClick={ event => processAction('dance') }>
+                        <Button variant="dark" onClick={ event => processAction('dance') }>
                             { LocalizeText('avatar.widget.dance') }
-                        </ContextMenuListItemView> }
+                        </Button> }
                     { (avatarInfo.botSkills.indexOf(BotSkillsEnum.NO_PICK_UP) === -1) &&
-                        <ContextMenuListItemView onClick={ event => processAction('pick') }>
-                            { LocalizeText('avatar.widget.pick_up') }
-                        </ContextMenuListItemView> }
+                        <Button variant="dark" onClick={ event => processAction('pick') }>
+                            { LocalizeText('infostand.button.pickup') }
+                        </Button> }
                 </> }
             { (mode === MODE_CHANGE_NAME) &&
-                <Column className="menu-item" onClick={ null } gap={ 1 }>
-                    <Text variant="white">{ LocalizeText('bot.skill.name.configuration.new.name') }</Text>
-                    <input type="text" className="form-control form-control-sm" value={ newName } maxLength={ GetConfiguration<number>('bot.name.max.length', 15) } onChange={ event => setNewName(event.target.value) } />
-                    <Flex alignItems="center" justifyContent="between" gap={ 1 }>
-                        <Button fullWidth variant="secondary" onClick={ event => processAction(null) }>{ LocalizeText('cancel') }</Button>
-                        <Button fullWidth onClick={ event => processAction('save_bot_name') }>{ LocalizeText('save') }</Button>
-                    </Flex>
-                </Column> }
+                <NitroCardView uniqueKey={ 'bot-change-name' }>
+                    <NitroCardHeaderView headerText={ LocalizeText('bot.skill.name.configuration.new.name') }
+                        onCloseClick={ event => processAction(null) }/>
+                    <NitroCardContentView overflow="hidden">
+                        <Column className="menu-item" onClick={ null } gap={ 1 }>
+                            <input type="text" className="form-control form-control-sm" value={ newName }
+                                maxLength={ GetConfiguration<number>('bot.name.max.length', 15) }
+                                onChange={ event => setNewName(event.target.value) }/>
+                            <Flex alignItems="center" justifyContent="between" gap={ 1 }>
+                                <Button fullWidth
+                                    onClick={ event => processAction(null) }>{ LocalizeText('cancel') }</Button>
+                                <Button fullWidth
+                                    onClick={ event => processAction('save_bot_name') }>{ LocalizeText('save') }</Button>
+                            </Flex>
+                        </Column>
+                    </NitroCardContentView>
+                </NitroCardView> }
             { (mode === MODE_CHANGE_MOTTO) &&
-                <Column className="menu-item" onClick={ null } gap={ 1 }>
+                <Column onClick={ null } gap={ 1 }>
                     <Text variant="white">{ LocalizeText('bot.skill.name.configuration.new.motto') }</Text>
-                    <input type="text" className="form-control form-control-sm" value={ newMotto } maxLength={ GetConfiguration<number>('motto.max.length', 38) } onChange={ event => setNewMotto(event.target.value) } />
+                    <input type="text" className="form-control form-control-sm" value={ newMotto }
+                        maxLength={ GetConfiguration<number>('motto.max.length', 38) }
+                        onChange={ event => setNewMotto(event.target.value) }/>
                     <Flex alignItems="center" justifyContent="between" gap={ 1 }>
-                        <Button fullWidth variant="secondary" onClick={ event => processAction(null) }>{ LocalizeText('cancel') }</Button>
-                        <Button fullWidth onClick={ event => processAction('save_bot_motto') }>{ LocalizeText('save') }</Button>
+                        <Button variant="dark" fullWidth
+                            onClick={ event => processAction(null) }>{ LocalizeText('cancel') }</Button>
+                        <Button variant="dark" fullWidth
+                            onClick={ event => processAction('save_bot_motto') }>{ LocalizeText('save') }</Button>
                     </Flex>
                 </Column> }
-        </ContextMenuView>
+        </Flex>
     );
 }

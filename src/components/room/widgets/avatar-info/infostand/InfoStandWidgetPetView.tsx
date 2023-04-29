@@ -1,9 +1,26 @@
-import { PetRespectComposer, PetType } from '@nitrots/nitro-renderer';
-import { FC, useEffect, useState } from 'react';
-import { FaTimes } from 'react-icons/fa';
-import { AvatarInfoPet, ConvertSeconds, CreateLinkEvent, GetConfiguration, LocalizeText, SendMessageComposer } from '../../../../../api';
-import { Base, Button, Column, Flex, LayoutCounterTimeView, LayoutPetImageView, LayoutRarityLevelView, Text, UserProfileIconView } from '../../../../../common';
-import { useRoom, useSessionInfo } from '../../../../../hooks';
+import {PetRespectComposer, PetType} from '@nitrots/nitro-renderer';
+import {FC, useEffect, useState} from 'react';
+import {FaTimes} from 'react-icons/fa';
+import {
+    AvatarInfoPet,
+    ConvertSeconds,
+    CreateLinkEvent,
+    GetConfiguration,
+    LocalizeText,
+    SendMessageComposer
+} from '../../../../../api';
+import {
+    Base,
+    Button,
+    Column,
+    Flex,
+    LayoutCounterTimeView,
+    LayoutPetImageView,
+    LayoutRarityLevelView,
+    Text,
+    UserProfileIconView
+} from '../../../../../common';
+import {useRoom, useSessionInfo} from '../../../../../hooks';
 
 interface InfoStandWidgetPetViewProps
 {
@@ -13,11 +30,11 @@ interface InfoStandWidgetPetViewProps
 
 export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
 {
-    const { avatarInfo = null, onClose = null } = props;
+    const {avatarInfo = null, onClose = null} = props;
     const [ remainingGrowTime, setRemainingGrowTime ] = useState(0);
     const [ remainingTimeToLive, setRemainingTimeToLive ] = useState(0);
-    const { roomSession = null } = useRoom();
-    const { petRespectRemaining = 0, respectPet = null } = useSessionInfo();
+    const {roomSession = null} = useRoom();
+    const {petRespectRemaining = 0, respectPet = null} = useSessionInfo();
 
     useEffect(() =>
     {
@@ -27,7 +44,7 @@ export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
 
     useEffect(() =>
     {
-        if((avatarInfo.petType !== PetType.MONSTERPLANT) || avatarInfo.dead) return;
+        if ((avatarInfo.petType !== PetType.MONSTERPLANT) || avatarInfo.dead) return;
 
         const interval = setInterval(() =>
         {
@@ -38,7 +55,7 @@ export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
         return () => clearInterval(interval);
     }, [ avatarInfo ]);
 
-    if(!avatarInfo) return null;
+    if (!avatarInfo) return null;
 
     const processButtonAction = (action: string) =>
     {
@@ -51,7 +68,7 @@ export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
             case 'respect':
                 respectPet(avatarInfo.id);
 
-                if((petRespectRemaining - 1) >= 1) hideMenu = false;
+                if ((petRespectRemaining - 1) >= 1) hideMenu = false;
                 break;
             case 'buyfood':
                 CreateLinkEvent('catalog/open/' + GetConfiguration('catalog.links')['pets.buy_food']);
@@ -70,7 +87,7 @@ export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
                 break;
         }
 
-        if(hideMenu) onClose();
+        if (hideMenu) onClose();
     }
 
     return (
@@ -79,46 +96,60 @@ export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
                 <Column overflow="visible" className="container-fluid content-area" gap={ 1 }>
                     <Column gap={ 1 }>
                         <Flex alignItems="center" justifyContent="between" gap={ 1 }>
-                            <Text variant="white" small wrap>{ avatarInfo.name }</Text>
+                            <Text variant="white" wrap className={ 'text-volter-bold' }>{ avatarInfo.name }</Text>
                             <i className="infostand-close" onClick={ onClose }/>
                         </Flex>
-                        <Text variant="white" small wrap>{ LocalizeText(`pet.breed.${ avatarInfo.petType }.${ avatarInfo.petBreed }`) }</Text>
-                        <hr className="m-0" />
+                        <Text variant="white" small
+                              wrap>{ LocalizeText(`pet.breed.${ avatarInfo.petType }.${ avatarInfo.petBreed }`) }</Text>
+                        <hr className="m-0"/>
                     </Column>
                     { (avatarInfo.petType === PetType.MONSTERPLANT) &&
                         <>
                             <Column center gap={ 1 }>
-                                <LayoutPetImageView figure={ avatarInfo.petFigure } posture={ avatarInfo.posture } direction={ 4 } />
-                                <hr className="m-0" />
+                                <LayoutPetImageView figure={ avatarInfo.petFigure } posture={ avatarInfo.posture }
+                                                    direction={ 4 }/>
+                                <hr className="m-0"/>
                             </Column>
                             <Column gap={ 2 }>
                                 { !avatarInfo.dead &&
                                     <Column alignItems="center" gap={ 1 }>
-                                        <Text variant="white" center small wrap>{ LocalizeText('pet.level', [ 'level', 'maxlevel' ], [ avatarInfo.level.toString(), avatarInfo.maximumLevel.toString() ]) }</Text>
+                                        <Text variant="white" center small
+                                              wrap>{ LocalizeText('pet.level', [ 'level', 'maxlevel' ], [ avatarInfo.level.toString(), avatarInfo.maximumLevel.toString() ]) }</Text>
                                     </Column> }
                                 <Column alignItems="center" gap={ 1 }>
-                                    <Text variant="white" small truncate>{ LocalizeText('infostand.pet.text.wellbeing') }</Text>
-                                    <Base fullWidth overflow="hidden" position="relative" className="bg-light-dark rounded">
+                                    <Text variant="white" small
+                                          truncate>{ LocalizeText('infostand.pet.text.wellbeing') }</Text>
+                                    <Base fullWidth overflow="hidden" position="relative"
+                                          className="bg-light-dark rounded">
                                         <Flex fit center position="absolute">
-                                            <Text variant="white" small>{ avatarInfo.dead ? '00:00:00' : ConvertSeconds((remainingTimeToLive == 0 ? avatarInfo.remainingTimeToLive : remainingTimeToLive)).split(':')[1] + ':' + ConvertSeconds((remainingTimeToLive == null || remainingTimeToLive == undefined ? 0 : remainingTimeToLive)).split(':')[2] + ':' + ConvertSeconds((remainingTimeToLive == null || remainingTimeToLive == undefined ? 0 : remainingTimeToLive)).split(':')[3] }</Text>
+                                            <Text variant="white"
+                                                  small>{ avatarInfo.dead ? '00:00:00' : ConvertSeconds((remainingTimeToLive == 0 ? avatarInfo.remainingTimeToLive : remainingTimeToLive)).split(':')[1] + ':' + ConvertSeconds((remainingTimeToLive == null || remainingTimeToLive == undefined ? 0 : remainingTimeToLive)).split(':')[2] + ':' + ConvertSeconds((remainingTimeToLive == null || remainingTimeToLive == undefined ? 0 : remainingTimeToLive)).split(':')[3] }</Text>
                                         </Flex>
-                                        <Base className="bg-success rounded pet-stats" style={ { width: avatarInfo.dead ? '0' : Math.round((avatarInfo.maximumTimeToLive * 100) / (remainingTimeToLive)).toString() } } />
+                                        <Base className="bg-success rounded pet-stats"
+                                              style={ {width: avatarInfo.dead ? '0' : Math.round((avatarInfo.maximumTimeToLive * 100) / (remainingTimeToLive)).toString()} }/>
                                     </Base>
                                 </Column>
                                 { remainingGrowTime != 0 && remainingGrowTime > 0 &&
                                     <Column alignItems="center" gap={ 1 }>
-                                        <Text variant="white" small truncate>{ LocalizeText('infostand.pet.text.growth') }</Text>
-                                        <LayoutCounterTimeView className="top-2 end-2" day={ ConvertSeconds(remainingGrowTime).split(':')[0] } hour={ ConvertSeconds(remainingGrowTime).split(':')[1] } minutes={ ConvertSeconds(remainingGrowTime).split(':')[2] } seconds={ ConvertSeconds(remainingGrowTime).split(':')[3] } />
+                                        <Text variant="white" small
+                                              truncate>{ LocalizeText('infostand.pet.text.growth') }</Text>
+                                        <LayoutCounterTimeView className="top-2 end-2"
+                                                               day={ ConvertSeconds(remainingGrowTime).split(':')[0] }
+                                                               hour={ ConvertSeconds(remainingGrowTime).split(':')[1] }
+                                                               minutes={ ConvertSeconds(remainingGrowTime).split(':')[2] }
+                                                               seconds={ ConvertSeconds(remainingGrowTime).split(':')[3] }/>
                                     </Column> }
                                 <Column alignItems="center" gap={ 1 }>
-                                    <Text variant="white" small truncate>{ LocalizeText('infostand.pet.text.raritylevel', [ 'level' ], [ LocalizeText(`infostand.pet.raritylevel.${ avatarInfo.rarityLevel }`) ]) }</Text>
-                                    <LayoutRarityLevelView className="top-2 end-2" level={ avatarInfo.rarityLevel } />
+                                    <Text variant="white" small
+                                          truncate>{ LocalizeText('infostand.pet.text.raritylevel', [ 'level' ], [ LocalizeText(`infostand.pet.raritylevel.${ avatarInfo.rarityLevel }`) ]) }</Text>
+                                    <LayoutRarityLevelView className="top-2 end-2" level={ avatarInfo.rarityLevel }/>
                                 </Column>
-                                <hr className="m-0" />
+                                <hr className="m-0"/>
                             </Column>
                             <Column gap={ 1 }>
-                                <Text variant="white" small wrap>{ LocalizeText('pet.age', [ 'age' ], [ avatarInfo.age.toString() ]) }</Text>
-                                <hr className="m-0" />
+                                <Text variant="white" small
+                                      wrap>{ LocalizeText('pet.age', [ 'age' ], [ avatarInfo.age.toString() ]) }</Text>
+                                <hr className="m-0"/>
                             </Column>
                         </> }
                     { (avatarInfo.petType !== PetType.MONSTERPLANT) &&
@@ -126,51 +157,66 @@ export const InfoStandWidgetPetView: FC<InfoStandWidgetPetViewProps> = props =>
                             <Column gap={ 1 }>
                                 <Flex gap={ 1 }>
                                     <Column fullWidth overflow="hidden" className="body-image pet p-1">
-                                        <LayoutPetImageView figure={ avatarInfo.petFigure } posture={ avatarInfo.posture } direction={ 4 } />
+                                        <LayoutPetImageView figure={ avatarInfo.petFigure }
+                                                            posture={ avatarInfo.posture } direction={ 4 }/>
                                     </Column>
                                     <Column grow gap={ 1 }>
-                                        <Text variant="white" center small wrap>{ LocalizeText('pet.level', [ 'level', 'maxlevel' ], [ avatarInfo.level.toString(), avatarInfo.maximumLevel.toString() ]) }</Text>
+                                        <Text variant="white" center small
+                                              wrap>{ LocalizeText('pet.level', [ 'level', 'maxlevel' ], [ avatarInfo.level.toString(), avatarInfo.maximumLevel.toString() ]) }</Text>
                                         <Column alignItems="center" gap={ 1 }>
-                                            <Text variant="white" small truncate>{ LocalizeText('infostand.pet.text.happiness') }</Text>
+                                            <Text variant="white" small
+                                                  truncate>{ LocalizeText('infostand.pet.text.happiness') }</Text>
                                             <Base fullWidth overflow="hidden" position="relative">
                                                 <Flex fit center position="absolute">
-                                                    <Text variant="white" small>{ avatarInfo.happyness + '/' + avatarInfo.maximumHappyness }</Text>
+                                                    <Text variant="white"
+                                                          small>{ avatarInfo.happyness + '/' + avatarInfo.maximumHappyness }</Text>
                                                 </Flex>
-                                                <Base className="bg-info rounded pet-stats" style={ { width: (avatarInfo.happyness / avatarInfo.maximumHappyness) * 100 + '%' } } />
+                                                <Base className="bg-info rounded pet-stats"
+                                                      style={ {width: (avatarInfo.happyness / avatarInfo.maximumHappyness) * 100 + '%'} }/>
                                             </Base>
                                         </Column>
                                         <Column alignItems="center" gap={ 1 }>
-                                            <Text variant="white" small truncate>{ LocalizeText('infostand.pet.text.experience') }</Text>
-                                            <Base fullWidth overflow="hidden" position="relative" className="bg-light-dark rounded">
+                                            <Text variant="white" small
+                                                  truncate>{ LocalizeText('infostand.pet.text.experience') }</Text>
+                                            <Base fullWidth overflow="hidden" position="relative"
+                                                  className="bg-light-dark rounded">
                                                 <Flex fit center position="absolute">
-                                                    <Text variant="white" small>{ avatarInfo.experience + '/' + avatarInfo.levelExperienceGoal }</Text>
+                                                    <Text variant="white"
+                                                          small>{ avatarInfo.experience + '/' + avatarInfo.levelExperienceGoal }</Text>
                                                 </Flex>
-                                                <Base className="bg-purple rounded pet-stats" style={ { width: (avatarInfo.experience / avatarInfo.levelExperienceGoal) * 100 + '%' } } />
+                                                <Base className="bg-purple rounded pet-stats"
+                                                      style={ {width: (avatarInfo.experience / avatarInfo.levelExperienceGoal) * 100 + '%'} }/>
                                             </Base>
                                         </Column>
                                         <Column alignItems="center" gap={ 1 }>
-                                            <Text variant="white" small truncate>{ LocalizeText('infostand.pet.text.energy') }</Text>
-                                            <Base fullWidth overflow="hidden" position="relative" className="bg-light-dark rounded">
+                                            <Text variant="white" small
+                                                  truncate>{ LocalizeText('infostand.pet.text.energy') }</Text>
+                                            <Base fullWidth overflow="hidden" position="relative"
+                                                  className="bg-light-dark rounded">
                                                 <Flex fit center position="absolute">
-                                                    <Text variant="white" small>{ avatarInfo.energy + '/' + avatarInfo.maximumEnergy }</Text>
+                                                    <Text variant="white"
+                                                          small>{ avatarInfo.energy + '/' + avatarInfo.maximumEnergy }</Text>
                                                 </Flex>
-                                                <Base className="bg-success rounded pet-stats" style={ { width: (avatarInfo.energy / avatarInfo.maximumEnergy) * 100 + '%' } } />
+                                                <Base className="bg-success rounded pet-stats"
+                                                      style={ {width: (avatarInfo.energy / avatarInfo.maximumEnergy) * 100 + '%'} }/>
                                             </Base>
                                         </Column>
                                     </Column>
                                 </Flex>
-                                <hr className="m-0" />
+                                <hr className="m-0"/>
                             </Column>
                             <Column gap={ 1 }>
                                 { (avatarInfo.petType !== PetType.MONSTERPLANT) &&
-                                    <Text variant="white" small wrap>{ LocalizeText('infostand.text.petrespect', [ 'count' ], [ avatarInfo.respect.toString() ]) }</Text> }
-                                <Text variant="white" small wrap>{ LocalizeText('pet.age', [ 'age' ], [ avatarInfo.age.toString() ]) }</Text>
-                                <hr className="m-0" />
+                                    <Text variant="white" small
+                                          wrap>{ LocalizeText('infostand.text.petrespect', [ 'count' ], [ avatarInfo.respect.toString() ]) }</Text> }
+                                <Text variant="white" small
+                                      wrap>{ LocalizeText('pet.age', [ 'age' ], [ avatarInfo.age.toString() ]) }</Text>
+                                <hr className="m-0"/>
                             </Column>
                         </> }
                     <Column gap={ 1 }>
                         <Flex alignItems="center" gap={ 1 }>
-                            <UserProfileIconView userId={ avatarInfo.ownerId } />
+                            <UserProfileIconView userId={ avatarInfo.ownerId }/>
                             <Text variant="white" small wrap>
                                 { LocalizeText('infostand.text.petowner', [ 'name' ], [ avatarInfo.ownerName ]) }
                             </Text>

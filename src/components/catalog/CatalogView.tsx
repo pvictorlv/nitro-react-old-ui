@@ -1,6 +1,6 @@
 import { ILinkEventTracker } from '@nitrots/nitro-renderer';
 import { FC, useEffect } from 'react';
-import { AddEventLinkTracker, GetConfiguration, LocalizeText, RemoveLinkEventTracker } from '../../api';
+import {AddEventLinkTracker, CreateLinkEvent, GetConfiguration, LocalizeText, RemoveLinkEventTracker} from '../../api';
 import {
     AutoGrid,
     Column, DraggableWindow, DraggableWindowPosition,
@@ -110,9 +110,10 @@ export const CatalogView: FC<{}> = props =>
                             </div>
                             <Flex overflow={ 'hidden' }
                                 className={ 'overflow-hidden position-relative flex-column nitro-card theme-primary-slim catalog-nav' }>
-                                <NitroCardHeaderView headerText={ LocalizeText('catalog') }
+                                <NitroCardHeaderView headerText={ LocalizeText('catalog.title') }
                                     onCloseClick={ function ()
                                     {
+                                        CreateLinkEvent('catalog/toggle')
                                     } }/>
                                 <Column fullHeight size={ 12 } overflow="hidden" gap={ 1 }>
                                     <Column

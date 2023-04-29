@@ -1,14 +1,43 @@
-import { AvatarAction, AvatarExpressionEnum, RoomControllerLevel, RoomObjectCategory, RoomUnitDropHandItemComposer } from '@nitrots/nitro-renderer';
-import { Dispatch, FC, SetStateAction, useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { AvatarInfoUser, CreateLinkEvent, DispatchUiEvent, GetCanStandUp, GetCanUseExpression, GetOwnPosture, GetUserProfile, HasHabboClub, HasHabboVip, IsRidingHorse, LocalizeText, PostureTypeEnum, SendMessageComposer } from '../../../../../api';
-import { ColorVariantType, Flex, LayoutCurrencyIcon } from '../../../../../common';
-import { HelpNameChangeEvent } from '../../../../../events';
-import { useRoom } from '../../../../../hooks';
-import { ContextMenuHeaderView } from '../../context-menu/ContextMenuHeaderView';
-import { ContextMenuListItemView } from '../../context-menu/ContextMenuListItemView';
-import { ContextMenuView } from '../../context-menu/ContextMenuView';
-import { Base, Button, Column, LayoutBadgeImageView, LayoutLimitedEditionCompactPlateView, LayoutRarityLevelView, Text, UserProfileIconView } from '../../../../../common';
+import {
+    AvatarAction,
+    AvatarExpressionEnum,
+    RoomControllerLevel,
+    RoomObjectCategory,
+    RoomUnitDropHandItemComposer
+} from '@nitrots/nitro-renderer';
+import {Dispatch, FC, SetStateAction, useState} from 'react';
+import {FaChevronLeft, FaChevronRight} from 'react-icons/fa';
+import {
+    AvatarInfoUser,
+    CreateLinkEvent,
+    DispatchUiEvent,
+    GetCanStandUp,
+    GetCanUseExpression,
+    GetOwnPosture,
+    GetUserProfile,
+    HasHabboClub,
+    HasHabboVip,
+    IsRidingHorse,
+    LocalizeText,
+    PostureTypeEnum,
+    SendMessageComposer
+} from '../../../../../api';
+import {ColorVariantType, Flex, LayoutCurrencyIcon} from '../../../../../common';
+import {HelpNameChangeEvent} from '../../../../../events';
+import {useRoom} from '../../../../../hooks';
+import {ContextMenuHeaderView} from '../../context-menu/ContextMenuHeaderView';
+import {ContextMenuListItemView} from '../../context-menu/ContextMenuListItemView';
+import {ContextMenuView} from '../../context-menu/ContextMenuView';
+import {
+    Base,
+    Button,
+    Column,
+    LayoutBadgeImageView,
+    LayoutLimitedEditionCompactPlateView,
+    LayoutRarityLevelView,
+    Text,
+    UserProfileIconView
+} from '../../../../../common';
 
 interface AvatarInfoWidgetOwnAvatarViewProps
 {
@@ -26,17 +55,17 @@ const MODE_SIGNS = 4;
 
 export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProps> = props =>
 {
-    const { avatarInfo = null, isDancing = false, setIsDecorating = null, onClose = null } = props;
+    const {avatarInfo = null, isDancing = false, setIsDecorating = null, onClose = null} = props;
     const [ mode, setMode ] = useState((isDancing && HasHabboClub()) ? MODE_CLUB_DANCES : MODE_NORMAL);
-    const { roomSession = null } = useRoom();
+    const {roomSession = null} = useRoom();
 
     const processAction = (name: string) =>
     {
         let hideMenu = true;
 
-        if(name)
+        if (name)
         {
-            if(name.startsWith('sign_'))
+            if (name.startsWith('sign_'))
             {
                 const sign = parseInt(name.split('_')[1]);
 
@@ -44,7 +73,7 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
             }
             else
             {
-                switch(name)
+                switch (name)
                 {
                     case 'decorate':
                         setIsDecorating(true);
@@ -108,7 +137,7 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
             }
         }
 
-        if(hideMenu) onClose();
+        if (hideMenu) onClose();
     }
 
     const isShowDecorate = () => (avatarInfo.amIOwner || avatarInfo.amIAnyRoomController || (avatarInfo.roomControllerLevel > RoomControllerLevel.GUEST));
@@ -122,161 +151,164 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
                 <>
                     { avatarInfo.allowNameChange &&
                         <Button variant="dark" onClick={ event => processAction('change_name') }>
-                            { LocalizeText('widget.avatar.change_name') }
+                            <span className={ 'text-white' }>  { LocalizeText('widget.avatar.change_name') } </span>
                         </Button> }
                     { isShowDecorate() &&
                         <Button variant={ 'dark' } onClick={ event => processAction('decorate') }>
-                            { LocalizeText('widget.avatar.decorate') }
+                            <span className={ 'text-white' }>  { LocalizeText('widget.avatar.decorate') }</span>
                         </Button> }
                     <Button variant={ 'dark' } onClick={ event => processAction('change_looks') }>
-                        { LocalizeText('widget.memenu.myclothes') }
+                        <span className={ 'text-white' }>{ LocalizeText('widget.memenu.myclothes') } </span>
                     </Button>
                     { (HasHabboClub() && !isRidingHorse) &&
                         <Button variant={ 'dark' } onClick={ event => processAction('dance_menu') }>
-                            { LocalizeText('widget.memenu.dance') }
+                            <span className={ 'text-white' }>  { LocalizeText('widget.memenu.dance') } </span>
                         </Button> }
                     { (!isDancing && !HasHabboClub() && !isRidingHorse) &&
                         <Button variant={ 'dark' } onClick={ event => processAction('dance') }>
-                            { LocalizeText('widget.memenu.dance') }
+                            <span className={ 'text-white' }>  { LocalizeText('widget.memenu.dance') }</span>
                         </Button> }
                     { (isDancing && !HasHabboClub() && !isRidingHorse) &&
                         <Button variant={ 'dark' } onClick={ event => processAction('dance_stop') }>
-                            { LocalizeText('widget.memenu.dance.stop') }
+                            <span className={ 'text-white' }>   { LocalizeText('widget.memenu.dance.stop') }</span>
                         </Button> }
                     <Button variant={ 'dark' } onClick={ event => processAction('expressions') }>
-                        { LocalizeText('infostand.link.expressions') }
+                        <span className={ 'text-white' }>  { LocalizeText('infostand.link.expressions') }</span>
                     </Button>
                     <Button variant={ 'dark' } onClick={ event => processAction('signs') }>
-                        { LocalizeText('infostand.show.signs') }
+                        <span className={ 'text-white' }>  { LocalizeText('infostand.show.signs') }</span>
                     </Button>
                     { (avatarInfo.carryItem > 0) &&
                         <Button variant={ 'dark' } onClick={ event => processAction('drop_carry_item') }>
-                            { LocalizeText('avatar.widget.drop_hand_item') }
+                            <span
+                                className={ 'text-white' }>    { LocalizeText('avatar.widget.drop_hand_item') } </span>
                         </Button> }
                 </> }
             { (mode === MODE_CLUB_DANCES) &&
                 <>
                     { isDancing &&
                         <Button variant={ 'dark' } onClick={ event => processAction('dance_stop') }>
-                            { LocalizeText('widget.memenu.dance.stop') }
+                            <span className={ 'text-white' }> { LocalizeText('widget.memenu.dance.stop') }</span>
                         </Button> }
                     <Button variant={ 'dark' } onClick={ event => processAction('dance_1') }>
-                        { LocalizeText('widget.memenu.dance1') }
+                        <span className={ 'text-white' }>  { LocalizeText('widget.memenu.dance1') }</span>
                     </Button>
                     <Button variant={ 'dark' } onClick={ event => processAction('dance_2') }>
-                        { LocalizeText('widget.memenu.dance2') }
+                        <span className={ 'text-white' }>   { LocalizeText('widget.memenu.dance2') }</span>
                     </Button>
                     <Button variant={ 'dark' } onClick={ event => processAction('dance_3') }>
-                        { LocalizeText('widget.memenu.dance3') }
+                        <span className={ 'text-white' }>   { LocalizeText('widget.memenu.dance3') }</span>
                     </Button>
                     <Button variant={ 'dark' } onClick={ event => processAction('dance_4') }>
-                        { LocalizeText('widget.memenu.dance4') }
+                        <span className={ 'text-white' }> { LocalizeText('widget.memenu.dance4') }</span>
                     </Button>
                     <Button variant={ 'dark' } onClick={ event => processAction('back') }>
-                        { LocalizeText('generic.back') }
+                        <span className={ 'text-white' }>{ LocalizeText('generic.back') }</span>
                     </Button>
                 </> }
             { (mode === MODE_EXPRESSIONS) &&
                 <>
                     { (GetOwnPosture() === AvatarAction.POSTURE_STAND) &&
                         <Button variant={ 'dark' } onClick={ event => processAction('sit') }>
-                            { LocalizeText('widget.memenu.sit') }
+                            <span className={ 'text-white' }> { LocalizeText('widget.memenu.sit') }</span>
                         </Button> }
                     { GetCanStandUp() &&
                         <Button variant={ 'dark' } onClick={ event => processAction('stand') }>
-                            { LocalizeText('widget.memenu.stand') }
+                            <span className={ 'text-white' }>  { LocalizeText('widget.memenu.stand') }</span>
                         </Button> }
                     { GetCanUseExpression() &&
                         <Button variant={ 'dark' } onClick={ event => processAction('wave') }>
-                            { LocalizeText('widget.memenu.wave') }
+                            <span className={ 'text-white' }>   { LocalizeText('widget.memenu.wave') }</span>
                         </Button> }
                     { GetCanUseExpression() &&
-                        <Button variant={'dark' } disabled={ !HasHabboVip() } onClick={ event => processAction('laugh') }>
-                            { !HasHabboVip() && <LayoutCurrencyIcon type="hc" /> }
-                            { LocalizeText('widget.memenu.laugh') }
+                        <Button variant={ 'dark' } disabled={ !HasHabboVip() }
+                                onClick={ event => processAction('laugh') }>
+                            { !HasHabboVip() && <LayoutCurrencyIcon type="hc"/> }
+                            <span className={ 'text-white' }>  { LocalizeText('widget.memenu.laugh') }</span>
                         </Button> }
                     { GetCanUseExpression() &&
-                        <Button variant={'dark' } disabled={ !HasHabboVip() } onClick={ event => processAction('blow') }>
-                            { !HasHabboVip() && <LayoutCurrencyIcon type="hc" /> }
-                            { LocalizeText('widget.memenu.blow') }
+                        <Button variant={ 'dark' } disabled={ !HasHabboVip() }
+                                onClick={ event => processAction('blow') }>
+                            { !HasHabboVip() && <LayoutCurrencyIcon type="hc"/> }
+                            <span className={ 'text-white' }>  { LocalizeText('widget.memenu.blow') }</span>
                         </Button> }
                     <Button variant={ 'dark' } onClick={ event => processAction('idle') }>
-                        { LocalizeText('widget.memenu.idle') }
+                        <span className={ 'text-white' }>  { LocalizeText('widget.memenu.idle') }</span>
                     </Button>
                     <Button variant={ 'dark' } onClick={ event => processAction('back') }>
-                        { LocalizeText('generic.back') }
+                        <span className={ 'text-white' }>  { LocalizeText('generic.back') }</span>
                     </Button>
                 </> }
             { (mode === MODE_SIGNS) &&
                 <>
                     <Flex className="menu-list-split-3">
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_1') }>
-                            1
+                            <span className={ 'text-white' }>    1</span>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_2') }>
-                            2
+                            <span className={ 'text-white' }>     2</span>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_3') }>
-                            3
+                            <span className={ 'text-white' }>    3</span>
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_4') }>
-                            4
+                            <span className={ 'text-white' }>    4</span>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_5') }>
-                            5
+                            <span className={ 'text-white' }>   5</span>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_6') }>
-                            6
+                            <span className={ 'text-white' }>      6</span>
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_7') }>
-                            7
+                            <span className={ 'text-white' }>      7</span>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_8') }>
-                            8
+                            <span className={ 'text-white' }>   8</span>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_9') }>
-                            9
+                            <span className={ 'text-white' }>   9</span>
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_10') }>
-                            10
+                            <span className={ 'text-white' }>   10</span>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_11') }>
-                            <i className="icon icon-sign-heart" />
+                            <i className="icon icon-sign-heart"/>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_12') }>
-                            <i className="icon icon-sign-skull" />
+                            <i className="icon icon-sign-skull"/>
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_0') }>
-                            0
+                            <span className={ 'text-white' }>   0</span>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_13') }>
-                            <i className="icon icon-sign-exclamation" />
+                            <i className="icon icon-sign-exclamation"/>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_15') }>
-                            <i className="icon icon-sign-smile" />
+                            <i className="icon icon-sign-smile"/>
                         </Button>
                     </Flex>
                     <Flex className="menu-list-split-3">
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_14') }>
-                            <i className="icon icon-sign-soccer" />
+                            <i className="icon icon-sign-soccer"/>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_17') }>
-                            <i className="icon icon-sign-yellow" />
+                            <i className="icon icon-sign-yellow"/>
                         </Button>
                         <Button variant={ 'dark' } onClick={ event => processAction('sign_16') }>
-                            <i className="icon icon-sign-red" />
+                            <i className="icon icon-sign-red"/>
                         </Button>
                     </Flex>
                     <Button variant={ 'dark' } onClick={ event => processAction('back') }>
-                        { LocalizeText('generic.back') }
+                        <span className={ 'text-white' }> { LocalizeText('generic.back') }</span>
                     </Button>
                 </> }
         </Flex>

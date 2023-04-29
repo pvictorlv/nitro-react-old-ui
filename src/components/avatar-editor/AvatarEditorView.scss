@@ -257,10 +257,38 @@
     }
 }
 
+.color-picker-frame {
+    border-image-source: url(@/assets/flash/avatareditor/color_frame.png);
+    border-image-slice: 6 6 6 6 fill;
+    border-image-width: 6px 6px 6px 6px;
+    width: 13px;
+    height: 19px;
+    border-radius: 4px;
+
+    &.active {
+        border-image-source: url(@/assets/flash/avatareditor/color_frame_active.png);
+        height: 21px;
+        margin-top: -2px;
+    }
+
+    &:hover {
+        border-image-source: url(@/assets/flash/avatareditor/color_frame_active.png);
+        height: 21px;
+        margin-top: -2px;
+    }
+}
+
 .nitro-avatar-editor {
     width: $avatar-editor-width;
     height: $avatar-editor-height;
 
+    .main-avatar-editor {
+        max-height: 185px;
+    }
+
+    .avatar-editor-select-header {
+        justify-content: space-around;
+    }
     .category-item {
         height: 40px;
     }
@@ -268,10 +296,10 @@
     .figure-preview-container {
         position: relative;
         height: 100%;
-        background-color: $pale-sky;
+        background-color: transparent;
         overflow: hidden;
         z-index: 1;
-
+        width: 100% !important;
         .arrow-container {
             position: absolute;
             width: 100%;
@@ -311,26 +339,14 @@
             position: absolute;
             left: 0;
             right: 0;
-            bottom: 15px;
-            width: 70px;
-            height: 30px;
+            bottom: 43px;
             margin: 0 auto;
             border-radius: 100%;
-            background-color: rgba(0, 0, 0, 0.20);
+            background: url("@/assets/images/avatareditor/stand.png");
+            width: 73px;
+            height: 57px;
             z-index: 2;
         }
 
-        &:after {
-            position: absolute;
-            content: '';
-            top: 75%;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            border-radius: 50%;
-            background-color: $pale-sky;
-            box-shadow: 0 0 8px 2px rgba($white,.6);
-            transform: scale(2);
-        }
     }
 }
