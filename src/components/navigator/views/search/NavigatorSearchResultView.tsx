@@ -72,7 +72,7 @@ export const NavigatorSearchResultView: FC<NavigatorSearchResultViewProps> = pro
             <Flex fullWidth alignItems="center" justifyContent="between" className="px-2 py-1 navigator-result-header">
                 <Flex grow pointer alignItems="center" gap={ 1 }
                     onClick={ event => setIsExtended(prevValue => !prevValue) }>
-                    <Text variant={ 'white' } className={ 'text-volter-bold' }>{ LocalizeText(getResultTitle()) }</Text>
+                    <Text variant={ 'white' } className={ 'text-volter-bold text-crisp-invert' }>{ LocalizeText(getResultTitle()) }</Text>
 
                 </Flex>
                 <Flex gap={ 2 }>

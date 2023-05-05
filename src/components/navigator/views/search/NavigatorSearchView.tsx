@@ -1,8 +1,9 @@
-import { FC, KeyboardEvent, useEffect, useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
-import { INavigatorSearchFilter, LocalizeText, SearchFilterOptions } from '../../../../api';
-import { Button, Flex } from '../../../../common';
-import { useNavigator } from '../../../../hooks';
+import {FC, KeyboardEvent, useEffect, useState} from 'react';
+import {FaSearch} from 'react-icons/fa';
+import {INavigatorSearchFilter, LocalizeText, SearchFilterOptions} from '../../../../api';
+import {Button, Flex} from '../../../../common';
+import {useNavigator} from '../../../../hooks';
+import Select from 'react-select/base';
 
 export interface NavigatorSearchViewProps
 {
@@ -11,18 +12,18 @@ export interface NavigatorSearchViewProps
 
 export const NavigatorSearchView: FC<NavigatorSearchViewProps> = props =>
 {
-    const { sendSearch = null } = props;
+    const {sendSearch = null} = props;
     const [ searchFilterIndex, setSearchFilterIndex ] = useState(0);
     const [ searchValue, setSearchValue ] = useState('');
-    const { topLevelContext = null, searchResult = null } = useNavigator();
+    const {topLevelContext = null, searchResult = null} = useNavigator();
 
     const processSearch = () =>
     {
-        if(!topLevelContext) return;
+        if (!topLevelContext) return;
 
         let searchFilter = SearchFilterOptions[searchFilterIndex];
 
-        if(!searchFilter) searchFilter = SearchFilterOptions[0];
+        if (!searchFilter) searchFilter = SearchFilterOptions[0];
 
         const searchQuery = ((searchFilter.query ? (searchFilter.query + ':') : '') + searchValue);
 
@@ -31,21 +32,21 @@ export const NavigatorSearchView: FC<NavigatorSearchViewProps> = props =>
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) =>
     {
-        if(event.key !== 'Enter') return;
+        if (event.key !== 'Enter') return;
 
         processSearch();
     };
 
     useEffect(() =>
     {
-        if(!searchResult) return;
+        if (!searchResult) return;
 
         const split = searchResult.data.split(':');
 
         let filter: INavigatorSearchFilter = null;
         let value: string = '';
 
-        if(split.length >= 2)
+        if (split.length >= 2)
         {
             const [ query, ...rest ] = split;
 
@@ -57,26 +58,34 @@ export const NavigatorSearchView: FC<NavigatorSearchViewProps> = props =>
             value = searchResult.data;
         }
 
-        if(!filter) filter = SearchFilterOptions[0];
+        if (!filter) filter = SearchFilterOptions[0];
 
         setSearchFilterIndex(SearchFilterOptions.findIndex(option => (option === filter)));
         setSearchValue(value);
     }, [ searchResult ]);
 
     return (
-        <Flex fullWidth gap={ 1 } className={'nitro-border'}>
+        <Flex fullWidth gap={ 1 } className={ 'nitro-border' }>
             <Flex shrink>
-                <select className="form-select form-select-sm" value={ searchFilterIndex } onChange={ event => setSearchFilterIndex(parseInt(event.target.value)) }>
-                    { SearchFilterOptions.map((filter, index) =>
-                    {
-                        return <option key={ index } value={ index }>{ LocalizeText('navigator.filter.' + filter.name) }</option>
-                    }) }
-                </select>
+                <div className="input-dropdown-holder">
+                    <Select classNamePrefix="react-select"
+                            className="input-dropdown" value={ searchFilterIndex }
+                            onChange={ event => setSearchFilterIndex(parseInt(event.target.value)) }>
+                        { SearchFilterOptions.map((filter, index) =>
+                        {
+                            return <option key={ index }
+                                           value={ index }>{ LocalizeText('navigator.filter.' + filter.name) }</option>
+                        }) }
+                    </Select>
+                </div>
             </Flex>
             <Flex fullWidth gap={ 1 }>
-                <input type="text" className="form-control form-control-sm" placeholder={ LocalizeText('navigator.filter.input.placeholder') } value={ searchValue } onChange={ event => setSearchValue(event.target.value) } onKeyDown={ event => handleKeyDown(event) } />
+                <input type="text" className="white-input-border"
+                       placeholder={ LocalizeText('navigator.filter.input.placeholder') } value={ searchValue }
+                       onChange={ event => setSearchValue(event.target.value) }
+                       onKeyDown={ event => handleKeyDown(event) }/>
                 <Button variant="primary" onClick={ processSearch }>
-                    <FaSearch className="fa-icon" />
+                    <div className="catalog-searchicon"></div>
                 </Button>
             </Flex>
         </Flex>

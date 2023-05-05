@@ -105,7 +105,7 @@ export const NavigatorSearchResultItemView: FC<NavigatorSearchResultItemViewProp
                     <i className={ ('position-absolute end-0 mb-1 me-1 icon icon-navigator-room-' + ((roomData.doorMode === RoomDataParser.DOORBELL_STATE) ? 'locked' : (roomData.doorMode === RoomDataParser.PASSWORD_STATE) ? 'password' : (roomData.doorMode === RoomDataParser.INVISIBLE_STATE) ? 'invisible' : '')) }/> }
             </LayoutRoomThumbnailView>
             <Flex className="w-100">
-                <Text truncate className="flex-grow-1">{ roomData.roomName }</Text>
+                <Text truncate className="flex-grow-1 text-crisp">{ roomData.roomName }</Text>
                 <Flex reverse alignItems="center" gap={ 1 }>
                     <NavigatorSearchResultItemInfoView roomData={ roomData }/>
                 </Flex>
@@ -119,7 +119,7 @@ export const NavigatorSearchResultItemView: FC<NavigatorSearchResultItemViewProp
         <Flex pointer overflow="hidden" alignItems="center" onClick={ visitRoom } gap={ 2 }
             className="navigator-item px-2 py-1 small" { ...rest }>
 
-            <Text truncate grow className={ 'text-volter' }>{ roomData.roomName }</Text>
+            <Text truncate grow className={ 'text-volter text-crisp' }>{ roomData.roomName }</Text>
 
             <Flex reverse alignItems="center" gap={ 1 }>
                 <NavigatorSearchResultItemInfoView roomData={ roomData }/>

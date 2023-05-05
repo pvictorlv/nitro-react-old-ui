@@ -58,7 +58,7 @@ export const NavigatorSearchResultItemInfoView: FC<NavigatorSearchResultItemInfo
             <Overlay show={ isVisible } target={ elementRef.current } placement="right">
                 <Popover>
                     <NitroCardContentView overflow="hidden"
-                                          className="room-info image-rendering-pixelated bg-transparent">
+                                          className="room-info image-rendering-pixelated bg-transparent navigator-room-info">
                         <Flex gap={ 2 } overflow="hidden">
                             <LayoutRoomThumbnailView roomId={ roomData.roomId }
                                                      customUrl={ roomData.officialRoomPicRef }
@@ -70,16 +70,15 @@ export const NavigatorSearchResultItemInfoView: FC<NavigatorSearchResultItemInfo
                                     <i className={ 'position-absolute end-0 mb-1 me-1 icon icon-navigator-room-' + (roomData.doorMode === RoomDataParser.DOORBELL_STATE ? 'locked' : roomData.doorMode === RoomDataParser.PASSWORD_STATE ? 'password' : roomData.doorMode === RoomDataParser.INVISIBLE_STATE ? 'invisible' : '') }/>) }
                             </LayoutRoomThumbnailView>
                             <Column gap={ 1 }>
-                                <Text bold truncate className="flex-grow-1" style={ {maxHeight: 13} }>
+                                <Text truncate className="flex-grow-1 text-crisp text-volter-bold" style={ {maxHeight: 13} }>
                                     { roomData.roomName }
                                 </Text>
                                 <Flex gap={ 2 }>
-                                    <Text italics variant="muted">
+                                    <Text className={'text-crisp text-volter-bold'}>
                                         { LocalizeText('navigator.roomownercaption') }
                                     </Text>
-                                    <Flex alignItems="center" gap={ 1 }>
-                                        <UserProfileIconView userId={ roomData.ownerId }/>
-                                        <Text italics>{ roomData.ownerName }</Text>
+                                    <Flex className={'text-crisp'} alignItems="center" gap={ 1 }>
+                                        <Text className={'text-volter'} italics>{ roomData.ownerName }</Text>
                                     </Flex>
                                 </Flex>
                                 <Text className="flex-grow-1">

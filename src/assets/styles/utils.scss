@@ -132,3 +132,13 @@ ul {
 .no-resize {
     resize: none !important;
 }
+
+
+.text-crisp-invert {
+    filter: url(#crispify) invert(1);
+    color: black !important;
+}
+
+.text-crisp {
+    filter: url(#crispify);
+}

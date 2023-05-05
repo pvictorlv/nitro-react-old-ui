@@ -55,16 +55,21 @@ export const ChatWidgetMessageView: FC<ChatWidgetMessageViewProps> = props =>
 
         if (textLen <= 64)
         {
-            return ((textLen - 11) * 3.7);
+            return ((textLen - 11) * 3.9);
         }
 
         if (textLen <= 84)
         {
-            return ((textLen - 12) * 3.6);
+            return ((textLen - 12) * 3.7);
+        }
+
+        if (textLen <= 94)
+        {
+            return ((textLen - 13) * 3.6);
         }
 
 
-        return ((textLen - 8) * 3);
+        return ((textLen - 8) * 3.4);
 
     }
 

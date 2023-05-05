@@ -26,7 +26,7 @@ import {
     NitroCardTabsView,
     NitroCardView,
     Flex,
-    TransitionAnimation, TransitionAnimationTypes
+    TransitionAnimation, TransitionAnimationTypes, Button
 } from '../../common';
 import {useNavigator, useRoomSessionManagerEvent} from '../../hooks';
 import {NavigatorDoorStateView} from './views/NavigatorDoorStateView';
@@ -256,10 +256,13 @@ export const NavigatorView: FC<{}> = props =>
                         </Column>
                     </NitroCardContentView>
                     { topLevelContext == null || topLevelContext.code == 'myworld_view' &&
-                        <Base className={ 'navigator-footer-create' } onClick={ event => setCreatorOpen(true) }>
-                            <Flex alignItems={ 'center' }>
-                                <i className="icon icon-room-key me-1"/> { LocalizeText('navigator.moreroomscaption') }
-                                <FaPlus className="fa-icon"/>
+                        <Base className={ 'navigator-footer-create' }>
+                            <Flex alignItems={ 'center' } justifyContent={ 'between' }>
+                                <Flex alignItems={ 'center' }>
+                                    <i className="icon icon-room-key me-1"/> { LocalizeText('navigator.moreroomscaption') }
+                                </Flex>
+                                <Button title={ 'navigator.create' } className={ 'p-r' }
+                                        onClick={ event => setCreatorOpen(true) }>{ LocalizeText('navigator.create.room') }</Button>
                             </Flex>
                         </Base> }
                 </NitroCardView> }

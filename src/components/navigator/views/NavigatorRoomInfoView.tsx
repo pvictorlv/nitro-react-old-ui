@@ -31,7 +31,7 @@ import {
     NitroCardHeaderView,
     NitroCardView,
     Text,
-    UserProfileIconView
+
 } from '../../../common';
 import {RoomWidgetThumbnailEvent} from '../../../events';
 import {useHelp, useNavigator} from '../../../hooks';
