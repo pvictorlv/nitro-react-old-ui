@@ -95,7 +95,7 @@ export const WiredActionGiveRewardView: FC<{}> = props =>
         <WiredActionBaseView requiresFurni={ WiredFurniType.STUFF_SELECTION_OPTION_NONE } hasSpecialInput={ true } save={ save }>
             <Flex alignItems="center" gap={ 1 }>
                 <input className="form-check-input" type="checkbox" id="limitEnabled" onChange={ event => setLimitEnabled(event.target.checked) } />
-                <Text>{ LocalizeText('wiredfurni.params.prizelimit', [ 'amount' ], [ limitEnabled ? rewardsLimit.toString() : '' ]) }</Text>
+                <Text variant={ 'white' }>{ LocalizeText('wiredfurni.params.prizelimit', [ 'amount' ], [ limitEnabled ? rewardsLimit.toString() : '' ]) }</Text>
             </Flex>
             { !limitEnabled &&
                 <Text center small className="bg-muted rounded p-1">
@@ -110,7 +110,7 @@ export const WiredActionGiveRewardView: FC<{}> = props =>
                     onChange={ event => setRewardsLimit(event) } /> }
             <hr className="m-0 bg-dark" />
             <Column gap={ 1 }>
-                <Text bold>How often can a user be rewarded?</Text>
+                <Text variant={ 'white' } bold>How often can a user be rewarded?</Text>
                 <Flex gap={ 1 }>
                     <select className="form-select form-select-sm w-100" value={ rewardTime } onChange={ (e) => setRewardTime(Number(e.target.value)) }>
                         <option value="0">Once</option>
@@ -124,14 +124,14 @@ export const WiredActionGiveRewardView: FC<{}> = props =>
             <hr className="m-0 bg-dark" />
             <Flex alignItems="center" gap={ 1 }>
                 <input className="form-check-input" type="checkbox" id="uniqueRewards" checked={ uniqueRewards } onChange={ (e) => setUniqueRewards(e.target.checked) } />
-                <Text>Unique rewards</Text>
+                <Text variant={ 'white' }>Unique rewards</Text>
             </Flex>
             <Text center small className="bg-muted rounded p-1">
                 If checked each reward will be given once to each user. This will disable the probabilities option.
             </Text>
             <hr className="m-0 bg-dark" />
             <Flex justifyContent="between" alignItems="center">
-                <Text bold>Rewards</Text>
+                <Text variant={ 'white' } bold>Rewards</Text>
                 <Button onClick={ addReward }>
                     <FaPlus className="fa-icon" />
                 </Button>

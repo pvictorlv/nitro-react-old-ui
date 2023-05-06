@@ -19,13 +19,13 @@ export const WiredConditionFurniHasNotFurniOnView: FC<{}> = props =>
     return (
         <WiredConditionBaseView requiresFurni={ WiredFurniType.STUFF_SELECTION_OPTION_BY_ID } hasSpecialInput={ true } save={ save }>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.not_requireall') }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.not_requireall') }</Text>
                 { [ 0, 1 ].map(value =>
                 {
                     return (
                         <Flex alignItems="center" gap={ 1 } key={ value }>
                             <input className="form-check-input" type="radio" name="requireAll" id={ `requireAll${ value }` } checked={ (requireAll === value) } onChange={ event => setRequireAll(value) } />
-                            <Text>{ LocalizeText(`wiredfurni.params.not_requireall.${ value }`) }</Text>
+                            <Text variant={ 'white' }>{ LocalizeText(`wiredfurni.params.not_requireall.${ value }`) }</Text>
                         </Flex>
                     )
                 }) }

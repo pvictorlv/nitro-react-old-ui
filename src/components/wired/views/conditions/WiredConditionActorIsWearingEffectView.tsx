@@ -19,7 +19,7 @@ export const WiredConditionActorIsWearingEffectView: FC<{}> = props =>
     return (
         <WiredConditionBaseView requiresFurni={ WiredFurniType.STUFF_SELECTION_OPTION_NONE } hasSpecialInput={ true } save={ save }>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.tooltip.effectid') }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.tooltip.effectid') }</Text>
                 <input type="number" className="form-control form-control-sm" value={ effect } onChange={ event => setEffect(parseInt(event.target.value)) } />
             </Column>
         </WiredConditionBaseView>

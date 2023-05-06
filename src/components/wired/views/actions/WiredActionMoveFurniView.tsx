@@ -62,10 +62,10 @@ export const WiredActionMoveFurniView: FC<{}> = props =>
     return (
         <WiredActionBaseView requiresFurni={ WiredFurniType.STUFF_SELECTION_OPTION_BY_ID_BY_TYPE_OR_FROM_CONTEXT } hasSpecialInput={ true } save={ save }>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.movefurni') }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.movefurni') }</Text>
                 <Flex alignItems="center" gap={ 1 }>
                     <input className="form-check-input" type="radio" name="selectedTeam" id="movement0" checked={ (movement === 0) } onChange={ event => setMovement(0) } />
-                    <Text>{ LocalizeText('wiredfurni.params.movefurni.0') }</Text>
+                    <Text variant={ 'white' }>{ LocalizeText('wiredfurni.params.movefurni.0') }</Text>
                 </Flex>
                 <Flex gap={ 1 }>
                     { directionOptions.map(option =>
@@ -81,13 +81,13 @@ export const WiredActionMoveFurniView: FC<{}> = props =>
                 </Flex>
             </Column>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.rotatefurni') }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.rotatefurni') }</Text>
                 { rotationOptions.map(option =>
                 {
                     return (
                         <Flex alignItems="center" key={ option } gap={ 1 }>
                             <input className="form-check-input" type="radio" name="rotation" id={ `rotation${ option }` } checked={ (rotation === option) } onChange={ event => setRotation(option) } />
-                            <Text>
+                            <Text variant={ 'white' }>
                                 { [ 1, 2 ].includes(option) && <i className={ `icon icon-rot-${ option }` } /> }
                                 { LocalizeText(`wiredfurni.params.rotatefurni.${ option }`) }
                             </Text>

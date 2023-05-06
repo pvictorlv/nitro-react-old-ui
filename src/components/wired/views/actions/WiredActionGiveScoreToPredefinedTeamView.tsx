@@ -33,7 +33,7 @@ export const WiredActionGiveScoreToPredefinedTeamView: FC<{}> = props =>
     return (
         <WiredActionBaseView requiresFurni={ WiredFurniType.STUFF_SELECTION_OPTION_NONE } hasSpecialInput={ true } save={ save }>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.setpoints', [ 'points' ], [ points.toString() ]) }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.setpoints', [ 'points' ], [ points.toString() ]) }</Text>
                 <ReactSlider
                     className={ 'nitro-slider' }
                     min={ 1 }
@@ -42,7 +42,7 @@ export const WiredActionGiveScoreToPredefinedTeamView: FC<{}> = props =>
                     onChange={ event => setPoints(event) } />
             </Column>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.settimesingame', [ 'times' ], [ time.toString() ]) }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.settimesingame', [ 'times' ], [ time.toString() ]) }</Text>
                 <ReactSlider
                     className={ 'nitro-slider' }
                     min={ 1 }
@@ -51,13 +51,13 @@ export const WiredActionGiveScoreToPredefinedTeamView: FC<{}> = props =>
                     onChange={ event => setTime(event) } />
             </Column>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.team') }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.team') }</Text>
                 { [ 1, 2, 3, 4 ].map(value =>
                 {
                     return (
                         <Flex key={ value } gap={ 1 }>
                             <input className="form-check-input" type="radio" name="selectedTeam" id={ `selectedTeam${ value }` } checked={ (selectedTeam === value) } onChange={ event => setSelectedTeam(value) } />
-                            <Text>{ LocalizeText('wiredfurni.params.team.' + value) }</Text>
+                            <Text variant={ 'white' }>{ LocalizeText('wiredfurni.params.team.' + value) }</Text>
                         </Flex>
                     );
                 }) }

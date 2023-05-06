@@ -30,7 +30,7 @@ export const Text: FC<TextProps> = props =>
 
         if(variant) newClassNames.push('text-' + variant);
 
-        if(bold) newClassNames.push('fw-bold');
+        if(bold) newClassNames.push('text-volter-bold');
 
         if(fontWeight) newClassNames.push('fw-' + fontWeight);
 

@@ -1,64 +1,70 @@
 .nitro-notification-center-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: calc(100% - #{$toolbar-height});
-    z-index: $notification-center-zindex;
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: calc(100% - #{$toolbar-height});
+  z-index: $notification-center-zindex;
+  pointer-events: none;
 
-    .nitro-notification-center {
-        background-color: $dark;
-        height: 100%;
-        pointer-events: all;
-    }
+  .nitro-notification-center {
+    background-color: $dark;
+    height: 100%;
+    pointer-events: all;
+  }
 }
 
 .nitro-alert {
-    min-height: 150px;
-    max-height: 350px;
+  min-height: 175px;
+  max-height: 350px;
 
-    .notification-frank {
-        background-image: url('@/assets/images/notifications/frank.gif');
-        width:47px;
-        height: 85px;
-    }
+  .notification-frank {
+    background-image: url('@/assets/images/notifications/frank.gif');
+    width: 47px;
+    height: 85px;
+  }
+
+  .notification-text {
+    min-width: 250px;
+    padding-right: 1px;
+    padding-left: 1px;
+    filter: url(#crispify);
+  }
+
+  &.nitro-alert-default,
+  &.nitro-alert-motd {
+    min-width: 350px;
+    width: 350px;
 
     .notification-text {
-        min-width: 250px;
+      min-width: auto;
     }
+  }
 
-    &.nitro-alert-default,
-    &.nitro-alert-motd {
-        width: 350px;
-        .notification-text {
-            min-width: auto;
-        }
-    }
+  &.nitro-alert-moderation,
+  &.nitro-alert-alert {
+    width: 250px;
 
-    &.nitro-alert-moderation,
-    &.nitro-alert-alert {
-        width: 250px;
-        .notification-text {
-            min-width: 225px;
-        }
+    .notification-text {
+      min-width: 225px;
     }
+  }
 }
 
 .nitro-notification-bubble {
-    pointer-events: all;
+  pointer-events: all;
 
-    border-image-source: url(@/assets/flash/notifications/notifications_bg.png);
-    border-image-slice: 9 9 9 9 fill;
-    border-image-width: 9px 9px 9px 9px;
-    font-size: $font-size-sm;
-    padding-right: 6px;
-    padding-left: 4px;
-    padding-top: 4px;
-    padding-bottom: 6px;
+  border-image-source: url(@/assets/flash/notifications/notifications_bg.png);
+  border-image-slice: 9 9 9 9 fill;
+  border-image-width: 9px 9px 9px 9px;
+  font-size: $font-size-sm;
+  padding-right: 6px;
+  padding-left: 4px;
+  padding-top: 4px;
+  padding-bottom: 6px;
 
-    .bubble-image-container {
-        width: 50px;
-        height: 50px;
-    }
+  .bubble-image-container {
+    width: 50px;
+    height: 50px;
+  }
 }

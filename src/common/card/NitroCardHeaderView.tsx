@@ -44,7 +44,7 @@ export const NitroCardHeaderView: FC<NitroCardHeaderViewProps> = props =>
     return (
         <Flex>
             <Column center position="relative" classNames={ getClassNames } { ...rest }>
-                <Flex fullWidth center>
+                <Flex fullWidth center className="nitro-card-header-holder">
                     <span className="nitro-card-header-text text-volter-bold">{ headerText }</span>
                     { isGalleryPhoto &&
                         <Base position="absolute" className="end-4 nitro-card-header-report-camera"

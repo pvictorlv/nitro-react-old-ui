@@ -19,13 +19,13 @@ export const WiredActionJoinTeamView: FC<{}> = props =>
     return (
         <WiredActionBaseView requiresFurni={ WiredFurniType.STUFF_SELECTION_OPTION_NONE } hasSpecialInput={ true } save={ save }>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.team') }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.team') }</Text>
                 { [ 1, 2, 3, 4 ].map(team =>
                 {
                     return (
                         <Flex key={ team } gap={ 1 }>
                             <input className="form-check-input" type="radio" name="selectedTeam" id={ `selectedTeam${ team }` } checked={ (selectedTeam === team) } onChange={ event => setSelectedTeam(team) } />
-                            <Text>{ LocalizeText(`wiredfurni.params.team.${ team }`) }</Text>
+                            <Text variant={ 'white' }>{ LocalizeText(`wiredfurni.params.team.${ team }`) }</Text>
                         </Flex>
                     )
                 }) }

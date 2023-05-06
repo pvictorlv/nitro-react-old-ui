@@ -49,7 +49,7 @@ export const WiredActionMoveFurniToView: FC<{}> = props =>
     return (
         <WiredActionBaseView requiresFurni={ WiredFurniType.STUFF_SELECTION_OPTION_BY_ID_OR_BY_TYPE } hasSpecialInput={ true } save={ save }>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.emptytiles', [ 'tiles' ], [ spacing.toString() ]) }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.emptytiles', [ 'tiles' ], [ spacing.toString() ]) }</Text>
                 <ReactSlider
                     className={ 'nitro-slider' }
                     min={ 1 }
@@ -58,14 +58,14 @@ export const WiredActionMoveFurniToView: FC<{}> = props =>
                     onChange={ event => setSpacing(event) } />
             </Column>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.startdir') }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.startdir') }</Text>
                 <Flex gap={ 1 }>
                     { directionOptions.map(value =>
                     {
                         return (
                             <Flex key={ value.value } alignItems="center" gap={ 1 }>
                                 <input className="form-check-input" type="radio" name="movement" id={ `movement${ value.value }` } checked={ (movement === value.value) } onChange={ event => setMovement(value.value) } />
-                                <Text><i className={ `icon icon-${ value.icon }` } /></Text>
+                                <Text variant={ 'white' }><i className={ `icon icon-${ value.icon }` } /></Text>
                             </Flex>
                         )
                     }) }

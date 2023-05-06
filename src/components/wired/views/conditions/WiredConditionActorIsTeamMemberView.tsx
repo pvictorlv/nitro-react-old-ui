@@ -21,13 +21,13 @@ export const WiredConditionActorIsTeamMemberView: FC<{}> = props =>
     return (
         <WiredConditionBaseView requiresFurni={ WiredFurniType.STUFF_SELECTION_OPTION_NONE } hasSpecialInput={ true } save={ save }>
             <Column gap={ 1 }>
-                <Text bold>{ LocalizeText('wiredfurni.params.team') }</Text>
+                <Text variant={ 'white' } bold>{ LocalizeText('wiredfurni.params.team') }</Text>
                 { teamIds.map(value =>
                 {
                     return (
                         <Flex key={ value } gap={ 1 } alignItems="center">
                             <input className="form-check-input" type="radio" name="selectedTeam" id={ `selectedTeam${ value }` } checked={ (selectedTeam === value) } onChange={ event => setSelectedTeam(value) } />
-                            <Text>{ LocalizeText(`wiredfurni.params.team.${ value }`) }</Text>
+                            <Text variant={ 'white' }>{ LocalizeText(`wiredfurni.params.team.${ value }`) }</Text>
                         </Flex>
                     ) 
                 }) }

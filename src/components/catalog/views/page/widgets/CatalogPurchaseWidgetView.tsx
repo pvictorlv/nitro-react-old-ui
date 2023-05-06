@@ -6,7 +6,7 @@ import {
     DispatchUiEvent,
     GetClubMemberLevel,
     LocalizeText,
-    LocalStorageKeys,
+    LocalStorageKeys, NotificationAlertType,
     Offer,
     SendMessageComposer
 } from '../../../../../api';
@@ -19,7 +19,7 @@ import {
     CatalogPurchaseNotAllowedEvent,
     CatalogPurchaseSoldOutEvent
 } from '../../../../../events';
-import {useCatalog, useLocalStorage, usePurse, useUiEvent} from '../../../../../hooks';
+import {useCatalog, useLocalStorage, useNotification, usePurse, useUiEvent} from '../../../../../hooks';
 import {CatalogInitPurchaseEvent} from '../../../../../events/catalog/CatalogInitPurchaseEvent';
 
 interface CatalogPurchaseWidgetViewProps
@@ -37,6 +37,7 @@ export const CatalogPurchaseWidgetView: FC<CatalogPurchaseWidgetViewProps> = pro
     const [ catalogSkipPurchaseConfirmation, setCatalogSkipPurchaseConfirmation ] = useLocalStorage(LocalStorageKeys.CATALOG_SKIP_PURCHASE_CONFIRMATION, false);
     const {currentOffer = null, currentPage = null, purchaseOptions = null, setPurchaseOptions = null} = useCatalog();
     const {getCurrencyAmount = null} = usePurse();
+    const { simpleAlert = null } = useNotification();
 
     const onCatalogEvent = useCallback((event: CatalogEvent) =>
     {
@@ -88,6 +89,31 @@ export const CatalogPurchaseWidgetView: FC<CatalogPurchaseWidgetViewProps> = pro
 
             return;
         }
+
+        const priceCredits = (currentOffer.priceInCredits * purchaseOptions.quantity);
+        const pricePoints = (currentOffer.priceInActivityPoints * purchaseOptions.quantity);
+
+        if(isLimitedSoldOut)
+        {
+            simpleAlert(LocalizeText('catalog.alert.limited_edition_sold_out.title'));
+
+            return;
+        }
+
+        if(priceCredits > getCurrencyAmount(-1))
+        {
+            simpleAlert(LocalizeText('catalog.alert.notenough.credits.description'), NotificationAlertType.DEFAULT, null, null, LocalizeText('catalog.alert.notenough.title'));
+
+            return;
+        }
+
+        if(pricePoints > getCurrencyAmount(currentOffer.activityPointType))
+        {
+            simpleAlert(LocalizeText('catalog.alert.notenough.credits.description'), NotificationAlertType.DEFAULT, null, null, LocalizeText('catalog.alert.notenough.title'));
+
+            return;
+        }
+
 
         if (isGift)
         {
@@ -166,7 +192,7 @@ export const CatalogPurchaseWidgetView: FC<CatalogPurchaseWidgetViewProps> = pro
     return (
         <>
             <Button
-                disabled={ (purchaseOptions.extraParamRequired && (!purchaseOptions.extraData || !purchaseOptions.extraData.length)) }
+                disabled={ ((purchaseOptions.extraParamRequired && (!purchaseOptions.extraData || !purchaseOptions.extraData.length)) || isLimitedSoldOut) }
                 onClick={ event => purchase(false) }>{ LocalizeText('catalog.purchase_confirmation.' + (currentOffer.isRentOffer ? 'rent' : 'buy')) }</Button>
             { (showGift && !currentOffer.isRentOffer) &&
                 <Button disabled={ ((purchaseOptions.quantity > 1) || !currentOffer.giftable || isLimitedSoldOut || (purchaseOptions.extraParamRequired && (!purchaseOptions.extraData || !purchaseOptions.extraData.length))) } onClick={ event => purchase(true) }>
