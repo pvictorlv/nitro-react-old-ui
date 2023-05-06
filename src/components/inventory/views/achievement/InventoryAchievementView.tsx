@@ -96,13 +96,12 @@ export const InventoryAchievementView: FC<{}> = props =>
                                     <div className={ 'd-inline, text-volter' }>
 
                                         { (achievement.scoreLimit > 0) &&
-                                            <Text>{ LocalizeText('achievements.details.progress', [ 'progress', 'limit' ], [ (achievement.currentPoints + achievement.scoreAtStartOfLevel).toString(), (achievement.scoreLimit + achievement.scoreAtStartOfLevel).toString() ]) }
-                                            </Text>
+                                            <Text>{ LocalizeText('achievements.details.progress', [ 'progress', 'limit' ], [ (achievement.currentPoints + achievement.scoreAtStartOfLevel).toString(), (achievement.scoreLimit + achievement.scoreAtStartOfLevel).toString() ]) }, </Text>
 
                                         }
                                         { (achievement.levelRewardPoints > 0) &&
                                             <Text truncate className="text-volter">
-                                                , { LocalizeText('achievements.details.reward') } { achievement.levelRewardPoints } pixels
+                                                { LocalizeText('achievements.details.reward') } { achievement.levelRewardPoints } pixels
                                             </Text>
                                         }
                                     </div> }

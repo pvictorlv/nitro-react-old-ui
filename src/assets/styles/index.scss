@@ -22,3 +22,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.client-error {
+  width: 320px;
+  height: auto;
+  padding: 12px;
+  background-color: #3F403E;
+}

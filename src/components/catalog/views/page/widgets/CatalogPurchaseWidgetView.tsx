@@ -25,12 +25,13 @@ import {CatalogInitPurchaseEvent} from '../../../../../events/catalog/CatalogIni
 interface CatalogPurchaseWidgetViewProps
 {
     noGiftOption?: boolean;
+    showGift?: boolean;
     purchaseCallback?: () => void;
 }
 
 export const CatalogPurchaseWidgetView: FC<CatalogPurchaseWidgetViewProps> = props =>
 {
-    const {noGiftOption = false, purchaseCallback = null} = props;
+    const {showGift = false, noGiftOption = false, purchaseCallback = null} = props;
     const [ purchaseWillBeGift, setPurchaseWillBeGift ] = useState(false);
     const [ purchaseState, setPurchaseState ] = useState(CatalogPurchaseState.NONE);
     const [ catalogSkipPurchaseConfirmation, setCatalogSkipPurchaseConfirmation ] = useLocalStorage(LocalStorageKeys.CATALOG_SKIP_PURCHASE_CONFIRMATION, false);
@@ -167,7 +168,10 @@ export const CatalogPurchaseWidgetView: FC<CatalogPurchaseWidgetViewProps> = pro
             <Button
                 disabled={ (purchaseOptions.extraParamRequired && (!purchaseOptions.extraData || !purchaseOptions.extraData.length)) }
                 onClick={ event => purchase(false) }>{ LocalizeText('catalog.purchase_confirmation.' + (currentOffer.isRentOffer ? 'rent' : 'buy')) }</Button>
-
+            { (showGift && !currentOffer.isRentOffer) &&
+                <Button disabled={ ((purchaseOptions.quantity > 1) || !currentOffer.giftable || isLimitedSoldOut || (purchaseOptions.extraParamRequired && (!purchaseOptions.extraData || !purchaseOptions.extraData.length))) } onClick={ event => purchase(true) }>
+                    { LocalizeText('catalog.purchase_confirmation.gift') }
+                </Button> }
         </>
     );
 }

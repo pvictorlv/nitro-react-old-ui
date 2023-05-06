@@ -12,7 +12,7 @@ import {
     DispatchUiEvent,
     GetPetAvailableColors,
     GetPetIndexFromLocalization,
-    LocalizeText,
+    LocalizeText, SearchFilterOptions,
     SendMessageComposer
 } from '../../../../../../api';
 import {
@@ -35,6 +35,7 @@ import {CatalogViewProductWidgetView} from '../../widgets/CatalogViewProductWidg
 import {CatalogLayoutProps} from '../CatalogLayout.types';
 import {CatalogHeaderView} from '../../../catalog-header/CatalogHeaderView';
 import {LayoutGridColorPickerItem} from '../../../../../../common/layout/LayoutGridColorPickerItem';
+import ReactSelect from 'react-select';
 
 export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
 {
@@ -63,13 +64,6 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
 
         return sellableColors[selectedColorIndex][0];
     }, [ sellableColors, selectedColorIndex ]);
-
-    const petBreedName = useMemo(() =>
-    {
-        if ((petIndex === -1) || !sellablePalettes.length || (selectedPaletteIndex === -1)) return '';
-
-        return LocalizeText(`pet.breed.${ petIndex }.${ sellablePalettes[selectedPaletteIndex].breedId }`);
-    }, [ petIndex, sellablePalettes, selectedPaletteIndex ]);
 
     const petPurchaseString = useMemo(() =>
     {
@@ -219,6 +213,33 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
 
     if (!currentOffer) return null;
 
+
+    const getOptions = function (): any[]
+    {
+        return sellablePalettes.map((palette, index) =>
+        {
+            var petName = '';
+            if (!((petIndex < 0) || !sellablePalettes.length || (index < 0)))
+            {
+                petName = LocalizeText(`pet.breed.${ petIndex }.${ sellablePalettes[index].breedId }`);
+            }
+
+
+            return {
+                value: palette.paletteId,
+                label: petName
+            };
+        });
+    };
+
+    const style = {
+        control: base => ({
+            ...base,
+            // This line disable the blue border
+            boxShadow: 'none'
+        })
+    };
+
     return (
         <>
             <Column size={ 12 }>
@@ -228,19 +249,8 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
             <Grid className={ 'catalog-alternative-flex' }>
                 <Column size={ 7 } overflow="hidden">
                     <AutoGrid className={ 'catalog-grid' } columnCount={ 5 } columnMinWidth={ colorsShowing ? 11 : 40 }>
-                        { !colorsShowing && (sellablePalettes.length > 0) && sellablePalettes.map((palette, index) =>
-                        {
-                            return (
-                                <LayoutGridItem key={ index }
-                                                itemActive={ (selectedPaletteIndex === index) }
-                                                onClick={ event => setSelectedPaletteIndex(index) }>
-                                    <LayoutPetImageView typeId={ petIndex } paletteId={ palette.paletteId }
-                                                        direction={ 2 }
-                                                        headOnly={ true }/>
-                                </LayoutGridItem>
-                            );
-                        }) }
-                        { colorsShowing && (sellableColors.length > 0) && sellableColors.map((colorSet, index) =>
+
+                        { (sellableColors.length > 0) && sellableColors.map((colorSet, index) =>
                             <LayoutGridColorPickerItem itemHighlight key={ index }
                                                        itemActive={ (selectedColorIndex === index) }
                                                        itemColor={ ColorConverter.int2rgb(colorSet[0]) }
@@ -257,7 +267,13 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
                     { currentOffer &&
                         <>
                             <Base position="relative" overflow="hidden">
-                                <CatalogViewProductWidgetView/>
+
+                                { selectedPaletteIndex >= 0 &&
+                                    <LayoutPetImageView scale={ 2 } typeId={ petIndex } petColor={ getColor }
+                                                        paletteId={ sellablePalettes[selectedPaletteIndex].paletteId }
+                                                        direction={ 2 }
+                                                        headOnly={ false }/> }
+
                                 <CatalogAddOnBadgeWidgetView position="absolute"
                                                              className="bg-muted rounded bottom-1 end-1"/>
                                 { ((petIndex > -1) && (petIndex <= 7)) &&
@@ -267,7 +283,16 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
                                     </Button> }
                             </Base>
                             <Column grow gap={ 1 }>
-                                <Text truncate>{ petBreedName }</Text>
+
+                                <ReactSelect styles={ style } classNamePrefix="react-select"
+                                             options={ getOptions() }
+
+                                             className="input-dropdown"
+                                             classNames={ {
+                                                 option: () =>
+                                                     'react-select-option',
+                                             } }
+                                             onChange={ event => setSelectedPaletteIndex(event.value) }/>
                                 <Column grow gap={ 1 }>
                                     <input type="text" className="form-control form-control-sm w-100"
                                            placeholder={ LocalizeText('widgets.petpackage.name.title') }
@@ -282,7 +307,8 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
                                     <Flex justifyContent="end">
                                         <CatalogTotalPriceWidget justifyContent="end" alignItems="end"/>
                                     </Flex>
-                                    <CatalogPurchaseWidgetView noGiftOption={ true } purchaseCallback={ purchasePet }/>
+                                    <CatalogPurchaseWidgetView showGift={ true } noGiftOption={ true }
+                                                               purchaseCallback={ purchasePet }/>
 
                                 </Base>
                             </Column>

@@ -2,6 +2,12 @@
   width: $inventory-width;
   height: $inventory-height;
 
+  .grid:not(.inventory-badge-list):not(.inventory-badge) {
+    max-height: 256px;
+  }
+  .inventory-badge {
+    column-gap: 1rem !important;
+  }
   &.trading {
     width: 330px !important;
     height: 480px !important;

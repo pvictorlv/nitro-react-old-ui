@@ -30,10 +30,6 @@
   z-index: $infostand-zindex;
   color: $white;
 
-  @media (max-width: 968px) {
-    bottom: $toolbar-height + 70px;
-  }
-
   .nitro-infostand {
 
     .text-white {

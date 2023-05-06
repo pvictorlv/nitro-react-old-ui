@@ -160,6 +160,7 @@ export const InventoryFurnitureView: FC<InventoryFurnitureViewProps> = props =>
                 { selectedItem &&
                     <Column grow justifyContent="between" gap={ 2 }>
                         <Text grow truncate>{ selectedItem.name }</Text>
+                        <Text grow truncate>{ selectedItem.description }</Text>
                         <Column gap={ 1 }>
                             { !!roomSession &&
                                 <Button onClick={ event => attemptItemPlacement(selectedItem) }>

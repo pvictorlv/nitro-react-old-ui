@@ -55,10 +55,10 @@ export const InventoryBadgeView: FC<{}> = props =>
     }, []);
 
     return (
-        <Grid gap={ 1 }>
+        <Grid gap={ 2 } className={ 'inventory-badge' }>
             <Column size={ 7 } overflow="hidden">
                 <Text className={ 'text-volter-bold text-center' }>{ LocalizeText('badges_tab_title') }</Text>
-                <AutoGrid columnCount={ 4 } className={'inventory-badge-list'} gap={1}>
+                <AutoGrid columnCount={ 4 } className={ 'inventory-badge-list' } gap={ 1 }>
                     { badgeCodes && (badgeCodes.length > 0) && badgeCodes.map((badgeCode, index) =>
                     {
                         if (isWearingBadge(badgeCode)) return null;
@@ -71,7 +71,7 @@ export const InventoryBadgeView: FC<{}> = props =>
                 <Column overflow="hidden" gap={ 2 }>
                     <Text
                         className={ 'text-volter-bold text-center' }>{ LocalizeText('inventory.badges.activebadges') }</Text>
-                    <AutoGrid columnCount={ 3 } gap={1}>
+                    <AutoGrid columnCount={ 3 } gap={ 1 }>
                         { activeBadgeCodes && (activeBadgeCodes.length > 0) && activeBadgeCodes.map((badgeCode, index) =>
                             <InventoryBadgeItemView key={ index } badgeCode={ badgeCode }/>) }
                     </AutoGrid>

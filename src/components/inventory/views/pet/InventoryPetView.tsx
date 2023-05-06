@@ -68,7 +68,7 @@ export const InventoryPetView: FC<InventoryPetViewProps> = props =>
     return (
         <Grid>
             <Column size={ 7 } overflow="hidden">
-                <AutoGrid columnCount={ 5 }>
+                <AutoGrid columnCount={ 5 } gap={ 1 } columnMinHeight={ 40 }>
                     { petItems && (petItems.length > 0) && petItems.map(item => <InventoryPetItemView key={ item.petData.id } petItem={ item } />) }
                 </AutoGrid>
             </Column>
@@ -79,10 +79,14 @@ export const InventoryPetView: FC<InventoryPetViewProps> = props =>
                 { selectedPet && selectedPet.petData &&
                     <Column grow justifyContent="between" gap={ 2 }>
                         <Text grow truncate>{ selectedPet.petData.name }</Text>
+                        <Column gap={ 1 }>
+
                         { !!roomSession &&
                             <Button onClick={ event => attemptPetPlacement(selectedPet) }>
                                 { LocalizeText('inventory.furni.placetoroom') }
                             </Button> }
+                        </Column>
+
                     </Column> }
             </Column>
         </Grid>

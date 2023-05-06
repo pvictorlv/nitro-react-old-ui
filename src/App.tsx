@@ -1,10 +1,23 @@
-import { ConfigurationEvent, GetAssetManager, HabboWebTools, LegacyExternalInterface, Nitro, NitroCommunicationDemoEvent, NitroConfiguration, NitroEvent, NitroLocalizationEvent, NitroVersion, RoomEngineEvent } from '@nitrots/nitro-renderer';
-import { FC, useCallback, useEffect, useState } from 'react';
-import { GetCommunication, GetConfiguration, GetNitroInstance, GetUIVersion } from './api';
-import { Base, TransitionAnimation, TransitionAnimationTypes } from './common';
-import { LoadingView } from './components/loading/LoadingView';
-import { MainView } from './components/main/MainView';
-import { useConfigurationEvent, useLocalizationEvent, useMainEvent, useRoomEngineEvent } from './hooks';
+import {
+    ConfigurationEvent,
+    GetAssetManager,
+    HabboWebTools,
+    LegacyExternalInterface,
+    Nitro,
+    NitroCommunicationDemoEvent,
+    NitroConfiguration,
+    NitroEvent,
+    NitroLocalizationEvent,
+    NitroVersion,
+    RoomEngineEvent
+} from '@nitrots/nitro-renderer';
+import {FC, useCallback, useEffect, useState} from 'react';
+import {GetCommunication, GetConfiguration, GetNitroInstance, GetUIVersion} from './api';
+import {Base, TransitionAnimation, TransitionAnimationTypes} from './common';
+import {LoadingView} from './components/loading/LoadingView';
+import {MainView} from './components/main/MainView';
+import {useConfigurationEvent, useLocalizationEvent, useMainEvent, useRoomEngineEvent} from './hooks';
+import {ErrorBoundaries} from './components/ErrorBoundaries'
 
 NitroVersion.UI_VERSION = GetUIVersion();
 
@@ -16,17 +29,17 @@ export const App: FC<{}> = props =>
     const [ percent, setPercent ] = useState(0);
     const [ imageRendering, setImageRendering ] = useState<boolean>(true);
 
-    if(!GetNitroInstance())
+    if (!GetNitroInstance())
     {
         //@ts-ignore
-        if(!NitroConfig) throw new Error('NitroConfig is not defined!');
+        if (!NitroConfig) throw new Error('NitroConfig is not defined!');
 
         Nitro.bootstrap();
     }
 
     const handler = useCallback(async (event: NitroEvent) =>
     {
-        switch(event.type)
+        switch (event.type)
         {
             case ConfigurationEvent.LOADED:
                 GetNitroInstance().localization.init();
@@ -58,7 +71,7 @@ export const App: FC<{}> = props =>
 
                 GetNitroInstance().init();
 
-                if(LegacyExternalInterface.available) LegacyExternalInterface.call('legacyTrack', 'authentication', 'authok', []);
+                if (LegacyExternalInterface.available) LegacyExternalInterface.call('legacyTrack', 'authentication', 'authok', []);
                 return;
             case NitroCommunicationDemoEvent.CONNECTION_ERROR:
                 setIsError(true);
@@ -76,15 +89,16 @@ export const App: FC<{}> = props =>
 
                 setTimeout(() => setIsReady(true), 300);
                 return;
-            case NitroLocalizationEvent.LOADED: {
+            case NitroLocalizationEvent.LOADED:
+            {
                 const assetUrls = GetConfiguration<string[]>('preload.assets.urls');
                 const urls: string[] = [];
 
-                if(assetUrls && assetUrls.length) for(const url of assetUrls) urls.push(NitroConfiguration.interpolate(url));
+                if (assetUrls && assetUrls.length) for (const url of assetUrls) urls.push(NitroConfiguration.interpolate(url));
 
                 const status = await GetAssetManager().downloadAssets(urls);
-                
-                if(status)
+
+                if (status)
                 {
                     GetCommunication().init();
 
@@ -115,7 +129,7 @@ export const App: FC<{}> = props =>
     useEffect(() =>
     {
         GetNitroInstance().core.configuration.init();
-    
+
         const resize = (event: UIEvent) => setImageRendering(!(window.devicePixelRatio % 1));
 
         window.addEventListener('resize', resize);
@@ -127,32 +141,35 @@ export const App: FC<{}> = props =>
             window.removeEventListener('resize', resize);
         }
     }, []);
-    
+
     return (
-        <Base fit overflow="hidden" className={ imageRendering && 'image-rendering-pixelated' }>
+        <ErrorBoundaries>
+            <Base fit overflow="hidden" className={ imageRendering && 'image-rendering-pixelated' }>
 
-            <svg className="offscreen" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                <defs>
-                    <filter id="crispify" >
-                        <feComponentTransfer>
-                            <feFuncA type="gamma" amplitude="3.5" exponent="2" offset="0"></feFuncA>
+                <svg className="offscreen" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                     shapeRendering="crispEdges">
+                    <defs>
+                        <filter id="crispify">
+                            <feComponentTransfer>
+                                <feFuncA type="gamma" amplitude="3.5" exponent="2" offset="0"></feFuncA>
 
-                        </feComponentTransfer>
-                    </filter>
-                    <filter id="pixelate">
-                        <feComponentTransfer>
-                            <feFuncA type="discrete" tableValues="0 1"/>
-                        </feComponentTransfer>
-                    </filter>
-                </defs>
-            </svg>
-            { (!isReady || isError) &&
-                <LoadingView isError={ isError } message={ message } percent={ percent } /> }
+                            </feComponentTransfer>
+                        </filter>
+                        <filter id="pixelate">
+                            <feComponentTransfer>
+                                <feFuncA type="discrete" tableValues="0 1"/>
+                            </feComponentTransfer>
+                        </filter>
+                    </defs>
+                </svg>
+                { (!isReady || isError) &&
+                    <LoadingView isError={ isError } message={ message } percent={ percent }/> }
 
-            <TransitionAnimation type={ TransitionAnimationTypes.FADE_IN } inProp={ (isReady) }>
-                <MainView />
-            </TransitionAnimation>
-            <Base id="draggable-windows-container" />
-        </Base>
+                <TransitionAnimation type={ TransitionAnimationTypes.FADE_IN } inProp={ (isReady) }>
+                    <MainView/>
+                </TransitionAnimation>
+                <Base id="draggable-windows-container"/>
+            </Base>
+        </ErrorBoundaries>
     );
 }

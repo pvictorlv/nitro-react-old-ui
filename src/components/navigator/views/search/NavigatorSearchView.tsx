@@ -4,6 +4,7 @@ import {INavigatorSearchFilter, LocalizeText, SearchFilterOptions} from '../../.
 import {Button, Flex} from '../../../../common';
 import {useNavigator} from '../../../../hooks';
 import Select from 'react-select/base';
+import ReactSelect from 'react-select';
 
 export interface NavigatorSearchViewProps
 {
@@ -64,20 +65,51 @@ export const NavigatorSearchView: FC<NavigatorSearchViewProps> = props =>
         setSearchValue(value);
     }, [ searchResult ]);
 
+
+    const vehicles = [
+        {
+            id: 1,
+            make: 'Ford',
+            model: 'Fiesta',
+            year: 2003,
+        },
+        // I hope that you did let the two dots on purpose
+        // .
+        // .
+        {
+            id: 7,
+            make: 'Audi',
+            model: 'A4',
+            year: 2009,
+        },
+    ];
+
+    const getOptions = function (): any[]
+    {
+        return SearchFilterOptions.map((filter, index) =>
+        {
+            return {value: index.toString(), label: LocalizeText('navigator.filter.' + filter.name)};
+        });
+    };
+    const style = {
+        control: base => ({
+            ...base,
+            // This line disable the blue border
+            boxShadow: 'none'
+        }),
+    };
+
     return (
         <Flex fullWidth gap={ 1 } className={ 'nitro-border' }>
             <Flex shrink>
-                <div className="input-dropdown-holder">
-                    <Select classNamePrefix="react-select"
-                            className="input-dropdown" value={ searchFilterIndex }
-                            onChange={ event => setSearchFilterIndex(parseInt(event.target.value)) }>
-                        { SearchFilterOptions.map((filter, index) =>
-                        {
-                            return <option key={ index }
-                                           value={ index }>{ LocalizeText('navigator.filter.' + filter.name) }</option>
-                        }) }
-                    </Select>
-                </div>
+                <ReactSelect styles={ style } classNamePrefix="react-select" options={ getOptions() }
+
+                             className="input-dropdown" value={ searchFilterIndex }
+                             classNames={ {
+                                 option: () =>
+                                     'react-select-option',
+                             } }
+                             onChange={ event => setSearchFilterIndex(event) }/>
             </Flex>
             <Flex fullWidth gap={ 1 }>
                 <input type="text" className="white-input-border"

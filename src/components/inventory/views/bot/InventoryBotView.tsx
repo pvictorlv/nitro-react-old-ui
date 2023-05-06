@@ -69,7 +69,7 @@ export const InventoryBotView: FC<InventoryBotViewProps> = props =>
     return (
         <Grid>
             <Column size={ 7 } overflow="hidden">
-                <AutoGrid columnCount={ 5 }>
+                <AutoGrid columnCount={ 5 } gap={ 1 } columnMinHeight={ 40 }>
                     { botItems && (botItems.length > 0) && botItems.map(item => <InventoryBotItemView key={ item.botData.id } botItem={ item } />) }
                 </AutoGrid>
             </Column>

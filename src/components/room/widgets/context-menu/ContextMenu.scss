@@ -1,8 +1,7 @@
 .nitro-context-menu {
     padding: 2px;
-    background-color: $gable-green;
-    border: 2px solid rgba($white, 0.5);
-    border-radius: $border-radius;
+    background-color: #4f4c48;
+    border-radius: 8px;
     font-size: $font-size-sm;
     z-index: $context-menu-zindex;
     pointer-events: all;
@@ -24,9 +23,6 @@
         }
     }
 
-    &:not(.name-only):not(.menu-hidden) {
-        min-width: 125px;
-    }
 
     &:not(.name-only) {
         &:after {
@@ -46,10 +42,10 @@
     }
 
     .menu-header {
-        background-color: $william;
+        background-color: #4f4c48;
         color: $white;
 
-        min-width: 117px;
+        min-width: 80px;
         height: 25px;
         max-height: 25px;
         font-size: 9px;
