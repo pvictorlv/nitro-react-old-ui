@@ -126,7 +126,7 @@ export const UserSettingsView: FC<{}> = props =>
     if(!isVisible || !userSettings) return null;
 
     return (
-        <NitroCardView uniqueKey="user-settings" className="user-settings-window" theme="primary-slim">
+        <NitroCardView uniqueKey="user-settings" className="user-settings-window" theme="wired">
             <NitroCardHeaderView headerText={ LocalizeText('widget.memenu.settings.title') } onCloseClick={ event => processAction('close_view') } />
             <NitroCardContentView className="text-black">
                 <Column gap={ 1 }>
