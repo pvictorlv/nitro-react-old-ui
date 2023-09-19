@@ -121,12 +121,7 @@ export const CatalogView: FC<{}> = props =>
                                         overflow="hidden">
                                         <AutoGrid id="nitro-catalog-main-navigation" gap={ 0 } columnCount={ 1 }>
                                             { rootNode && <CatalogNavigationView key={ rootNode.pageId } node={ rootNode }/>}
-                                            { rootNode && !searchResult && (rootNode.children.length > 0) && rootNode.children.map(child =>
-                                            {
-                                                return (
-                                                    <CatalogNavigationView key={ child.pageId } node={ child }/>
-                                                )
-                                            }) }
+
                                         </AutoGrid>
                                     </Column>
                                     <CatalogSearchView/>

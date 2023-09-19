@@ -116,14 +116,12 @@ export const NavigatorRoomSettingsBasicTabView: FC<NavigatorRoomSettingsTabViewP
                     <i className="icon icon-camera-small position-absolute b-0 r-0 m-1 cursor-pointer top-0"
                         onClick={ () => openCamera() }/>
 
-                    <Button fullWidth onClick={ () => openCamera() }>
-                        { LocalizeText('navigator.roominfo.removefromfavourites') }
-                    </Button>
                 </LayoutRoomThumbnailView>
 
 
                 <Text fullWidth variant={ 'white' }
                     className={ 'text-volter-bold' }>{ LocalizeText('navigator.roomname') }</Text>
+
                 <Column fullWidth gap={ 0 } className={ 'mb-1' }>
                     <input className="form-control room-info-input" value={ roomName }
                         maxLength={ ROOM_NAME_MAX_LENGTH } onChange={ event => setRoomName(event.target.value) }

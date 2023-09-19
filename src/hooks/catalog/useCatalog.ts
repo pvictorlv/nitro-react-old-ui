@@ -297,7 +297,7 @@ const useCatalogState = () =>
     {
         cancelObjectMover();
 
-        if(targetNode.parent.pageName === 'root')
+        if(targetNode.parent.pageName === 'frontpage4')
         {
             if(targetNode.children.length)
             {
@@ -352,7 +352,7 @@ const useCatalogState = () =>
             return nodes;
         });
 
-        if(targetNode.pageId > -1) loadCatalogPage(targetNode.pageId, offerId);
+        loadCatalogPage(targetNode.pageId, offerId);
     }, [ setActiveNodes, loadCatalogPage, cancelObjectMover ]);
 
     const openPageById = useCallback((id: number) =>
