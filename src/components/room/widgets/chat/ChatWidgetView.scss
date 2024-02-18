@@ -710,15 +710,16 @@
     }
 
     .chat-content {
-      padding-top: 2px;
+      padding-top: 4px;
       padding-right: 6px;
       padding-left: 4px;
       padding-bottom: 5px;
       margin-left: 27px;
       line-height: 1;
       color: $black;
-      font-family: 'Ubuntu';
+      font-family: 'Ubuntu Alternative';
       font-size: 13px;
+
 
       min-height: 25px;
       -moz-osx-font-smoothing: grayscale;
@@ -726,7 +727,8 @@
       -webkit-font-smoothing: none !important;
 
       .username {
-        font-family: 'UbuntuBold';
+        font-family: 'Ubuntu Alternative';
+        font-weight: 700;
       }
     }
   }

@@ -224,6 +224,20 @@
   left: 90px;
   width: $room-info-width;
 
+  .form-check-input {
+    width: 12px;
+    height: 12px;
+    border-radius: 0;
+    border-color: white;
+    background-color: #3D3D3D;
+    
+    &:checked {
+
+      background-color: #3D3D3D;
+      border-color: white;
+    }
+  }
+
   .room-info-input {
     box-shadow: none !important;
 
