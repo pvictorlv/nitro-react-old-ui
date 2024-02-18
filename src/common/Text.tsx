@@ -18,11 +18,12 @@ export interface TextProps extends BaseProps<HTMLDivElement>
     wrap?: boolean;
     noWrap?: boolean;
     textBreak?: boolean;
+    crisp?: boolean;
 }
 
 export const Text: FC<TextProps> = props =>
 {
-    const { variant = 'black', fontWeight = null, fontSize = 0, align = null, bold = false, underline = false, italics = false, truncate = false, center = false, textEnd = false, small = false, wrap = false, noWrap = false, textBreak = false, ...rest } = props;
+    const { variant = 'black', fontWeight = null, fontSize = 0, align = null, bold = false, underline = false, italics = false, truncate = false, center = false, textEnd = false, small = false, wrap = false, noWrap = false, textBreak = false, crisp = false, ...rest } = props;
 
     const getClassNames = useMemo(() =>
     {
@@ -55,6 +56,7 @@ export const Text: FC<TextProps> = props =>
         if(noWrap) newClassNames.push('text-nowrap');
 
         if(textBreak) newClassNames.push('text-break');
+        if(crisp) newClassNames.push('text-crisp');
 
         return newClassNames;
     }, [ variant, fontWeight, fontSize, align, bold, underline, italics, truncate, center, textEnd, small, wrap, noWrap, textBreak ]);

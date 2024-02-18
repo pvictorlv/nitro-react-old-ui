@@ -139,7 +139,7 @@
     margin-right: 5px;
   }
 
-  .content-area {
+  .friend-content-area {
     border: none;
     background-color: #e6e6e6 !important;
     color: #000 !important;
@@ -154,6 +154,7 @@
   border-image-source: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAAAXNSR0IArs4c6QAAALFJREFUSEvtlksSgCAIhvFQrexQHaVD5apD2UjikGHO+GgFy2j45MfHb6Ac/iNXSxnpB+kjQvxZq1fOmyXlHvVzmO+B5PgITQwOGwoiMAcSbAooAJ0DWDdEm+kwpNwzRNi0rkhK6k5h7YeObRKVUWUUFdBz1rUx9LoaIp8kI1qOkXaAr/TXx1OCTemOg/Cpzobjjx3A2r6RBUgI8h7J/Ahl0TcGaGtEyKsZ0blGyHBHfAGrZ3UNoBGi0QAAAABJRU5ErkJggg==) !important;
   width: $friends-list-width;
   height: $friends-list-height;
+  padding-bottom: 24px !important;
 
   &:before {
     opacity: .55;
@@ -189,6 +190,9 @@
   .search-input {
     border: 0;
     border-bottom: 1px solid rgba($black, 0.2);
+    position: absolute;
+    top: calc(100% - 24px);
+    background: white;
   }
 }
 
@@ -281,6 +285,7 @@
 
   .nitro-friends-messenger-content {
     background: white !important;
+    padding: 0 !important;
   }
 
   .layout-grid-item {

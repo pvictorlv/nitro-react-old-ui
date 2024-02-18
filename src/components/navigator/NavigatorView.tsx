@@ -259,7 +259,9 @@ export const NavigatorView: FC<{}> = props =>
                         <Base className={ 'navigator-footer-create' }>
                             <Flex alignItems={ 'center' } justifyContent={ 'between' }>
                                 <Flex alignItems={ 'center' }>
-                                    <i className="icon icon-room-key me-1"/> { LocalizeText('navigator.moreroomscaption') }
+                                    <i className="icon icon-room-key me-1"/>
+                                    <span
+                                        className={ 'text-crisp-invert' }>{ LocalizeText('navigator.moreroomscaption') }</span>
                                 </Flex>
                                 <Button title={ 'navigator.create' } className={ 'p-r' }
                                         onClick={ event => setCreatorOpen(true) }>{ LocalizeText('navigator.create.room') }</Button>

@@ -222,13 +222,12 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
                     { GetCanUseExpression() &&
                         <Button variant={ 'dark' } disabled={ !HasHabboVip() }
                             onClick={ event => processAction('laugh') }>
-                            { !HasHabboVip() && <LayoutCurrencyIcon type="hc"/> }
+
                             { LocalizeText('widget.memenu.laugh') }
                         </Button> }
                     { GetCanUseExpression() &&
                         <Button variant={ 'dark' } disabled={ !HasHabboVip() }
                             onClick={ event => processAction('blow') }>
-                            { !HasHabboVip() && <LayoutCurrencyIcon type="hc"/> }
                             { LocalizeText('widget.memenu.blow') }
                         </Button> }
                     <Button variant={ 'dark' } onClick={ event => processAction('idle') }>

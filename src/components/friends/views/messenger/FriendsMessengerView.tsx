@@ -24,6 +24,7 @@ import {
 import {LayoutMessengerGrid} from '../../../../common/layout/LayoutMessengerGrid';
 import {useHelp, useMessenger} from '../../../../hooks';
 import {FriendsMessengerThreadView} from './messenger-thread/FriendsMessengerThreadView';
+import {NitroCardFriendContentView} from '../../../../common/card/NitroCardFriendContentView';
 
 export const FriendsMessengerView: FC<{}> = props =>
 {
@@ -137,7 +138,7 @@ export const FriendsMessengerView: FC<{}> = props =>
             <NitroCardHeaderView
                 headerText={ (activeThread && activeThread.participant.name) || LocalizeText('messenger.window.title') }
                 onCloseClick={ event => setIsVisible(false) }/>
-            <NitroCardContentView className={ 'nitro-friends-messenger-content' } overflow={ 'hidden' }>
+            <NitroCardFriendContentView className={ 'text-black friend-content-area nitro-friends-messenger-content' } overflow={ 'hidden' }>
                 <Column fullWidth size={ 4 }>
                     <div className="d-flex h-100 messenger-friend-heads ">
                         { visibleThreads && (visibleThreads.length > 0) && visibleThreads.map(thread =>
@@ -191,7 +192,7 @@ export const FriendsMessengerView: FC<{}> = props =>
                         </> }
                 </Column>
 
-            </NitroCardContentView>
+            </NitroCardFriendContentView>
             { activeThread &&
                 <Flex gap={ 1 } className={ 'px-1 py-2' }>
                     <textarea
