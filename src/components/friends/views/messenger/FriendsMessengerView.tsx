@@ -138,7 +138,7 @@ export const FriendsMessengerView: FC<{}> = props =>
             <NitroCardHeaderView
                 headerText={ (activeThread && activeThread.participant.name) || LocalizeText('messenger.window.title') }
                 onCloseClick={ event => setIsVisible(false) }/>
-            <NitroCardFriendContentView className={ 'text-black friend-content-area nitro-friends-messenger-content' } overflow={ 'hidden' }>
+            <NitroCardFriendContentView className={ 'text-black friend-content-area' } gap={ 1 } overflow={ 'hidden' }>
                 <Column fullWidth size={ 4 }>
                     <div className="d-flex h-100 messenger-friend-heads ">
                         { visibleThreads && (visibleThreads.length > 0) && visibleThreads.map(thread =>
@@ -165,18 +165,18 @@ export const FriendsMessengerView: FC<{}> = props =>
                         }) }
                     </div>
                 </Column>
-                <Column size={ 8 } overflow="auto" className="w-100 nitro-messenger-messages">
+                <Column size={ 8 } gap={ 1 } overflow="auto" className="w-100 nitro-messenger-messages">
                     { activeThread &&
                         <>
-                            <Flex alignItems="center" justifyContent="between" gap={ 1 }>
+                            <Flex alignItems="center" className={'px-1'} justifyContent="between" gap={ 1 }>
                                 <Flex gap={ 1 }>
                                     <ButtonGroup className="gap-1">
                                         <div className="btn btn-sm btn-primary" onClick={ followFriend }>
-                                            <div className={'follow'}></div>
+                                            <div className={ 'follow' }></div>
                                         </div>
                                         <button className="btn btn-sm btn-primary profile" onClick={ openProfile }/>
                                     </ButtonGroup>
-                                    <button className="messenger-button fw-bold px-3"
+                                    <button className="btn btn-sm btn-primary messenger-button fw-bold px-3"
                                             onClick={ () => report(ReportType.IM, {reportedUserId: activeThread.participant.id}) }>
                                         { LocalizeText('messenger.window.button.report') }
                                     </button>

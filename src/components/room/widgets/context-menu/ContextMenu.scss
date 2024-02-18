@@ -28,14 +28,14 @@
         &:after {
             content: '';
             position: absolute;
-            bottom: -7px;
+            bottom: -6px;
             left: 0;
             right: 0;
             margin: auto;
             height: 10px;
             width: 10px;
             transform: rotate(45deg);
-            border-color: transparent rgba($white, 0.5) rgba($white, 0.5) transparent;
+            border-color: white;
             border-style: solid;
             border-width: 5px;
         }

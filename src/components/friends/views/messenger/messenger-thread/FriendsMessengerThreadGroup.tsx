@@ -41,7 +41,7 @@ export const FriendsMessengerThreadGroup: FC<{ thread: MessengerThread, group: M
                             <Base className="w-100 text-break">
                                 { (chat.type === MessengerThreadChat.SECURITY_NOTIFICATION) &&
                                     <Flex gap={ 2 } alignItems="center"
-                                          className="bg-light px-2 py-1 small text-muted">
+                                          className="bg-light px-2 py-1 text-muted">
                                         <Base className="nitro-friends-spritesheet icon-warning flex-shrink-0"/>
                                         <Base>{ chat.message }</Base>
                                     </Flex> }
@@ -62,7 +62,7 @@ export const FriendsMessengerThreadGroup: FC<{ thread: MessengerThread, group: M
     return (
         <Flex fullWidth justifyContent={ 'start' } gap={ 2 }>
             <Base
-                className={ 'text-black  messages-group-' + (isOwnChat ? 'right' : 'left') }>
+                className={ 'text-black w-100 messages-group-' + (isOwnChat ? 'right' : 'left') }>
 
                 { group.chats.map((chat, index) =>
                 {

@@ -95,7 +95,7 @@ export const GuideToolOngoingView: FC<GuideToolOngoingViewProps> = props =>
                                     { (!isOwnChat(group.userId)) &&
                                     <LayoutAvatarImageView figure={ userFigure } direction={ 2 } /> }
                                 </Base>
-                                <Base className={ 'bg-light text-black border-radius mb-2 rounded py-1 px-2 messages-group-' + (isOwnChat(group.userId) ? 'right' : 'left') }>
+                                <Base className={ 'bg-light text-black border-radius mb-2 rounded py-1 px-2 w-100 messages-group-' + (isOwnChat(group.userId) ? 'right' : 'left') }>
                                     <Text bold>
                                         { (isOwnChat(group.userId)) && GetSessionDataManager().userName }
                                         { (!isOwnChat(group.userId)) && userName }

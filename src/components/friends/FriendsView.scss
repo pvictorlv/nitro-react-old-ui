@@ -141,7 +141,7 @@
 
   .friend-content-area {
     border: none;
-    background-color: #e6e6e6 !important;
+    background-color: white !important;
     color: #000 !important;
     margin: 0 -5px !important;
     border-top: 1px solid black !important;
@@ -154,7 +154,6 @@
   border-image-source: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAAAXNSR0IArs4c6QAAALFJREFUSEvtlksSgCAIhvFQrexQHaVD5apD2UjikGHO+GgFy2j45MfHb6Ac/iNXSxnpB+kjQvxZq1fOmyXlHvVzmO+B5PgITQwOGwoiMAcSbAooAJ0DWDdEm+kwpNwzRNi0rkhK6k5h7YeObRKVUWUUFdBz1rUx9LoaIp8kI1qOkXaAr/TXx1OCTemOg/Cpzobjjx3A2r6RBUgI8h7J/Ahl0TcGaGtEyKsZ0blGyHBHfAGrZ3UNoBGi0QAAAABJRU5ErkJggg==) !important;
   width: $friends-list-width;
   height: $friends-list-height;
-  padding-bottom: 24px !important;
 
   &:before {
     opacity: .55;
@@ -170,7 +169,7 @@
 
     .nitro-card-header-text {
       background: #FFCB00 none !important;
-      color: #00000080;
+      color: #00000080 !important;
 
     }
   }

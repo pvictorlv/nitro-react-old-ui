@@ -17,59 +17,38 @@ export const ChatWidgetMessageView: FC<ChatWidgetMessageViewProps> = props =>
     const [ isReady, setIsReady ] = useState<boolean>(false);
     const elementRef = useRef<HTMLDivElement>();
 
+    const calculateWidth = function (textLen: number)
+    {
+        var letterWidth = 6;
+        var width = textLen * letterWidth;
+        return width;
+    }
+
+
     const calculatePadding = function (textLen: number)
     {
         textLen += 2;
 
-        if (textLen <= 9)
+        if (textLen < chat.username.length)
+            textLen = chat.username.length + 2;
+        else if (textLen >= chat.username.length * 4)
+            textLen = 1 + textLen - chat.username.length * 2;
+        else if (textLen >= chat.username.length * 3)
         {
-            return 32;
+            textLen = textLen - chat.username.length;
+        }
+        else if (textLen >= chat.username.length * 2)
+        {
+            textLen = textLen + 2 - chat.username.length;
+        }
+        else
+        {
+            textLen = textLen + 1 + chat.username.length;
         }
 
-        if (textLen <= 14)
-        {
-            return 32 + ((textLen - 8) * 4);
-        }
-
-        if (textLen <= 24)
-        {
-            return 28 + ((textLen - 8) * 4);
-        }
-
-        if (textLen <= 34)
-        {
-            return ((textLen - 7) * 4);
-        }
-
-        if (textLen <= 44)
-        {
-            return ((textLen - 10) * 4);
-        }
-
-
-        if (textLen <= 54)
-        {
-            return ((textLen - 10) * 3.9);
-        }
-
-
-        if (textLen <= 64)
-        {
-            return ((textLen - 11) * 3.9);
-        }
-
-        if (textLen <= 84)
-        {
-            return ((textLen - 12) * 3.7);
-        }
-
-        if (textLen <= 94)
-        {
-            return ((textLen - 13) * 3.6);
-        }
-
-
-        return ((textLen - 8) * 3.4);
+        var letterWidth = 6;
+        var padding = textLen * letterWidth;
+        return padding;
 
     }
 
@@ -170,9 +149,10 @@ export const ChatWidgetMessageView: FC<ChatWidgetMessageViewProps> = props =>
                         <div className="user-image" style={ {backgroundImage: `url(${ chat.imageUrl })`} }/> }
                 </div>
                 <div className="chat-content"
-                     style={ {paddingRight: calculatePadding(chat.formattedText.length + chat.username.length) + 'px'} }>
+                    //     style={ {paddingRight: calculatePadding(chat.formattedText.length) + 'px'} }
+                >
                     <span className="username mr-1" dangerouslySetInnerHTML={ {__html: `${ chat.username }: `} }/>
-                    <span className="message">
+                    <span className="message" style={ {width: calculatePadding(chat.formattedText.length) + 'px'} }>
                         { DOMPurify.sanitize(htmlDecode(chat.formattedText), {
                             ALLOWED_TAGS: [ 'b', 'i', 'u', 'strong' ],
                             ALLOWED_ATTR: [ 'color' ]
