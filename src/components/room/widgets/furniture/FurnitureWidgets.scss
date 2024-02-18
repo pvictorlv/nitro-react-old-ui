@@ -15,6 +15,14 @@
   width: 240px;
   resize: none !important;
 
+  .form-check-input {
+
+    width: 14px;
+    height: 14px;
+    border-radius: 0;
+    border-color: #262626;
+
+  }
   .dimmer-banner {
     width: 56px;
     height: 79px;
@@ -22,12 +30,15 @@
   }
 
   .color-swatch {
-    height: 30px;
-    border: 2px solid $white;
-    box-shadow: inset 3px 3px rgba(0, 0, 0, 0.2);
+    height: 24px;
+    border: 1px solid #262626;
 
+    outline: 2px solid white;
+    outline-offset: -3px;
     &.active {
-      box-shadow: none;
+
+      outline: 5px solid white;
+      outline-offset: -6px;
     }
   }
 }

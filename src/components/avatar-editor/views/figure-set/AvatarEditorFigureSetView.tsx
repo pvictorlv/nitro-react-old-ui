@@ -1,7 +1,7 @@
-import { Dispatch, FC, SetStateAction, useCallback, useEffect, useRef } from 'react';
-import { AvatarEditorGridPartItem, CategoryData, IAvatarEditorCategoryModel } from '../../../../api';
-import { AutoGrid } from '../../../../common';
-import { AvatarEditorFigureSetItemView } from './AvatarEditorFigureSetItemView';
+import {Dispatch, FC, SetStateAction, useCallback, useEffect, useRef} from 'react';
+import {AvatarEditorGridPartItem, CategoryData, IAvatarEditorCategoryModel} from '../../../../api';
+import {AutoGrid} from '../../../../common';
+import {AvatarEditorFigureSetItemView} from './AvatarEditorFigureSetItemView';
 
 export interface AvatarEditorFigureSetViewProps
 {
@@ -12,14 +12,14 @@ export interface AvatarEditorFigureSetViewProps
 
 export const AvatarEditorFigureSetView: FC<AvatarEditorFigureSetViewProps> = props =>
 {
-    const { model = null, category = null, setMaxPaletteCount = null } = props;
+    const {model = null, category = null, setMaxPaletteCount = null} = props;
     const elementRef = useRef<HTMLDivElement>(null);
 
     const selectPart = useCallback((item: AvatarEditorGridPartItem) =>
     {
         const index = category.parts.indexOf(item);
 
-        if(index === -1) return;
+        if (index === -1) return;
 
         model.selectPart(category.name, index);
 
@@ -30,15 +30,17 @@ export const AvatarEditorFigureSetView: FC<AvatarEditorFigureSetViewProps> = pro
 
     useEffect(() =>
     {
-        if(!model || !category || !elementRef || !elementRef.current) return;
+        if (!model || !category || !elementRef || !elementRef.current) return;
 
         elementRef.current.scrollTop = 0;
     }, [ model, category ]);
 
     return (
-        <AutoGrid innerRef={ elementRef } columnCount={ 3 } columnMinHeight={ 50 }>
+        <AutoGrid innerRef={ elementRef } columnCount={ 3 } gap={1} className={ 'h-100 light-grid-bg' } columnMinWidth={ 50 }
+                  columnMinHeight={ 45 }>
             { (category.parts.length > 0) && category.parts.map((item, index) =>
-                <AvatarEditorFigureSetItemView key={ index } partItem={ item } onClick={ event => selectPart(item) } />) }
+                <AvatarEditorFigureSetItemView key={ index } partItem={ item }
+                                               onClick={ event => selectPart(item) }/>) }
 
         </AutoGrid>
     );

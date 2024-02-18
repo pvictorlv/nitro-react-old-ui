@@ -91,7 +91,6 @@
             background-position: -186px -107px;
         }
     }
-    
     &.female-icon {
         width: 18px;
         height: 27px;
@@ -212,6 +211,31 @@
     }
 }
 
+
+.nitro-avatar-editor-header-icon {
+    &.hd {
+        width: 36px;
+        height: 34px;
+        background: url('@/assets/images/avatareditor/body-header.png');
+    }
+    &.head {
+        width: 36px;
+        height: 34px;
+        background: url('@/assets/images/avatareditor/face-header.png');
+    }
+    &.torso {
+        width: 36px;
+        height: 34px;
+        background: url('@/assets/images/avatareditor/shirt-header.png');
+    }
+    &.legs {
+        width: 36px;
+        height: 34px;
+        background: url('@/assets/images/avatareditor/pants-header.png');
+    }
+
+}
+
 .nitro-avatar-editor-wardrobe-figure-preview {
     background-color: $pale-sky;
     overflow: hidden;
@@ -258,17 +282,19 @@
 }
 
 .color-picker-frame {
-    border-image-source: url(@/assets/flash/avatareditor/color_frame.png);
-    border-image-slice: 6 6 6 6 fill;
-    border-image-width: 6px 6px 6px 6px;
-    width: 13px;
+    border: 1px solid black;
+
+    outline: 2px solid white;
+    outline-offset: -3px;
+    width: 23px;
     height: 19px;
     border-radius: 4px;
 
     &.active {
-        border-image-source: url(@/assets/flash/avatareditor/color_frame_active.png);
         height: 21px;
         margin-top: -2px;
+        outline: 4px solid white;
+        outline-offset: -5px;
     }
 
     &:hover {
@@ -281,7 +307,38 @@
 .nitro-avatar-editor {
     width: $avatar-editor-width;
     height: $avatar-editor-height;
+    max-height: $avatar-editor-height !important;
+    .invisible {
+        display: none !important;
+    }
+    .layout-grid-item {
 
+        background-color: white;
+        border: 0 !important;
+    }
+    .light-grid-bg {
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        padding: 0.5rem;
+    }
+    .content-area{
+        .avatar-editor-content {
+
+            border-radius: 4px;
+            background: #656565;
+        }
+    }
+    .nitro-card-tabs {
+        .nav-item {
+            background: #4d4d4d;
+            padding: 0.25rem;
+            margin-right: 0.5px;
+            margin-left: 0.5px;
+            border-top-right-radius: 6px;
+            border-top-left-radius: 6px;
+            border: 0.5px solid #262626;
+        }
+    }
     .main-avatar-editor {
         max-height: 185px;
     }

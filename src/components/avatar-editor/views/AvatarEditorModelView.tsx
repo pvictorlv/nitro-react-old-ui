@@ -62,12 +62,12 @@ export const AvatarEditorModelView: FC<AvatarEditorModelViewProps> = props =>
                         <Flex center pointer className="category-item" gap={ 3 } onClick={ event => setGender(FigureData.MALE) }>
                             <AvatarEditorIcon icon="male" selected={ (gender === FigureData.MALE) }/>
 
-                            <Text className={ 'text-volter-bold' }>{ LocalizeText('avatareditor.generic.boy') }</Text>
+                            <Text className={ 'text-volter-bold' } variant={'white'}>{ LocalizeText('avatareditor.generic.boy') }</Text>
                         </Flex>
                         <Flex center pointer className="category-item" gap={ 3 }
                               onClick={ event => setGender(FigureData.FEMALE) }>
                             <AvatarEditorIcon icon="female" selected={ (gender === FigureData.FEMALE) }/>
-                            <Text className={ 'text-volter-bold' }>{ LocalizeText('avatareditor.generic.girl') }</Text>
+                            <Text variant={'white'} className={ 'text-volter-bold text-white' }>{ LocalizeText('avatareditor.generic.girl') }</Text>
 
                         </Flex>
                     </Flex> }
@@ -89,14 +89,14 @@ export const AvatarEditorModelView: FC<AvatarEditorModelViewProps> = props =>
                                            setMaxPaletteCount={ setMaxPaletteCount }/>
             </Column>
             <AvatarEditorFigurePreviewView figureData={ figureData }/>
-            <Column size={ 12 } overflow="hidden">
+            <Flex className={'grid g-col-12 flex-row light-grid-bg'} overflow="hidden">
                 { (maxPaletteCount >= 1) &&
                     <AvatarEditorPaletteSetView model={ model } category={ activeCategory }
                                                 paletteSet={ activeCategory.getPalette(0) } paletteIndex={ 0 }/> }
                 { (maxPaletteCount === 2) &&
                     <AvatarEditorPaletteSetView model={ model } category={ activeCategory }
                                                 paletteSet={ activeCategory.getPalette(1) } paletteIndex={ 1 }/> }
-            </Column>
+            </Flex>
         </Grid>
     );
 }

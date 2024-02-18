@@ -31,7 +31,7 @@ import {
 import {
     Button,
     ButtonGroup,
-    Column,
+    Column, Flex,
     Grid,
     NitroCardContentView,
     NitroCardHeaderView,
@@ -304,7 +304,7 @@ export const AvatarEditorView: FC<{}> = props =>
         <NitroCardView uniqueKey="avatar-editor" className="nitro-avatar-editor" theme={ 'wired' }>
             <NitroCardHeaderView headerText={ LocalizeText('avatareditor.title') }
                                  onCloseClick={ event => setIsVisible(false) }/>
-            <NitroCardTabsView>
+            <NitroCardTabsView className={ 'px-4' }>
                 { categories && (categories.size > 0) && Array.from(categories.keys()).map(category =>
                 {
                     const isActive = (activeCategory && (activeCategory.name === category));
@@ -312,7 +312,7 @@ export const AvatarEditorView: FC<{}> = props =>
                     return (
                         <NitroCardTabsItemView key={ category } isActive={ isActive }
                                                onClick={ event => selectCategory(category) }>
-                            { LocalizeText(`avatareditor.category.${ category }`) }
+                            <div className={ 'nitro-avatar-editor-header-icon ' + category }></div>
                         </NitroCardTabsItemView>
                     );
                 }) }
@@ -320,9 +320,9 @@ export const AvatarEditorView: FC<{}> = props =>
                     { LocalizeText('avatareditor.category.wardrobe') }
                 </NitroCardTabsItemView>
             </NitroCardTabsView>
-            <NitroCardContentView>
-                <Grid>
-                    <Column size={ 9 } overflow="hidden">
+            <NitroCardContentView className={ 'pt-0' }>
+                <Grid className={ 'px-2' }>
+                    <Column size={ 12 } overflow="hidden" className={ 'avatar-editor-content' }>
                         { (activeCategory && !isWardrobeVisible) &&
                             <AvatarEditorModelView figureData={ figureData } model={ activeCategory }
                                                    gender={ figureData.gender } setGender={ setGender }/> }
@@ -331,27 +331,27 @@ export const AvatarEditorView: FC<{}> = props =>
                                                       setSavedFigures={ setSavedFigures }
                                                       loadAvatarInEditor={ loadAvatarInEditor }/> }
                     </Column>
-                    <Column size={ 3 } overflow="hidden">
-                        <Column grow gap={ 1 }>
-                            <ButtonGroup>
-                                <Button variant="secondary"
+                    <Column size={ 12 } overflow="hidden">
+                        <Flex grow gap={ 1 }>
+                            <Flex grow>
+                                <Button variant="primary"
                                         onClick={ event => processAction(AvatarEditorAction.ACTION_RESET) }>
                                     <FaUndo className="fa-icon"/>
                                 </Button>
-                                <Button variant="secondary"
+                                <Button variant="primary"
                                         onClick={ event => processAction(AvatarEditorAction.ACTION_CLEAR) }>
                                     <FaTrash className="fa-icon"/>
                                 </Button>
-                                <Button variant="secondary"
+                                <Button variant="primary"
                                         onClick={ event => processAction(AvatarEditorAction.ACTION_RANDOMIZE) }>
                                     <FaDice className="fa-icon"/>
                                 </Button>
-                            </ButtonGroup>
-                            <Button className="w-100"
-                                    onClick={ event => processAction(AvatarEditorAction.ACTION_SAVE) }>
+                            </Flex>
+                            <Button
+                                onClick={ event => processAction(AvatarEditorAction.ACTION_SAVE) }>
                                 { LocalizeText('avatareditor.save') }
                             </Button>
-                        </Column>
+                        </Flex>
                     </Column>
                 </Grid>
             </NitroCardContentView>
