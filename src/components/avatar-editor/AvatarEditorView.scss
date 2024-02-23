@@ -261,18 +261,6 @@
         z-index: 2;
     }
 
-    &:after {
-        position: absolute;
-        content: '';
-        top: 75%;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border-radius: 50%;
-        background-color: $pale-sky;
-        box-shadow: 0 0 8px 2px rgba($white,.6);
-        transform: scale(2);
-    }
 
     .button-container {
         position: absolute;
@@ -282,7 +270,7 @@
 }
 
 .color-picker-frame {
-    border: 1px solid black;
+    border: 1px solid #5f5d5d;
 
     outline: 2px solid white;
     outline-offset: -3px;

@@ -92,7 +92,7 @@
     &.type-2 {
       // shout
       .message {
-        font-weight: 700;
+        font-family: 'pixel-bold';
       }
     }
 
@@ -710,15 +710,15 @@
     }
 
     .chat-content {
-      padding-top: 4px;
+      padding-top: 6px;
       padding-right: 6px;
       padding-left: 4px;
       padding-bottom: 5px;
       margin-left: 27px;
       line-height: 1;
       color: $black;
-      font-family: 'Ubuntu Alternative';
-      font-size: 13px;
+      font-family: 'pixel';
+      font-size: 9.2px;
 
 
       min-height: 25px;
@@ -727,7 +727,7 @@
       -webkit-font-smoothing: none !important;
 
       .username {
-        font-family: 'Ubuntu Alternative';
+        font-family: 'pixel-bold';
         font-weight: 700;
       }
     }

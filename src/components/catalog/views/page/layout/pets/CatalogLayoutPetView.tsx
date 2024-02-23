@@ -247,14 +247,22 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
                 <Text variant={ 'black' } center> { page.localization.getText(0) }</Text>
             </Column>
             <Grid className={ 'catalog-alternative-flex' }>
+                <Column size={ 12 } overflow="hidden">
+                    <LayoutPetImageView scale={ 2 } typeId={ petIndex } petColor={ getColor }
+                                        paletteId={ selectedPaletteIndex > 0 ? sellablePalettes[selectedPaletteIndex].paletteId : 0 }
+                                        direction={ 2 }
+                                        headOnly={ false }/>
+                </Column>
+
                 <Column size={ 7 } overflow="hidden">
-                    <AutoGrid className={ 'catalog-grid' } columnCount={ 5 } columnMinWidth={ colorsShowing ? 11 : 40 }>
+                    <AutoGrid className={ 'catalog-grid pt-2' } columnCount={ 5 } columnMinWidth={ 22 }>
 
                         { (sellableColors.length > 0) && sellableColors.map((colorSet, index) =>
                             <LayoutGridColorPickerItem itemHighlight key={ index }
                                                        itemActive={ (selectedColorIndex === index) }
                                                        itemColor={ ColorConverter.int2rgb(colorSet[0]) }
-                                                       className="clear-bg"
+                                                       className="clear-bg pt-1"
+
                                                        onClick={ event => setSelectedColorIndex(index) }/>) }
                     </AutoGrid>
                 </Column>
@@ -268,11 +276,6 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
                         <>
                             <Base position="relative" overflow="hidden">
 
-                                { selectedPaletteIndex >= 0 &&
-                                    <LayoutPetImageView scale={ 2 } typeId={ petIndex } petColor={ getColor }
-                                                        paletteId={ sellablePalettes[selectedPaletteIndex].paletteId }
-                                                        direction={ 2 }
-                                                        headOnly={ false }/> }
 
                                 <CatalogAddOnBadgeWidgetView position="absolute"
                                                              className="bg-muted rounded bottom-1 end-1"/>
@@ -286,7 +289,7 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
 
                                 <ReactSelect styles={ style } classNamePrefix="react-select"
                                              options={ getOptions() }
-
+                                             placeholder={ 'Selecione' }
                                              className="input-dropdown"
                                              classNames={ {
                                                  option: () =>

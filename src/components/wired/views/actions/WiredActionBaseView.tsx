@@ -40,6 +40,7 @@ export const WiredActionBaseView: FC<PropsWithChildren<WiredActionBaseViewProps>
                     className={ 'nitro-slider' }
                     min={ 0 }
                     max={ 20 }
+
                     value={ actionDelay }
                     onChange={ event => setActionDelay(event) }/>
             </Column>

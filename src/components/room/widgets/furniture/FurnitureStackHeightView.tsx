@@ -35,13 +35,14 @@ export const FurnitureStackHeightView: FC<{}> = props =>
                 <Text>{ LocalizeText('widget.custom.stack.height.text') }</Text>
                 <Flex gap={ 2 }>
                     <ReactSlider
+                        withTracks={ false }
                         className="nitro-slider"
                         min={ 0 }
                         max={ maxHeight }
                         step={ 0.01 }
                         value={ height }
                         onChange={ event => updateHeight(event) }
-                        renderThumb={ (props, state) => <div { ...props }>{ state.valueNow }</div> } />
+                    />
                     <input className="show-number-arrows" style={ { width: 50 } } type="number" min={ 0 } max={ maxHeight } value={ tempHeight } onChange={ event => updateTempHeight(event.target.value) } />
                 </Flex>
                 <Column gap={ 1 }>

@@ -152,7 +152,7 @@ export const ChatWidgetMessageView: FC<ChatWidgetMessageViewProps> = props =>
                     //     style={ {paddingRight: calculatePadding(chat.formattedText.length) + 'px'} }
                 >
                     <span className="username mr-1" dangerouslySetInnerHTML={ {__html: `${ chat.username }: `} }/>
-                    <span className="message" style={ {width: calculatePadding(chat.formattedText.length) + 'px'} }>
+                    <span className="message"  >
                         { DOMPurify.sanitize(htmlDecode(chat.formattedText), {
                             ALLOWED_TAGS: [ 'b', 'i', 'u', 'strong' ],
                             ALLOWED_ATTR: [ 'color' ]

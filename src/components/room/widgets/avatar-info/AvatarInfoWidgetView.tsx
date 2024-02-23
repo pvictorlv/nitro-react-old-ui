@@ -117,9 +117,10 @@ export const AvatarInfoWidgetView: FC<{}> = props =>
                 {
                     const info = (avatarInfo as AvatarInfoPet);
 
-                    if (info.isOwner) return <AvatarInfoWidgetOwnPetView avatarInfo={ info }
-                        onClose={ () => setAvatarInfo(null) }/>;
+            //        if (info.isOwner) return <AvatarInfoWidgetOwnPetView avatarInfo={ info }
+            //            onClose={ () => setAvatarInfo(null) }/>;
 
+                    return null;
                     return <AvatarInfoWidgetPetView avatarInfo={ info } onClose={ () => setAvatarInfo(null) }/>;
                 }
                 case AvatarInfoRentableBot.RENTABLE_BOT:

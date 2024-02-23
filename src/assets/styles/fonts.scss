@@ -24,6 +24,15 @@
 }
 
 @font-face {
+  font-family: "pixel";
+  src: url(@/assets/webfonts/Volter__28Goldfish_29.ttf) format("truetype");
+}
+@font-face {
+  font-family: "pixel-bold";
+  src: url(@/assets/webfonts/Volter_Bold.ttf) format("truetype");
+}
+
+@font-face {
   font-family: "Ubuntu Alternative";
   src: url(@/assets/webfonts/Ubuntu.fe51027c.fe51027c.woff2) format("woff2"), 
   url(@/assets/webfonts/Ubuntu.dd2dbe9b.dd2dbe9b.woff) format("woff"),

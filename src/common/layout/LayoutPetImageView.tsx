@@ -117,5 +117,5 @@ export const LayoutPetImageView: FC<LayoutPetImageViewProps> = props =>
 
     const url = `url('${ petUrl }')`;
 
-    return <Base classNames={ [ 'pet-image' ] } style={ getStyle } { ...rest } />;
+    return <Base classNames={ [ 'pet-image', 'align-self-center', 'flex-grow-1' ] } style={ getStyle } { ...rest } />;
 }

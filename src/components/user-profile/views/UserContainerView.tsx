@@ -35,17 +35,17 @@ export const UserContainerView: FC<UserContainerViewProps> = props =>
             <Column>
                 <Column gap={ 0 }>
                     <Text bold>{ userProfile.username }</Text>
-                    <Text italics textBreak small>{ userProfile.motto }&nbsp;</Text>
+                    <Text textBreak >{ userProfile.motto }&nbsp;</Text>
                 </Column>
                 <Column gap={ 1 }>
-                    <Text small>
-                        <b>{ LocalizeText('extendedprofile.created') }</b> { userProfile.registration }
+                    <Text >
+                        <Text bold>{ LocalizeText('extendedprofile.created') }</Text> { userProfile.registration }
                     </Text>
-                    <Text small>
-                        <b>{ LocalizeText('extendedprofile.last.login') }</b> { FriendlyTime.format(userProfile.secondsSinceLastVisit, '.ago', 2) }
+                    <Text >
+                        <Text bold>{ LocalizeText('extendedprofile.last.login') }</Text> { FriendlyTime.format(userProfile.secondsSinceLastVisit, '.ago', 2) }
                     </Text>
-                    <Text small>
-                        <b>{ LocalizeText('extendedprofile.achievementscore') }</b> { userProfile.achievementPoints }
+                    <Text >
+                        <Text bold>{ LocalizeText('extendedprofile.achievementscore') }</Text> { userProfile.achievementPoints }
                     </Text>
                 </Column>
                 <Flex gap={ 1 }>

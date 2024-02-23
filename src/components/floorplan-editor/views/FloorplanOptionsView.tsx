@@ -158,6 +158,7 @@ export const FloorplanOptionsView: FC<{}> = props =>
                 <Column size={ 6 }>
                     <Text bold>{ LocalizeText('floor.plan.editor.tile.height') }: { floorHeight }</Text>
                     <ReactSlider
+                        withTracks={ false }
                         className="nitro-slider"
                         min={ MIN_FLOOR_HEIGHT }
                         max={ MAX_FLOOR_HEIGHT }
