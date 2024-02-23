@@ -1,9 +1,25 @@
-import { ILinkEventTracker, NitroSettingsEvent, UserSettingsCameraFollowComposer, UserSettingsEvent, UserSettingsOldChatComposer, UserSettingsRoomInvitesComposer, UserSettingsSoundComposer } from '@nitrots/nitro-renderer';
-import { FC, useEffect, useState } from 'react';
-import { FaVolumeDown, FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
-import { AddEventLinkTracker, DispatchMainEvent, DispatchUiEvent, LocalizeText, RemoveLinkEventTracker, SendMessageComposer } from '../../api';
-import { classNames, Column, Flex, NitroCardContentView, NitroCardHeaderView, NitroCardView, Text } from '../../common';
-import { useCatalogPlaceMultipleItems, useCatalogSkipPurchaseConfirmation, useMessageEvent } from '../../hooks';
+import {
+    ILinkEventTracker,
+    NitroSettingsEvent,
+    UserSettingsCameraFollowComposer,
+    UserSettingsEvent,
+    UserSettingsOldChatComposer,
+    UserSettingsRoomInvitesComposer,
+    UserSettingsSoundComposer
+} from '@nitrots/nitro-renderer';
+import {FC, useEffect, useState} from 'react';
+import {FaVolumeDown, FaVolumeMute, FaVolumeUp} from 'react-icons/fa';
+import {
+    AddEventLinkTracker,
+    DispatchMainEvent,
+    DispatchUiEvent,
+    LocalizeText,
+    RemoveLinkEventTracker,
+    SendMessageComposer
+} from '../../api';
+import {classNames, Column, Flex, NitroCardContentView, NitroCardHeaderView, NitroCardView, Text} from '../../common';
+import {useCatalogPlaceMultipleItems, useCatalogSkipPurchaseConfirmation, useMessageEvent} from '../../hooks';
+import ReactSlider from 'react-slider';
 
 export const UserSettingsView: FC<{}> = props =>
 {
@@ -18,7 +34,7 @@ export const UserSettingsView: FC<{}> = props =>
 
         const clone = userSettings.clone();
 
-        switch(type)
+        switch (type)
         {
             case 'close_view':
                 setIsVisible(false);
@@ -53,14 +69,14 @@ export const UserSettingsView: FC<{}> = props =>
                 break;
         }
 
-        if(doUpdate) setUserSettings(clone);
-        
+        if (doUpdate) setUserSettings(clone);
+
         DispatchMainEvent(clone)
     }
 
     const saveRangeSlider = (type: string) =>
     {
-        switch(type)
+        switch (type)
         {
             case 'volume':
                 SendMessageComposer(new UserSettingsSoundComposer(Math.round(userSettings.volumeSystem), Math.round(userSettings.volumeFurni), Math.round(userSettings.volumeTrax)));
@@ -93,9 +109,9 @@ export const UserSettingsView: FC<{}> = props =>
             {
                 const parts = url.split('/');
 
-                if(parts.length < 2) return;
-        
-                switch(parts[1])
+                if (parts.length < 2) return;
+
+                switch (parts[1])
                 {
                     case 'show':
                         setIsVisible(true);
@@ -118,36 +134,42 @@ export const UserSettingsView: FC<{}> = props =>
 
     useEffect(() =>
     {
-        if(!userSettings) return;
+        if (!userSettings) return;
 
         DispatchUiEvent(userSettings);
     }, [ userSettings ]);
 
-    if(!isVisible || !userSettings) return null;
+    if (!isVisible || !userSettings) return null;
 
     return (
-        <NitroCardView uniqueKey="user-settings" className="user-settings-window" theme="wired">
-            <NitroCardHeaderView headerText={ LocalizeText('widget.memenu.settings.title') } onCloseClick={ event => processAction('close_view') } />
+        <NitroCardView uniqueKey="user-settings" className="user-settings-window" theme="primary">
+            <NitroCardHeaderView headerText={ LocalizeText('widget.memenu.settings.title') }
+                                 onCloseClick={ event => processAction('close_view') }/>
             <NitroCardContentView className="text-black">
                 <Column gap={ 1 }>
                     <Flex alignItems="center" gap={ 1 }>
-                        <input className="form-check-input" type="checkbox" checked={ userSettings.oldChat } onChange={ event => processAction('oldchat', event.target.checked) } />
+                        <input className="form-check-input" type="checkbox" checked={ userSettings.oldChat }
+                               onChange={ event => processAction('oldchat', event.target.checked) }/>
                         <Text>{ LocalizeText('memenu.settings.chat.prefer.old.chat') }</Text>
                     </Flex>
                     <Flex alignItems="center" gap={ 1 }>
-                        <input className="form-check-input" type="checkbox" checked={ userSettings.roomInvites } onChange={ event => processAction('room_invites', event.target.checked) } />
+                        <input className="form-check-input" type="checkbox" checked={ userSettings.roomInvites }
+                               onChange={ event => processAction('room_invites', event.target.checked) }/>
                         <Text>{ LocalizeText('memenu.settings.other.ignore.room.invites') }</Text>
                     </Flex>
                     <Flex alignItems="center" gap={ 1 }>
-                        <input className="form-check-input" type="checkbox" checked={ userSettings.cameraFollow } onChange={ event => processAction('camera_follow', event.target.checked) } />
+                        <input className="form-check-input" type="checkbox" checked={ userSettings.cameraFollow }
+                               onChange={ event => processAction('camera_follow', event.target.checked) }/>
                         <Text>{ LocalizeText('memenu.settings.other.disable.room.camera.follow') }</Text>
                     </Flex>
                     <Flex alignItems="center" gap={ 1 }>
-                        <input className="form-check-input" type="checkbox" checked={ catalogPlaceMultipleObjects } onChange={ event => setCatalogPlaceMultipleObjects(event.target.checked) } />
+                        <input className="form-check-input" type="checkbox" checked={ catalogPlaceMultipleObjects }
+                               onChange={ event => setCatalogPlaceMultipleObjects(event.target.checked) }/>
                         <Text>{ LocalizeText('memenu.settings.other.place.multiple.objects') }</Text>
                     </Flex>
                     <Flex alignItems="center" gap={ 1 }>
-                        <input className="form-check-input" type="checkbox" checked={ catalogSkipPurchaseConfirmation } onChange={ event => setCatalogSkipPurchaseConfirmation(event.target.checked) } />
+                        <input className="form-check-input" type="checkbox" checked={ catalogSkipPurchaseConfirmation }
+                               onChange={ event => setCatalogSkipPurchaseConfirmation(event.target.checked) }/>
                         <Text>{ LocalizeText('memenu.settings.other.skip.purchase.confirmation') }</Text>
                     </Flex>
                 </Column>
@@ -156,28 +178,63 @@ export const UserSettingsView: FC<{}> = props =>
                     <Column gap={ 1 }>
                         <Text>{ LocalizeText('widget.memenu.settings.volume.ui') }</Text>
                         <Flex alignItems="center" gap={ 1 }>
-                            { (userSettings.volumeSystem === 0) && <FaVolumeMute className={ classNames((userSettings.volumeSystem >= 50) && 'text-muted', 'fa-icon') } /> }
-                            { (userSettings.volumeSystem > 0) && <FaVolumeDown className={ classNames((userSettings.volumeSystem >= 50) && 'text-muted', 'fa-icon') } /> }
-                            <input type="range" className="custom-range w-100" min="0" max="100" step="1" id="volumeSystem" value={ userSettings.volumeSystem } onChange={ event => processAction('system_volume', event.target.value) } onMouseUp={ () => saveRangeSlider('volume') }/>
-                            <FaVolumeUp className={ classNames((userSettings.volumeSystem < 50) && 'text-muted', 'fa-icon') } />
+                            <ReactSlider
+                                withTracks={ false }
+                                className="nitro-slider"
+                                min={ 0 }
+                                max={ 100 }
+                                step={ 1 }
+                                value={ userSettings.volumeSystem }
+                                onChange={ (event) =>
+                                {
+                                    processAction('system_volume', event);
+                                    saveRangeSlider('volume');
+                                } }
+
+                            />
                         </Flex>
                     </Column>
                     <Column gap={ 1 }>
                         <Text>{ LocalizeText('widget.memenu.settings.volume.furni') }</Text>
                         <Flex alignItems="center" gap={ 1 }>
-                            { (userSettings.volumeFurni === 0) && <FaVolumeMute className={ classNames((userSettings.volumeFurni >= 50) && 'text-muted', 'fa-icon') } /> }
-                            { (userSettings.volumeFurni > 0) && <FaVolumeDown className={ classNames((userSettings.volumeFurni >= 50) && 'text-muted', 'fa-icon') } /> }
-                            <input type="range" className="custom-range w-100" min="0" max="100" step="1" id="volumeFurni" value={ userSettings.volumeFurni } onChange={ event => processAction('furni_volume', event.target.value) } onMouseUp={ () => saveRangeSlider('volume') }/>
-                            <FaVolumeUp className={ classNames((userSettings.volumeFurni < 50) && 'text-muted', 'fa-icon') } />
+
+                            <ReactSlider
+                                withTracks={ false }
+                                className="nitro-slider"
+                                min={ 0 }
+                                max={ 100 }
+                                step={ 1 }
+                                value={ userSettings.volumeFurni }
+                                onChange={ (event) =>
+                                {
+                                    processAction('furni_volume', event);
+                                    saveRangeSlider('volume');
+                                } }
+
+                            />
+
+
                         </Flex>
                     </Column>
                     <Column gap={ 1 }>
                         <Text>{ LocalizeText('widget.memenu.settings.volume.trax') }</Text>
                         <Flex alignItems="center" gap={ 1 }>
-                            { (userSettings.volumeTrax === 0) && <FaVolumeMute className={ classNames((userSettings.volumeTrax >= 50) && 'text-muted', 'fa-icon') } /> }
-                            { (userSettings.volumeTrax > 0) && <FaVolumeDown className={ classNames((userSettings.volumeTrax >= 50) && 'text-muted', 'fa-icon') } /> }
-                            <input type="range" className="custom-range w-100" min="0" max="100" step="1" id="volumeTrax" value={ userSettings.volumeTrax } onChange={ event => processAction('trax_volume', event.target.value) } onMouseUp={ () => saveRangeSlider('volume') }/>
-                            <FaVolumeUp className={ classNames((userSettings.volumeTrax < 50) && 'text-muted', 'fa-icon') } />
+
+
+                            <ReactSlider
+                                withTracks={ false }
+                                className="nitro-slider"
+                                min={ 0 }
+                                max={ 100 }
+                                step={ 1 }
+                                value={ userSettings.volumeTrax }
+                                onChange={ (event) =>
+                                {
+                                    processAction('trax_volume', event);
+                                    saveRangeSlider('volume');
+                                } }
+
+                            />
                         </Flex>
                     </Column>
                 </Column>

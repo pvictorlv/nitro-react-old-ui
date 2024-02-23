@@ -46,7 +46,7 @@ export const LayoutGridItem: FC<LayoutGridItemProps> = props =>
     const getClassNames = useMemo(() =>
     {
         const newClassNames: string[] = noBorder ? [ 'layout-grid-item' ]
-            : [ 'layout-grid-item', 'border', 'border-2', 'border-muted', 'rounded' ];
+            : [ 'layout-grid-item', 'border', 'border-1', 'border-muted', 'rounded' ];
 
         if (itemActive) newClassNames.push('active');
 
