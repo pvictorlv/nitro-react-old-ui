@@ -14,7 +14,7 @@
   @include media-breakpoint-down(sm) {
     display: flex;
     position: absolute;
-    bottom: 70px;
+    bottom: 0px;
     left: calc(100% / 3);
     width: 200px;
   }

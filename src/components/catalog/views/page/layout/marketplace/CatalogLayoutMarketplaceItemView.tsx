@@ -65,15 +65,15 @@ export const CatalogLayoutMarketplaceItemView: FC<MarketplaceItemViewProps> = pr
             </Column>
             <Column gap={ 1 }>
                 { ((type === OWN_OFFER) && (offerData.status !== MarketPlaceOfferState.SOLD)) &&
-                    <Button variant="secondary" onClick={ () => onClick(offerData) }>
+                    <Button variant="primary" onClick={ () => onClick(offerData) }>
                         { LocalizeText('catalog.marketplace.offer.pick') }
                     </Button> }
                 { type === PUBLIC_OFFER &&
                     <>
-                        <Button variant="secondary" onClick={ () => onClick(offerData) }>
+                        <Button variant="primary" onClick={ () => onClick(offerData) }>
                             { LocalizeText('buy') }
                         </Button>
-                        <Button variant="secondary" disabled>
+                        <Button variant="primary" disabled>
                             { LocalizeText('catalog.marketplace.view_more') }
                         </Button>
                     </> }

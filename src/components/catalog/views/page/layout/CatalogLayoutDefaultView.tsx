@@ -20,7 +20,7 @@ export const CatalogLayoutDefaultView: FC<CatalogLayoutProps> = props =>
     return (
         <>
             <CatalogHeaderView imageUrl={ currentPage.localization.getImage(0) }/>
-            <Text variant={ 'black' } center> { currentPage.localization.getText(0) }</Text>
+            <Text className={'catalog-main-desc'} variant={ 'black' } center> { currentPage.localization.getText(0) }</Text>
 
         <Grid className={ 'catalog-main-content' }>
             <Column size={ 6 } gap={ 1 } overflow="hidden">

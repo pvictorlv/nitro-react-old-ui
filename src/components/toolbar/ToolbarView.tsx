@@ -39,11 +39,13 @@ import {
 } from '../../hooks';
 import {ToolbarMeView} from './ToolbarMeView';
 import {ToolbarIcon} from './ToolbarIcon';
+import {Button} from 'react-bootstrap';
 
 export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
 {
     const {isInRoom} = props;
     const [ isMeExpanded, setMeExpanded ] = useState(false);
+    const [ hideToolbar, setToolbar ] = useState(false);
     const [ useGuideTool, setUseGuideTool ] = useState(false);
     const [ hoverFrame, setHoverFrame ] = useState(0);
     const {userFigure = null} = useSessionInfo();
@@ -53,7 +55,6 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
     const {iconState = MessengerIconState.HIDDEN} = useMessenger();
     const isMod = GetSessionDataManager().isModerator;
     const [ isZoomedIn, setIsZoomedIn ] = useState<boolean>(false);
-
 
     useMessageEvent<PerkAllowancesMessageEvent>(PerkAllowancesMessageEvent, event =>
     {
@@ -109,6 +110,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
     const {roomSession = null} = useRoom();
 
     var lastRoomClick = null;
+
     const handleToolClick = (action: string, value?: string) =>
     {
         switch (action)
@@ -137,8 +139,15 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                 <ToolbarMeView useGuideTool={ useGuideTool } unseenAchievementCount={ getTotalUnseen }
                                setMeExpanded={ setMeExpanded }/>
             </TransitionAnimation>
+            <Flex className={ 'd-md-none' }>
+                <Button className={ 'toggle-toolbar-btn' } onClick={ () =>
+                {
+                    setToolbar(!hideToolbar);
+                } }> { hideToolbar ? LocalizeText('toolbar.show') : LocalizeText('toolbar.hide') } </Button>
+            </Flex>
             <Flex alignItems="center" justifyContent="between" gap={ 4 }
-                  className="nitro-toolbar py-1 px-2 flex-column">
+                  className={ 'nitro-toolbar py-1 px-2 flex-column  ' }
+                  visible={ !hideToolbar }>
                 <Flex gap={ 2 } alignItems="center">
                     <Flex alignItems="center" gap={ 1 } className={ 'flex-column' }>
 
@@ -215,9 +224,10 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                             <Base pointer className="navigation-item icon icon-room-info"
                                   onClick={ event => CreateLinkEvent('navigator/toggle-room-info') }/> }
 
-                        { isInRoom && <Text truncate className="text-volter-bold label-roominfo" variant={ 'white-sharp' }>
-                            { LocalizeText('toolbar.icon.label.roominfo') }
-                        </Text> }
+                        { isInRoom &&
+                            <Text truncate className="text-volter-bold label-roominfo" variant={ 'white-sharp' }>
+                                { LocalizeText('toolbar.icon.label.roominfo') }
+                            </Text> }
 
                         <Flex center pointer
                               className={ 'navigation-item item-avatar ' + (isMeExpanded ? 'active ' : '') }
@@ -232,10 +242,11 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                             { LocalizeText('toolbar.icon.label.memenu') }
                         </Text>
                     </Flex>
-                    <Flex alignItems="center" id="toolbar-chat-input-container"/>
-
                 </Flex>
             </Flex>
+
+            <Flex alignItems="center" id="toolbar-chat-input-container" className={ hideToolbar ? 'no-toolbar' : '' }/>
+
         </>
     );
 }

@@ -62,8 +62,13 @@
   .catalog-alternative-flex {
     height: 340px !important;
   }
+  .catalog-main-desc {
+    height: 36px;
+    overflow: hidden;
+
+
+  }
   .catalog-main-content {
-    margin-top: 20px;
     max-height: 320px !important;
   }
   .catalog-heading {
@@ -94,7 +99,7 @@
   .catalog-icon-holder {
     box-shadow: inset 1px 3px rgba(255, 255, 255, 0.7);
     padding: 1px;
-    padding-left: 1.5px;
+    padding-left: 2px;
     background-color: #BDBCBA;
   }
 

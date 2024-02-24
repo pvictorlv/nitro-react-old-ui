@@ -47,7 +47,7 @@ export const SearchFormView: FC<SearchFormViewProps> = props =>
         <Column gap={ 1 }>
             <Flex alignItems="center" gap={ 1 }>
                 <Text className="col-3">{ LocalizeText('catalog.marketplace.sort_order') }</Text>
-                <select className="form-select form-select-sm" value={ sortType } onChange={ event => onSortTypeChange(parseInt(event.target.value)) }>
+                <select className="form-control form-control-sm" value={ sortType } onChange={ event => onSortTypeChange(parseInt(event.target.value)) }>
                     { sortTypes.map(type => <option key={ type } value={ type }>{ LocalizeText(`catalog.marketplace.sort.${ type }`) }</option>) }
                 </select>
             </Flex>
@@ -64,7 +64,7 @@ export const SearchFormView: FC<SearchFormViewProps> = props =>
                             <input className="form-control form-control-sm" type="number" min={ 0 } value={ max } onChange={ event => setMax(event.target.valueAsNumber) } />
                         </Flex>
                     </Flex>
-                    <Button variant="secondary" className="mx-auto" onClick={ onClickSearch }>{ LocalizeText('generic.search') }</Button>
+                    <Button variant="primary" className="mx-auto" onClick={ onClickSearch }>{ LocalizeText('generic.search') }</Button>
                 </> }
         </Column>
     );

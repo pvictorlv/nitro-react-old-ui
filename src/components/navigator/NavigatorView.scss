@@ -62,8 +62,8 @@
     background-position: center;
     background-repeat: no-repeat;
     border-image-source: url(@/assets/flash/navigator/room-creator/room-bg.png);
-    border-image-slice:6 6 6 6 fill;
-    border-image-width:6px 6px 6px 6px;
+    border-image-slice: 6 6 6 6 fill;
+    border-image-width: 6px 6px 6px 6px;
     overflow: hidden;
 
     &.active {
@@ -139,6 +139,7 @@
 
 
   }
+
   .fa-icon {
     font-size: 11px;
   }
@@ -216,7 +217,6 @@
 }
 
 
-
 .nitro-room-info {
   color: #FFFFFF;
   position: fixed;
@@ -224,13 +224,21 @@
   left: 90px;
   width: $room-info-width;
 
+  .btn-primary {
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    overflow: hidden;
+  }
+
   .form-check-input {
     width: 12px;
     height: 12px;
     border-radius: 0;
     border-color: white;
     background-color: #3D3D3D;
-    
+
     &:checked {
 
       background-color: #3D3D3D;
@@ -246,10 +254,12 @@
     border-radius: 0.2rem;
     background: #3D3D3D;
     color: white;
+
     & option {
       border-radius: 0;
     }
   }
+
   .nitro-room-info-content {
 
     border-radius: 8px;
@@ -259,6 +269,7 @@
       background: #F7E26E;
       padding: 0.1rem;
     }
+
     .nitro-card-tabs {
 
       .nav-item {
@@ -320,6 +331,7 @@
 .room-info {
   width: 275px;
 }
+
 .navigator-room-info {
   padding: 0.35rem;
 }
