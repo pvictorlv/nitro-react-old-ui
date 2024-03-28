@@ -18,7 +18,7 @@ export const FloorplanOptionsView: FC<{}> = props =>
     const { visualizationSettings = null, setVisualizationSettings = null } = useFloorplanEditorContext();
     const [ floorAction, setFloorAction ] = useState(FloorAction.SET);
     const [ floorHeight, setFloorHeight ] = useState(0);
-    
+
     const selectAction = (action: number) =>
     {
         setFloorAction(action);
@@ -75,7 +75,7 @@ export const FloorplanOptionsView: FC<{}> = props =>
             const newValue = { ...prevValue };
 
             newValue.thicknessWall = value;
-    
+
             return newValue;
         });
     }
@@ -158,7 +158,6 @@ export const FloorplanOptionsView: FC<{}> = props =>
                 <Column size={ 6 }>
                     <Text bold>{ LocalizeText('floor.plan.editor.tile.height') }: { floorHeight }</Text>
                     <ReactSlider
-                        withTracks={ false }
                         className="nitro-slider"
                         min={ MIN_FLOOR_HEIGHT }
                         max={ MAX_FLOOR_HEIGHT }

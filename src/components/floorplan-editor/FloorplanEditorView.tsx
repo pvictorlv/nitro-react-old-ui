@@ -1,13 +1,21 @@
-import { FloorHeightMapEvent, ILinkEventTracker, NitroPoint, RoomEngineEvent, RoomVisualizationSettingsEvent, UpdateFloorPropertiesMessageComposer } from '@nitrots/nitro-renderer';
+import {
+    FloorHeightMapEvent,
+    ILinkEventTracker,
+    NitroPoint,
+    RoomEngineEvent,
+    RoomId,
+    RoomVisualizationSettingsEvent,
+    UpdateFloorPropertiesMessageComposer
+} from '@nitrots/nitro-renderer';
 import { FC, useEffect, useState } from 'react';
 import { AddEventLinkTracker, LocalizeText, RemoveLinkEventTracker, SendMessageComposer } from '../../api';
 import { Button, ButtonGroup, Flex, NitroCardContentView, NitroCardHeaderView, NitroCardView } from '../../common';
-import { useMessageEvent, useRoomEngineEvent } from '../../hooks';
+import {useMessageEvent, useRoomEngineEvent} from '../../hooks';
+import { FloorplanEditorContextProvider } from './FloorplanEditorContext';
 import { FloorplanEditor } from './common/FloorplanEditor';
 import { IFloorplanSettings } from './common/IFloorplanSettings';
 import { IVisualizationSettings } from './common/IVisualizationSettings';
 import { convertNumbersForSaving, convertSettingToNumber } from './common/Utils';
-import { FloorplanEditorContextProvider } from './FloorplanEditorContext';
 import { FloorplanCanvasView } from './views/FloorplanCanvasView';
 import { FloorplanImportExportView } from './views/FloorplanImportExportView';
 import { FloorplanOptionsView } from './views/FloorplanOptionsView';
@@ -48,13 +56,16 @@ export const FloorplanEditorView: FC<{}> = props =>
     const revertChanges = () =>
     {
         setVisualizationSettings({ wallHeight: originalFloorplanSettings.wallHeight, thicknessWall: originalFloorplanSettings.thicknessWall, thicknessFloor: originalFloorplanSettings.thicknessFloor, entryPointDir: originalFloorplanSettings.entryPointDir });
-        
+
         FloorplanEditor.instance.doorLocation = new NitroPoint(originalFloorplanSettings.entryPoint[0], originalFloorplanSettings.entryPoint[1]);
         FloorplanEditor.instance.setTilemap(originalFloorplanSettings.tilemap, originalFloorplanSettings.reservedTiles);
         FloorplanEditor.instance.renderTiles();
     }
 
-    useRoomEngineEvent<RoomEngineEvent>(RoomEngineEvent.DISPOSED, event => setIsVisible(false));
+    useRoomEngineEvent<RoomEngineEvent>(RoomEngineEvent.DISPOSED, event =>
+    {
+        setIsVisible(false)
+    });
 
     useMessageEvent<FloorHeightMapEvent>(FloorHeightMapEvent, event =>
     {
@@ -113,7 +124,7 @@ export const FloorplanEditorView: FC<{}> = props =>
                 const parts = url.split('/');
 
                 if(parts.length < 2) return;
-        
+
                 switch(parts[1])
                 {
                     case 'show':
@@ -133,11 +144,6 @@ export const FloorplanEditorView: FC<{}> = props =>
         AddEventLinkTracker(linkTracker);
 
         return () => RemoveLinkEventTracker(linkTracker);
-    }, []);
-
-    useEffect(() =>
-    {
-        FloorplanEditor.instance.initialize();
     }, []);
 
     return (
