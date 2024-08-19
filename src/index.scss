@@ -8,7 +8,7 @@ body {
   overflow: hidden;
   user-select: none;
   scrollbar-width: thin;
-  font-family: Volter, sans-serif;
+  font-family: Goldfish, sans-serif;
 
   .image-rendering-pixelated {
     image-rendering: pixelated;
@@ -96,7 +96,7 @@ body {
   border-image-slice: 4 fill;
   border-image-width: 4px;
   padding: 6px 8px;
-  font-family: Volter, sans-serif;
+  font-family: Goldfish, sans-serif;
 
   text-align: center;
   border-image-repeat: repeat repeat;
@@ -118,7 +118,7 @@ body {
   border-image-slice: 4 fill;
   border-image-width: 4px;
   padding: 4px 8px;
-  font-family: Volter, sans-serif;
+  font-family: Goldfish, sans-serif;
   font-size: 9px;
   color: black;
 
@@ -256,7 +256,7 @@ body {
 }
 
 .text-volter {
-  font-family: Volter, sans-serif;
+  font-family: Goldfish, sans-serif;
   font-size: 9px !important;
 
   -webkit-font-smoothing: none !important;
@@ -264,7 +264,7 @@ body {
 }
 
 .text-volter-bold, .fw-bold {
-  font-family: VolterBold, sans-serif;
+  font-family: GoldfishBold, sans-serif;
   font-size: 9px;
   font-weight: normal !important;
   -webkit-font-smoothing: none !important;
