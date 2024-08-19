@@ -19,30 +19,32 @@ import { FurnitureStickieView } from './FurnitureStickieView';
 import { FurnitureTrophyView } from './FurnitureTrophyView';
 import { FurnitureYoutubeDisplayView } from './FurnitureYoutubeDisplayView';
 import { FurniturePlaylistEditorWidgetView } from './playlist-editor/FurniturePlaylistEditorWidgetView';
+import { FurnitureRentableSpaceView } from './FurnitureRentableSpaceView';
 
 export const FurnitureWidgetsView: FC<{}> = props =>
 {
     return (
         <Base fit position="absolute" className="nitro-room-widgets top-0 start-0">
-            <FurnitureBackgroundColorView />
-            <FurnitureBadgeDisplayView />
-            <FurnitureCraftingView />
-            <FurnitureDimmerView />
-            <FurnitureExchangeCreditView />
-            <FurnitureExternalImageView />
-            <FurnitureFriendFurniView />
-            <FurnitureGiftOpeningView />
-            <FurnitureHighScoreView />
-            <FurnitureInternalLinkView />
-            <FurnitureMannequinView />
-            <FurniturePlaylistEditorWidgetView />
-            <FurnitureRoomLinkView />
-            <FurnitureSpamWallPostItView />
-            <FurnitureStackHeightView />
-            <FurnitureStickieView />
-            <FurnitureTrophyView />
-            <FurnitureContextMenuView />
-            <FurnitureYoutubeDisplayView />
+            <FurnitureBackgroundColorView/>
+            <FurnitureBadgeDisplayView/>
+            <FurnitureCraftingView/>
+            <FurnitureDimmerView/>
+            <FurnitureExchangeCreditView/>
+            <FurnitureExternalImageView/>
+            <FurnitureFriendFurniView/>
+            <FurnitureGiftOpeningView/>
+            <FurnitureHighScoreView/>
+            <FurnitureInternalLinkView/>
+            <FurnitureMannequinView/>
+            <FurniturePlaylistEditorWidgetView/>
+            <FurnitureRoomLinkView/>
+            <FurnitureSpamWallPostItView/>
+            <FurnitureStackHeightView/>
+            <FurnitureStickieView/>
+            <FurnitureTrophyView/>
+            <FurnitureContextMenuView/>
+            <FurnitureYoutubeDisplayView/>
+            <FurnitureRentableSpaceView/>
         </Base>
     );
 }
