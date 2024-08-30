@@ -49,7 +49,6 @@ export const Text: FC<TextProps> = props =>
 
         if(textEnd) newClassNames.push('text-end');
 
-        if(small) newClassNames.push('small');
 
         if(wrap) newClassNames.push('text-wrap');
 

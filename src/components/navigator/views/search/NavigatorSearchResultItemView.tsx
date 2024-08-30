@@ -92,7 +92,7 @@ export const NavigatorSearchResultItemView: FC<NavigatorSearchResultItemViewProp
 
     if (thumbnail) return (
         <Column pointer overflow="hidden" alignItems="center" onClick={ visitRoom } gap={ 0 }
-            className="navigator-item p-1 bg-light rounded-3 small mb-1 flex-column border border-muted" { ...rest }>
+            className="navigator-item p-1 bg-light rounded-3 mb-1 flex-column border border-muted" { ...rest }>
             <LayoutRoomThumbnailView roomId={ roomData.roomId } customUrl={ roomData.officialRoomPicRef }
                 className="d-flex flex-column align-items-center justify-content-end mb-1">
                 { roomData.habboGroupId > 0 &&
