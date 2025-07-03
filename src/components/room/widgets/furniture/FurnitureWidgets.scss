@@ -23,6 +23,7 @@
     border-color: #262626;
 
   }
+
   .dimmer-banner {
     width: 56px;
     height: 79px;
@@ -35,6 +36,7 @@
 
     outline: 2px solid white;
     outline-offset: -3px;
+
     &.active {
 
       outline: 5px solid white;
@@ -532,6 +534,18 @@
     background-image: url('@/assets/images/prize/prize_background.png');
     background-repeat: no-repeat;
     background-position: center;
+  }
+}
+
+.nitro-football-gate {
+  width: 300px;
+
+  .football-gate-content {
+    color: black;
+
+    .size-buttons {
+      width: 100px;
+    }
   }
 }
 

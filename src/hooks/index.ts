@@ -20,3 +20,4 @@ export * from './useLocalStorage';
 export * from './UseMountEffect';
 export * from './useSharedVisibility';
 export * from './wired';
+export * from './useFurnitureFootballGateWidget';
