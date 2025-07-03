@@ -15,8 +15,10 @@ export const ChatHistoryView: FC<{}> = props => {
 
         let text = searchText.toLowerCase();
 
-        return chatHistory.filter(entry => ((entry.message && entry.message.toLowerCase().includes(text))) || (entry.name && entry.name.toLowerCase().includes(text)));
-    }, [chatHistory, searchText]);
+      return chatHistory
+        .filter(entry => (entry.message && entry.message.toLowerCase().includes(text)) || (entry.name && entry.name.toLowerCase().includes(text)))
+        .sort((a, b) => b.id - a.id);
+      }, [chatHistory, searchText]);
 
     useEffect(() => {
         if (elementRef && elementRef.current && isVisible) elementRef.current.scrollTop = elementRef.current.scrollHeight;

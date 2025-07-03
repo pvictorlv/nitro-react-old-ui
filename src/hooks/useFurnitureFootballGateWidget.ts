@@ -1,8 +1,8 @@
 import { RoomEngineTriggerWidgetEvent } from '@nitrots/nitro-renderer';
 import { useState } from 'react';
-import { GetRoomEngine, IsOwnerOfFurniture } from '../../../../api';
-import { useRoomEngineEvent } from '../../../events';
-import { useFurniRemovedEvent } from '../../engine';
+import {useRoomEngineEvent} from './events';
+import {GetRoomEngine, IsOwnerOfFurniture} from '../api';
+import {useFurniRemovedEvent} from './rooms';
 
 const useFurnitureFootballGateWidgetState = () =>
 {
