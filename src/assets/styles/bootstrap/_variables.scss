@@ -102,7 +102,7 @@ $bg-cello-split-background: repeating-linear-gradient($cello-light, $cello-light
 
 .bg-tertiary-split {
   background: $bg-tertiary-split-background;
-} 
+}
 
 .bg-mirage-split {
   background: $bg-mirage-split-background;
@@ -912,6 +912,7 @@ $input-focus-width:                     $input-btn-focus-width !default;
 $input-focus-box-shadow:                $input-btn-focus-box-shadow !default;
 
 $input-placeholder-color:               $gray-500 !default;
+$input-placeholder-font-family:         UbuntuItalics !default;
 $input-plaintext-color:                 $body-color !default;
 
 $input-height-border:                   $input-border-width * 2 !default;

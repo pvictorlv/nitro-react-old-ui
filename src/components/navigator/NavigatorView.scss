@@ -248,15 +248,26 @@
 
   .room-info-input {
     box-shadow: none !important;
-
+    border-image: unset;
+    width: 100%;
     padding: 0.1rem 0.25rem;
     font-size: 0.58125rem;
     border-radius: 0.2rem;
     background: #3D3D3D;
     color: white;
 
+    border: 1px solid #ced4da;
     & option {
       border-radius: 0;
+    }
+    & option:hover {
+      background-color: #2d2d2d;
+    }
+    & option:checked {
+      background-color: #2d2d2d;
+    }
+    &:focus {
+      border-color: white;
     }
   }
 

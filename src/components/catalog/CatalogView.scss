@@ -220,12 +220,24 @@
         background: url(@/assets/flash/catalogue/tab_icon_background_grey.png);
       }
 
+      .catalog-icon-4,
+      .catalog-icon-24,
+      .catalog-icon-8,
+      .catalog-icon-80, {
+        background: url(@/assets/flash/catalogue/tab_icon_background_orange.png);
+      }
+
       .catalog-icon-8,
       .catalog-icon-80,
       .catalog-icon-202,
-      .catalog-icon-193,
-      .catalog-icon-213, {
-        background: url(@/assets/flash/catalogue/tab_icon_background_orange.png);
+      .catalog-icon-193, {
+        background: url(@/assets/flash/catalogue/tab_icon_background_yellow.png);
+      }
+
+
+      .catalog-icon-213,
+      .catalog-icon-65, {
+        background: url(@/assets/flash/catalogue/tab_icon_background_red.png);
       }
 
       .catalog-icon-197,

@@ -57,16 +57,16 @@ export const LayoutBadgeImageView: FC<LayoutBadgeImageViewProps> = props =>
             newStyle.backgroundImage = `url(${ (isGroup) ? imageElement.src : GetConfiguration<string>('badge.asset.url').replace('%badgename%', badgeCode.toString()) })`;
             newStyle.width = imageElement.width;
             newStyle.height = imageElement.height;
-
-            if (scale !== 1)
-            {
-                newStyle.transform = `scale(${ scale })`;
-
-                if (!(scale % 1)) newStyle.imageRendering = 'pixelated';
-
-                newStyle.width = (imageElement.width * scale);
-                newStyle.height = (imageElement.height * scale);
-            }
+            //
+            // if (scale !== 1)
+            // {
+            //     newStyle.transform = `scale(${ scale })`;
+            //
+            //     if (!(scale % 1)) newStyle.imageRendering = 'pixelated';
+            //
+            //     newStyle.width = (imageElement.width * scale);
+            //     newStyle.height = (imageElement.height * scale);
+            // }
         }
 
         if (Object.keys(style).length) newStyle = {...newStyle, ...style};
