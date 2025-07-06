@@ -554,6 +554,46 @@
     height: 18px;
   }
 
+  &.icon-accept-check {
+    background: url('@/assets/flash/buttons/accept.png');
+    width: 16px;
+    height: 13px;
+  }
+
+  &.icon-sound-off {
+    background: url('@/assets/flash/settings/sound_off.png');
+    background-repeat: no-repeat;
+    width: 29px;
+    height: 22px;
+  }
+
+  &.icon-sound-off-active {
+    background: url('@/assets/flash/settings/sound_off_active.png');
+    background-repeat: no-repeat;
+    width: 29px;
+    height: 22px;
+  }
+
+  &.icon-sound-on {
+    background: url('@/assets/flash/settings/sound_on.png');
+    background-repeat: no-repeat;
+    width: 29px;
+    height: 22px;
+  }
+
+  &.icon-sound-on-active {
+    background: url('@/assets/flash/settings/sound_on_active.png');
+    background-repeat: no-repeat;
+    width: 29px;
+    height: 22px;
+  }
+
+  &.icon-decline-x {
+    background: url('@/assets/flash/buttons/decline.png');
+    width: 13px;
+    height: 13px;
+  }
+
   &.icon-like-room {
     background: url('@/assets/images/icons/like-room.png');
     width: 20px;
