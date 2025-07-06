@@ -46,7 +46,7 @@
   height: $catalog-height;
   font-family: Goldfish, sans-serif;
 
-  .catalog-badge{
+  .catalog-badge {
     position: absolute;
     margin-left: 115px;
     margin-bottom: 90px;
@@ -62,18 +62,22 @@
   .catalog-alternative-flex {
     height: 340px !important;
   }
+
   .catalog-main-desc {
     height: 36px;
     overflow: hidden;
 
 
   }
+
   .catalog-main-content {
     max-height: 320px !important;
   }
+
   .catalog-heading {
     margin-bottom: 20px;
   }
+
   .catalog-flex-content {
     height: 95%;
 
@@ -193,11 +197,44 @@
 
   .layout-grid-item {
     font-size: $font-size-sm;
-    height: 23px !important;
+    height: 21px !important;
     background: transparent !important;
     border-bottom: 1px solid black !important;
     padding: 2px 3px 2px 8px;
 
+    &.parent {
+      background-color: #FFF !important; // Background for parent
+
+      .catalog-icon {
+        background: url(@/assets/flash/catalogue/tab_icon_background.png);
+      }
+
+      .catalog-icon-146,
+      .catalog-icon-145,
+      .catalog-icon-69,
+      .catalog-icon-2 {
+        background: url(@/assets/flash/catalogue/tab_icon_background_green.png);
+      }
+
+      .catalog-icon-172 {
+        background: url(@/assets/flash/catalogue/tab_icon_background_grey.png);
+      }
+
+      .catalog-icon-8,
+      .catalog-icon-80,
+      .catalog-icon-202,
+      .catalog-icon-193,
+      .catalog-icon-213, {
+        background: url(@/assets/flash/catalogue/tab_icon_background_orange.png);
+      }
+
+      .catalog-icon-197,
+      .catalog-icon-63,
+      .catalog-icon-600,
+      .catalog-icon-195, {
+        background: url(@/assets/flash/catalogue/tab_icon_background_purple.png);
+      }
+    }
     .svg-inline--fa {
       color: $black;
       font-size: 9.3px;

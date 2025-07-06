@@ -1,63 +1,71 @@
-import { useVirtual } from '@tanstack/react-virtual';
-import { FC, Fragment, ReactElement, useEffect, useRef, useState } from 'react';
+import { FC, Fragment, useEffect, useRef, useState } from 'react';
+import { useVirtualizer, VirtualItem } from '@tanstack/react-virtual';
 import { Base } from './Base';
 
-interface InfiniteScrollProps<T = any>
-{
-    rows: T[];
-    overscan?: number;
-    scrollToBottom?: boolean;
-    rowRender: (row: T) => ReactElement;
+interface InfiniteScrollProps<T = any> {
+  rows: T[];
+  overscan?: number;
+  scrollToBottom?: boolean;
+  rowRender: (row: T) => React.ReactElement;
 }
 
-export const InfiniteScroll: FC<InfiniteScrollProps> = props =>
-{
-    const { rows = [], overscan = 5, scrollToBottom = false, rowRender = null } = props;
-    const [ scrollIndex, setScrollIndex ] = useState<number>(rows.length - 1);
-    const elementRef = useRef<HTMLDivElement>(null);
+export const InfiniteScroll: FC<InfiniteScrollProps> = ({
+                                                          rows = [],
+                                                          overscan = 5,
+                                                          scrollToBottom = false,
+                                                          rowRender,
+                                                        }) => {
+  // Índice para onde rolar
+  const [scrollIndex, setScrollIndex] = useState(rows.length - 1);
+  const parentRef = useRef<HTMLDivElement>(null);
 
-    const { virtualItems = [], totalSize = 0, scrollToIndex = null } = useVirtual({
-        parentRef: elementRef,
-        size: rows.length,
-        overscan
-    });
+  // Inicializa o virtualizer
+  const virtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => parentRef.current,
+    overscan,
+    estimateSize: () => 50, // ajuste ou receba via props se as linhas tiverem altura variável
+  });
 
-    const paddingTop = (virtualItems.length > 0) ? (virtualItems?.[0]?.start || 0) : 0
-    const paddingBottom = (virtualItems.length > 0) ? (totalSize - (virtualItems?.[virtualItems.length - 1]?.end || 0)) : 0;
+  // Lista de itens virtuais e tamanho total
+  const virtualItems = virtualizer.getVirtualItems();
+  const totalSize = virtualizer.getTotalSize();
 
-    useEffect(() =>
-    {
-        if(!scrollToBottom) return;
+  // Quando habilitado, rola para o índice desejado
+  useEffect(() => {
+    if (scrollToBottom) {
+      virtualizer.scrollToIndex(scrollIndex, { align: 'end' });
+    }
+  }, [scrollToBottom, scrollIndex, virtualizer]);
 
-        scrollToIndex(scrollIndex);
-    }, [ scrollToBottom, scrollIndex, scrollToIndex ]);
+  // Cálculo dos paddings
+  const paddingTop = virtualItems.length > 0 ? virtualItems[0].start : 0;
+  const paddingBottom =
+    virtualItems.length > 0
+      ? totalSize - virtualItems[virtualItems.length - 1].end
+      : 0;
 
-    return (
-        <Base fit innerRef={ elementRef } position="relative" overflow="auto">
-            { (paddingTop > 0) &&
-                <div
-                    style={ { minHeight: `${ paddingTop }px` } } /> }
-            { virtualItems.map(item => 
-            {
-                const row = rows[item.index];
-
-                if (!row) return (
-                    <Fragment
-                        key={ item.key } />
-                );
-
-                return (
-                    <div
-                        key={ item.key }
-                        data-index={ item.index }
-                        ref={ item.measureRef }>
-                        { rowRender(row) }
-                    </div>
-                )
-            }) }
-            { (paddingBottom > 0) &&
-                <div
-                    style={ { minHeight: `${ paddingBottom }px` } } /> }
-        </Base>
-    );
-}
+  return (
+    <Base fit innerRef={parentRef} position="relative" overflow="auto">
+      {paddingTop > 0 && <div style={{ height: paddingTop }} />}
+      {virtualItems.map((virtualRow: VirtualItem) => {
+        const rowData = rows[virtualRow.index];
+        if (!rowData) {
+          return <Fragment key={virtualRow.key} />;
+        }
+        return (
+          <div
+            key={virtualRow.key}
+            data-index={virtualRow.index}
+            // ref necessário para medir cada elemento e ajustar o layout
+            ref={virtualizer.measureElement}
+            style={{ transform: `translateY(${virtualRow.start}px)` }}
+          >
+            {rowRender(rowData)}
+          </div>
+        );
+      })}
+      {paddingBottom > 0 && <div style={{ height: paddingBottom }} />}
+    </Base>
+  );
+};

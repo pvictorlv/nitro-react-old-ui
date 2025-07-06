@@ -1,44 +1,116 @@
 .nitro-hc-center {
-    width: 430px;
-    resize: none;
+  width: 336px;
+  resize: none;
 
-    .hc-logo {
-        width: 213px;
-        height: 37px;
-        background-image: url('@/assets/images/hc-center/hc_logo.gif');
-    }
+  .payday-special {
+    border-image-source: url(@/assets/flash/habboclub/hc_blue_bg.png);
+    border-image-slice: 4 4 4 4 fill;
+    border-image-width: 4px 4px 4px 4px;
+    height: 128px;
+    margin-right: -2px;
+  }
 
-    .payday-special {
-        height: 128px;
-    }
+  .hc-gift-special {
+    border-image-source: url(@/assets/flash/habboclub/hc_green_bg.png);
+    border-image-slice: 4 4 4 4 fill;
+    border-image-width: 4px 4px 4px 4px;
+  }
 
-    .payday {
-        width: 222px;
-        height: 150px;
-        background-image: url('@/assets/images/hc-center/payday.png');
-        z-index: 3;
-        color: #6b3502;
-    }
+  .payday {
+    width: 222px;
+    height: 150px;
+    background-image: url('@/assets/images/hc-center/payday.png');
+    z-index: 3;
+    color: #6b3502;
+  }
 
-    .clock {
-        width: 24px;
-        height: 24px;
-        background-image: url('@/assets/images/hc-center/clock.png');
-    }
+  .clock {
+    width: 24px;
+    height: 24px;
+    background-image: url('@/assets/images/hc-center/clock.png');
+  }
 
-    .streak-info {
-        min-height: 64px;
-        line-height: 16px;
-    }
+  .streak-info {
+    min-height: 64px;
+    line-height: 16px;
+  }
 
-    .habbo-avatar {
-        z-index: 4;
-    }
+  .habbo-avatar {
+    z-index: 4;
+  }
 
-    .benefits {
-        background-image: url('@/assets/images/hc-center/benefits.png');
-        background-position: right top;
-        background-repeat: no-repeat;
-        height: 100%;
+  .benefits {
+    background-image: url('@/assets/images/hc-center/benefits.png');
+    background-position: right top;
+    background-repeat: no-repeat;
+    height: 100%;
+  }
+
+  .timeline {
+    border-image-source: url(@/assets/flash/habboclub/timelapse.png);
+    border-image-slice: 6 6 6 6 fill;
+    border-image-width: 6px 6px 6px 6px;
+    width: 100%;
+    color: #000;
+    font-family: 'Goldfish';
+    font-size: 9px;
+    padding: 10px;
+  }
+
+  .info-text {
+    color: #0000EE;
+  }
+
+  .arrow-container {
+    width: 168px;
+
+    .arrow {
+      background: url(@/assets/flash/habboclub/arrow.png);
+      height: 20px;
+      width: 21px;
+      margin-bottom: -5px;
+      z-index: 1;
     }
+  }
+
+
+
+  .timeline-track {
+    background: url(@/assets/flash/habboclub/timeline.png);
+    background-size: cover;
+    background-position: center;
+    height: 63px;
+    width: 287px;
+    overflow: visible;
+
+    .time-container {
+      width: 258px;
+      font-size: 16px;
+      font-family: 'Goldfish-Bold';
+      color: #5e2900;
+      margin-top: -5px;
+
+      .elapsed-time {
+        width: 35px;
+        height: 20px;
+      }
+
+      .prepaid-time {
+        width: 35px;
+        height: 20px;
+      }
+    }
+  }
+
+  .piccolo-img {
+    background: url(@/assets/flash/habboclub/piccolo.png);
+    background-size: cover;
+    background-position: center;
+    height: 95px;
+    width: 64px;
+  }
+
+  .btn {
+    padding: 0px 7px;
+  }
 }

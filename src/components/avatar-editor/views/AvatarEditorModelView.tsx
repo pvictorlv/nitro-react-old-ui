@@ -61,14 +61,14 @@ export const AvatarEditorModelView: FC<AvatarEditorModelViewProps> = props =>
     <Grid>
       <Column size={ 8 } className={ 'main-avatar-editor' }>
         { model.canSetGender &&
-          <Flex className={ 'avatar-editor-select-header' }>
-            (!isFromFootballGate || (isFromFootballGate && CATEGORY_FOOTBALL_GATE.includes(category.name))) &&
+          (<Flex className={ 'avatar-editor-select-header' }>
             <Flex center pointer className="category-item" gap={ 3 } onClick={ event => setGender(FigureData.MALE) }>
               <AvatarEditorIcon icon="male" selected={ (gender === FigureData.MALE) }/>
 
               <Text className={ 'text-volter-bold' }
                     variant={ 'white' }>{ LocalizeText('avatareditor.generic.boy') }</Text>
             </Flex>
+
             <Flex center pointer className="category-item" gap={ 3 }
                   onClick={ event => setGender(FigureData.FEMALE) }>
               <AvatarEditorIcon icon="female" selected={ (gender === FigureData.FEMALE) }/>
@@ -76,7 +76,7 @@ export const AvatarEditorModelView: FC<AvatarEditorModelViewProps> = props =>
                     className={ 'text-volter-bold text-white' }>{ LocalizeText('avatareditor.generic.girl') }</Text>
 
             </Flex>
-          </Flex> }
+          </Flex>) }
 
         <Flex className={ 'avatar-editor-select-header' } visible={ !model.canSetGender }>
           { model.categories && (model.categories.size > 0) && Array.from(model.categories.keys()).map(name =>
@@ -84,10 +84,11 @@ export const AvatarEditorModelView: FC<AvatarEditorModelViewProps> = props =>
             const category = model.categories.get(name);
 
             return (
-              <Flex center pointer key={ name } className="category-item"
-                    onClick={ event => selectCategory(name) }>
-                <AvatarEditorIcon icon={ category.name } selected={ (activeCategory === category) }/>
-              </Flex>
+              (!isFromFootballGate || (isFromFootballGate && CATEGORY_FOOTBALL_GATE.includes(category.name))) && (
+                <Flex center pointer key={ name } className="category-item"
+                      onClick={ event => selectCategory(name) }>
+                  <AvatarEditorIcon icon={ category.name } selected={ (activeCategory === category) }/>
+                </Flex>)
             );
           }) }
         </Flex>
