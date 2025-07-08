@@ -73,6 +73,10 @@
       bottom: -5px;
     }
 
+    .message {
+      text-shadow: 0 0 1px rgba(0,0,0,0);
+
+    }
     &.type-0 {
       // normal
       .message {
@@ -722,6 +726,11 @@
       font-size: 9px;
       margin-bottom: 8px;
 
+      -webkit-font-smoothing: none;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeSpeed;       /* ou geometricPrecision */
+      shape-rendering: crispEdges;
+      text-shadow: 0 0 1px rgba(0,0,0,0);
 
       min-height: 25px;
       -moz-osx-font-smoothing: grayscale;
@@ -730,6 +739,8 @@
 
 
       .username {
+        text-shadow: 0 0 1px rgba(0,0,0,0);
+
         font-family: 'Goldfish-Bold';
       }
 

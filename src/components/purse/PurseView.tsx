@@ -63,41 +63,34 @@ export const PurseView: FC<{}> = props =>
   if (!purse) return null;
 
   return (
-    <Flex alignItems="end" className="nitro-purse-container" gap={ 1 }>
-      <Column justifyContent="center" size={ 12 } gap={ 0 }>
-        <CurrencyView type={ -1 } amount={ purse.credits } short={ currencyDisplayNumberShort }/>
-        { getCurrencyElements(0, 1) }
-      </Column>
-      <Column justifyContent="center" size={ hcDisabled ? 10 : 6 } gap={ 0 }>
-        { getCurrencyElements(1, 2) }
-        <Flex justifyContent="end" pointer gap={ 1 } className={ 'nitro-purse-button rounded currency-hc' }>
-          <Text variant="white">{ getClubText }</Text>
-          <LayoutCurrencyIcon type="hc"/>
-        </Flex>
-      </Column>
+    <>
+      <Flex alignItems="end" className="nitro-purse-container" gap={ 1 }>
+        <Column justifyContent="center" size={ 6 } gap={ 1 }>
+          <CurrencyView type={ -1 } amount={ purse.credits } short={ currencyDisplayNumberShort }/>
+          { getCurrencyElements(0, 1) }
+        </Column>
+        <Column justifyContent="center" size={ 6 } gap={ 1 }>
+          { getCurrencyElements(1, 2) }
+          <Flex justifyContent="end" pointer gap={ 1 } onClick={ event => CreateLinkEvent('habboUI/open/hccenter') }
+                className={ 'nitro-purse-button rounded currency-hc' }>
+            <Text variant="white">{ getClubText }</Text>
+            <LayoutCurrencyIcon type="hc"/>
+          </Flex>
+        </Column>
 
-      <Flex className="nitro-purse rounded-bottom p-1">
+      </Flex>
 
-        <Grid fullWidth gap={ 1 }>
-
-          { !hcDisabled &&
-            <Column center pointer size={ 4 } gap={ 1 } className="nitro-purse-subscription rounded"
-                    onClick={ event => CreateLinkEvent('habboUI/open/hccenter') }>
-
-            </Column> }
-          <Column justifyContent="center" size={ 2 } gap={ 0 }>
-            <Flex center pointer fullHeight className="nitro-purse-button p-1 rounded"
-                  onClick={ event => CreateLinkEvent('help/show') }>
-              <i className="icon icon-help"/>
-            </Flex>
-            <Flex center pointer fullHeight className="nitro-purse-button p-1 rounded"
-                  onClick={ event => CreateLinkEvent('user-settings/toggle') }>
-              <i className="icon icon-cog"/>
-            </Flex>
-          </Column>
-        </Grid>
+      <Flex alignItems="end" justifyContent={'end'} className="nitro-purse-container" gap={ 2 }>
+        <Text variant="white" className="text-center"
+              onClick={ event => CreateLinkEvent('help/show') }>
+          <u>{ LocalizeText('toolbar.help') }</u>
+        </Text>
+        <Text variant="white" className="text-center"
+              >
+          <a href={GetConfiguration<string>('logout.url', '/logout')}><u>{ LocalizeText('toolbar.logout') }</u></a>
+        </Text>
       </Flex>
       { getCurrencyElements(2, -1, true) }
-    </Flex>
+    </>
   );
 }

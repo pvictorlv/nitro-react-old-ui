@@ -147,11 +147,14 @@ export const App: FC<{}> = props =>
             <Base fit overflow="hidden" className={ imageRendering && 'image-rendering-pixelated' }>
 
                 <svg className="offscreen" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                     shapeRendering="crispEdges">
+                     shapeRendering="crispEdges"
+                     textRendering="optimizeSpeed"
+                     filterUnits="userSpaceOnUse"
+                >
                     <defs>
                         <filter id="crispify">
                             <feComponentTransfer>
-                                <feFuncA type="gamma" amplitude="3.5" exponent="2" offset="0"></feFuncA>
+                                <feFuncA type="gamma" amplitude="3" exponent="2" offset="0"></feFuncA>
 
                             </feComponentTransfer>
                         </filter>
