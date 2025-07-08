@@ -6,6 +6,7 @@
   border-image-source: url("@/assets/flash/buttons/volter_bold_btn.png");
   border-image-slice: 6 6 6 6 fill;
   border-image-width: 6px;
+  background: transparent;
   padding: 8px 14px;
   min-height: 22px;
   color: #000;
@@ -144,6 +145,7 @@
   height: 20px;
   margin-top: 5px;
 
+  background: transparent;
   &:hover {
     border-image-source: url(@/assets/flash/buttons/volter_bold_btn_hover.png);
   }
