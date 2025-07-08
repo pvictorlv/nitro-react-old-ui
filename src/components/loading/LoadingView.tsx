@@ -1,35 +1,32 @@
-import { FC } from 'react';
-import { Base, Column, LayoutProgressBar, Text } from '../../common';
+import { FC, useMemo } from 'react';
+import { Base, Column } from '../../common';
 
-interface LoadingViewProps
-{
-    isError: boolean;
-    message: string;
-    percent: number;
+const generateRandomImageIndex = () => Math.floor(Math.random() * 30);
+
+interface LoadingViewProps {
+  isError?: boolean;
+  message?: string;
+  percent?: number;
 }
 
-export const LoadingView: FC<LoadingViewProps> = props =>
+export const LoadingView: FC<LoadingViewProps> = ({ isError = false, message = '', percent = 0 }) =>
 {
-    const { isError = false, message = '', percent = 0 } = props;
-    
-    return (
-        <Column fullHeight position="relative" className="nitro-loading">
-            <Base fullHeight className="container h-100">
-                <Column fullHeight alignItems="center" justifyContent="end">
-                    <Base className="connecting-duck" />
-                    <Column size={ 6 } className="text-center py-4">
-                        { isError && (message && message.length) ?
-                            <Base className="fs-4 text-shadow">{ message }</Base>
-                            :
-                            <>
-                                <Text fontSize={ 4 } variant="white" className="text-shadow">{ percent.toFixed() }%</Text>
-                                <LayoutProgressBar progress={ percent } className="mt-2 large" />
-                            </>
-                        }
-                        
-                    </Column>
-                </Column>
-            </Base>
-        </Column>
-    );
-}
+  // const randomImageIndex = useMemo(generateRandomImageIndex, []);
+
+  return (
+    <Column fullHeight alignItems="center" justifyContent="center" className="nitro-loading">
+      <Column className="text-center py-4 align-items-center">
+        { isError && message ? (
+          <Base className="fs-4 text-shadow">{ message }</Base>
+        ) : (
+          <>
+            <div className="loadingPhoto" />
+            <div className="nitro-loading-bar mt-2">
+              <div className="nitro-loading-bar-inner" style={ { width: `${ percent }%` } } />
+            </div>
+          </>
+        ) }
+      </Column>
+    </Column>
+  );
+};

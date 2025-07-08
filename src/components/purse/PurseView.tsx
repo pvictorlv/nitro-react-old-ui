@@ -63,11 +63,19 @@ export const PurseView: FC<{}> = props =>
   if (!purse) return null;
 
   return (
-    <Column alignItems="end" className="nitro-purse-container" gap={ 1 }>
-      <Column justifyContent="center" size={ hcDisabled ? 10 : 6 } gap={ 0 }>
+    <Flex alignItems="end" className="nitro-purse-container" gap={ 1 }>
+      <Column justifyContent="center" size={ 12 } gap={ 0 }>
         <CurrencyView type={ -1 } amount={ purse.credits } short={ currencyDisplayNumberShort }/>
-        { getCurrencyElements(0, 2) }
+        { getCurrencyElements(0, 1) }
       </Column>
+      <Column justifyContent="center" size={ hcDisabled ? 10 : 6 } gap={ 0 }>
+        { getCurrencyElements(1, 2) }
+        <Flex justifyContent="end" pointer gap={ 1 } className={ 'nitro-purse-button rounded currency-hc' }>
+          <Text variant="white">{ getClubText }</Text>
+          <LayoutCurrencyIcon type="hc"/>
+        </Flex>
+      </Column>
+
       <Flex className="nitro-purse rounded-bottom p-1">
 
         <Grid fullWidth gap={ 1 }>
@@ -75,8 +83,7 @@ export const PurseView: FC<{}> = props =>
           { !hcDisabled &&
             <Column center pointer size={ 4 } gap={ 1 } className="nitro-purse-subscription rounded"
                     onClick={ event => CreateLinkEvent('habboUI/open/hccenter') }>
-              <LayoutCurrencyIcon type="hc"/>
-              <Text variant="white">{ getClubText }</Text>
+
             </Column> }
           <Column justifyContent="center" size={ 2 } gap={ 0 }>
             <Flex center pointer fullHeight className="nitro-purse-button p-1 rounded"
@@ -91,6 +98,6 @@ export const PurseView: FC<{}> = props =>
         </Grid>
       </Flex>
       { getCurrencyElements(2, -1, true) }
-    </Column>
+    </Flex>
   );
 }

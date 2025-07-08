@@ -1,70 +1,43 @@
 .nitro-loading {
+  position: relative;
+  background: #000000;
+
+  .percent {
+    font-size: 17px;
+    color: #999999;
+  }
+
+  .loadingPhoto {
+    background-image: url("@/assets/images/loading/retro.png");
+    width:111px;
+    height: 54px;
+  }
+
+  .nitro-loading-bar {
+    border: 1px solid white;
+    padding: 3px;
+    height: 20px;
+    width: 400px;
+    border-radius: 3px;
     position: relative;
-    background: $primary;
-    z-index: 100;
+    display: flex;
+    flex-direction: column;
 
-    .connecting-duck {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        right: 0;
-        left: 0;
-        background: url('@/assets/images/loading/connecting-duck-spritesheet.png') no-repeat top left;
-        width: 235px;
-        height: 127px;
-        animation: 1.5s connecting-duck infinite step-end;
-        transform: scale(0.5);
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: 3px;
+      border-radius: 4px;
+      background: #000;
+      z-index: 0;
     }
 
-    .nitro-logo {
-        width: 47px;
-        height: 65px;
-        background: transparent url('https://assets.nitrodev.co/logos/react-loader.png') no-repeat center;
-        z-index: 1;
+    .nitro-loading-bar-inner {
+      height: 100%;
+      z-index: 4;
+      transition: width 1s;
+      background: #FFF;
     }
-}
-
-@keyframes connecting-duck {
-    0% {
-        background-position: 0 0;
-        width: 235px;
-        height: 127px;
-    }
-
-    15% {
-        background-position: 0 -132px;
-        width: 280px;
-        height: 151px;
-    }
-
-    30% {
-        background-position: 0 -288px;
-        width: 326px;
-        height: 174px;
-    }
-
-    45% {
-        background-position: 0 -467px;
-        width: 235px;
-        height: 127px;
-    }
-
-    60% {
-        background-position: 0 -599px;
-        width: 280px;
-        height: 151px;
-    }
-
-    75% {
-        background-position: 0 -755px;
-        width: 326px;
-        height: 174px;
-    }
-
-    90% {
-        background-position: 0 -934px;
-        width: 190px;
-        height: 104px;
-    }
+  }
 }
