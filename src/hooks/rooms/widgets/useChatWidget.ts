@@ -159,7 +159,7 @@ const useChatWidgetState = () => {
             case RoomSessionChatEvent.CHAT_TYPE_RESPECT:
                 text = LocalizeText('widgets.chatbubble.respect', ['username'], [username]);
 
-                if (GetConfiguration('respect.options')['enabled']) PlaySound(GetConfiguration('respect.options')['sound']);
+                // if (GetConfiguration('respect.options')['enabled']) PlaySound(GetConfiguration('respect.options')['sound']);
 
                 break;
             case RoomSessionChatEvent.CHAT_TYPE_PETREVIVE:
