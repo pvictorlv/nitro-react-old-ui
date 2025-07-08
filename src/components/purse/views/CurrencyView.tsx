@@ -17,14 +17,14 @@ export const CurrencyView: FC<CurrencyViewProps> = props =>
     const element = useMemo(() =>
     {
         return (
-            <Flex justifyContent="end" pointer gap={ 1 } className="nitro-purse-button rounded">
+            <Flex justifyContent="end" pointer gap={ 1 } className={ 'nitro-purse-button rounded currency-' + type }>
                 <Text truncate textEnd variant="white" grow>{ short ? LocalizeShortNumber(amount) : LocalizeFormattedNumber(amount) }</Text>
                 <LayoutCurrencyIcon type={ type } />
             </Flex>);
     }, [ amount, short, type ]);
 
     if(!short) return element;
-    
+
     return (
         <OverlayTrigger
             placement="left"

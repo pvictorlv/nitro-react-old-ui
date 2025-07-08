@@ -83,6 +83,7 @@
     &.type-1 {
       // whisper
       .message {
+        font-family: Goldfish;
         font-weight: 400;
         font-style: italic;
         color: #595959;
@@ -92,7 +93,7 @@
     &.type-2 {
       // shout
       .message {
-        font-family: 'pixel-bold';
+        font-family: Goldfish-Bold;
       }
     }
 
@@ -717,7 +718,7 @@
       margin-left: 27px;
       line-height: 1;
       color: $black;
-      font-family: 'pixel';
+      font-family: Goldfish;
       font-size: 9px;
       margin-bottom: 8px;
 
@@ -727,10 +728,11 @@
 
       -webkit-font-smoothing: none !important;
 
+
       .username {
-        font-family: 'pixel-bold';
-        font-weight: 700;
+        font-family: 'Goldfish-Bold';
       }
+
     }
   }
 }
