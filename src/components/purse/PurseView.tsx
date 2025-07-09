@@ -73,7 +73,7 @@ export const PurseView: FC<{}> = props =>
           { getCurrencyElements(1, 2) }
           <Flex justifyContent="end" pointer gap={ 1 } onClick={ event => CreateLinkEvent('habboUI/open/hccenter') }
                 className={ 'nitro-purse-button rounded currency-hc' }>
-            <Text variant="white">{ getClubText }</Text>
+            <Text truncate grow textEnd variant="white">{ getClubText }</Text>
             <LayoutCurrencyIcon type="hc"/>
           </Flex>
         </Column>
