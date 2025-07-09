@@ -1,30 +1,30 @@
 import {
-    ApproveNameMessageComposer,
-    ApproveNameMessageEvent,
-    ColorConverter,
-    GetSellablePetPalettesComposer,
-    PurchaseFromCatalogComposer,
-    SellablePetPaletteData
+  ApproveNameMessageComposer,
+  ApproveNameMessageEvent,
+  ColorConverter,
+  GetSellablePetPalettesComposer,
+  PurchaseFromCatalogComposer,
+  SellablePetPaletteData
 } from '@nitrots/nitro-renderer';
 import {FC, useCallback, useEffect, useMemo, useState} from 'react';
 import {FaFillDrip} from 'react-icons/fa';
 import {
-    DispatchUiEvent,
-    GetPetAvailableColors,
-    GetPetIndexFromLocalization,
-    LocalizeText, SearchFilterOptions,
-    SendMessageComposer
+  DispatchUiEvent,
+  GetPetAvailableColors,
+  GetPetIndexFromLocalization,
+  LocalizeText, SearchFilterOptions,
+  SendMessageComposer
 } from '../../../../../../api';
 import {
-    AutoGrid,
-    Base,
-    Button,
-    Column,
-    Flex,
-    Grid,
-    LayoutGridItem,
-    LayoutPetImageView,
-    Text
+  AutoGrid,
+  Base,
+  Button,
+  Column,
+  Flex,
+  Grid,
+  LayoutGridItem,
+  LayoutPetImageView,
+  Text
 } from '../../../../../../common';
 import {CatalogPurchaseFailureEvent} from '../../../../../../events';
 import {useCatalog, useMessageEvent} from '../../../../../../hooks';
@@ -39,286 +39,304 @@ import ReactSelect from 'react-select';
 
 export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
 {
-    const {page = null} = props;
-    const [ petIndex, setPetIndex ] = useState(-1);
-    const [ sellablePalettes, setSellablePalettes ] = useState<SellablePetPaletteData[]>([]);
-    const [ selectedPaletteIndex, setSelectedPaletteIndex ] = useState(-1);
-    const [ sellableColors, setSellableColors ] = useState<number[][]>([]);
-    const [ selectedColorIndex, setSelectedColorIndex ] = useState(-1);
-    const [ colorsShowing, setColorsShowing ] = useState(false);
-    const [ petName, setPetName ] = useState('');
-    const [ approvalPending, setApprovalPending ] = useState(true);
-    const [ approvalResult, setApprovalResult ] = useState(-1);
-    const {
-        currentOffer = null,
-        setCurrentOffer = null,
-        setPurchaseOptions = null,
-        catalogOptions = null,
-        roomPreviewer = null
-    } = useCatalog();
-    const {petPalettes = null} = catalogOptions;
+  const {page = null} = props;
+  const [ petIndex, setPetIndex ] = useState(-1);
+  const [ sellablePalettes, setSellablePalettes ] = useState<SellablePetPaletteData[]>([]);
+  const [ selectedPaletteIndex, setSelectedPaletteIndex ] = useState(-1);
+  const [ sellableColors, setSellableColors ] = useState<number[][]>([]);
+  const [ selectedColorIndex, setSelectedColorIndex ] = useState(-1);
+  const [ colorsShowing, setColorsShowing ] = useState(false);
+  const [ petName, setPetName ] = useState('');
+  const [ approvalPending, setApprovalPending ] = useState(true);
+  const [ approvalResult, setApprovalResult ] = useState(-1);
+  const {
+    currentOffer = null,
+    setCurrentOffer = null,
+    setPurchaseOptions = null,
+    catalogOptions = null,
+    roomPreviewer = null
+  } = useCatalog();
+  const {petPalettes = null} = catalogOptions;
 
-    const getColor = useMemo(() =>
+  const getColor = useMemo(() =>
+  {
+    if (!sellableColors.length || (selectedColorIndex === -1)) return 0xFFFFFF;
+
+    return sellableColors[selectedColorIndex][0];
+  }, [ sellableColors, selectedColorIndex ]);
+
+  const petPurchaseString = useMemo(() =>
+  {
+    if (!sellablePalettes.length || (selectedPaletteIndex === -1)) return '';
+
+    const paletteId = sellablePalettes[selectedPaletteIndex].paletteId;
+
+    let color = 0xFFFFFF;
+
+    if (petIndex <= 7)
     {
-        if (!sellableColors.length || (selectedColorIndex === -1)) return 0xFFFFFF;
+      if (selectedColorIndex === -1) return '';
 
-        return sellableColors[selectedColorIndex][0];
-    }, [ sellableColors, selectedColorIndex ]);
+      color = sellableColors[selectedColorIndex][0];
+    }
 
-    const petPurchaseString = useMemo(() =>
+    let colorString = color.toString(16).toUpperCase();
+
+    while (colorString.length < 6) colorString = ('0' + colorString);
+
+    return `${ paletteId }\n${ colorString }`;
+  }, [ sellablePalettes, selectedPaletteIndex, petIndex, sellableColors, selectedColorIndex ]);
+
+  const validationErrorMessage = useMemo(() =>
+  {
+    let key: string = '';
+
+    switch (approvalResult)
     {
-        if (!sellablePalettes.length || (selectedPaletteIndex === -1)) return '';
+      case 1:
+        key = 'catalog.alert.petname.long';
+        break;
+      case 2:
+        key = 'catalog.alert.petname.short';
+        break;
+      case 3:
+        key = 'catalog.alert.petname.chars';
+        break;
+      case 4:
+        key = 'catalog.alert.petname.bobba';
+        break;
+    }
 
-        const paletteId = sellablePalettes[selectedPaletteIndex].paletteId;
+    if (!key || !key.length) return '';
 
-        let color = 0xFFFFFF;
+    return LocalizeText(key);
+  }, [ approvalResult ]);
 
-        if (petIndex <= 7)
+  const purchasePet = useCallback(() =>
+  {
+    if (approvalResult === -1)
+    {
+      setPurchaseOptions(prevValue =>
+      {
+        const newValue = {...prevValue};
+
+        newValue.extraData = `${ petName }\n${ petPurchaseString }`;
+
+        return newValue;
+      });
+      SendMessageComposer(new ApproveNameMessageComposer(petName, 1));
+
+      return;
+    }
+
+    if (approvalResult === 0)
+    {
+      setPurchaseOptions(prevValue =>
+      {
+        const newValue = {...prevValue};
+
+        newValue.extraData = `${ petName }\n${ petPurchaseString }`;
+
+        return newValue;
+      });
+
+      SendMessageComposer(new PurchaseFromCatalogComposer(page.pageId, currentOffer.offerId, `${ petName }\n${ petPurchaseString }`, 1));
+
+      return;
+    }
+  }, [ page, currentOffer, petName, petPurchaseString, approvalResult ]);
+
+  useMessageEvent<ApproveNameMessageEvent>(ApproveNameMessageEvent, event =>
+  {
+    setApprovalPending(false);
+    setApprovalResult(event.getParser().result);
+  });
+
+  useEffect(() =>
+  {
+    if (!page || !page.offers.length) return;
+
+    const offer = page.offers[0];
+
+    setCurrentOffer(offer);
+    setPetIndex(GetPetIndexFromLocalization(offer.localizationId));
+    setColorsShowing(false);
+  }, [ page, setCurrentOffer ]);
+
+  useEffect(() =>
+  {
+    if (!currentOffer) return;
+
+    const productData = currentOffer.product.productData;
+
+    if (!productData) return;
+
+    if (petPalettes)
+    {
+      for (const paletteData of petPalettes)
+      {
+        if (paletteData.breed !== productData.type) continue;
+
+        const palettes: SellablePetPaletteData[] = [];
+
+        for (const palette of paletteData.palettes)
         {
-            if (selectedColorIndex === -1) return '';
+          if (!palette.sellable) continue;
 
-            color = sellableColors[selectedColorIndex][0];
+          palettes.push(palette);
         }
 
-        let colorString = color.toString(16).toUpperCase();
+        setSelectedPaletteIndex((palettes.length ? 0 : -1));
+        setSellablePalettes(palettes);
 
-        while (colorString.length < 6) colorString = ('0' + colorString);
+        return;
+      }
+    }
 
-        return `${ paletteId }\n${ colorString }`;
-    }, [ sellablePalettes, selectedPaletteIndex, petIndex, sellableColors, selectedColorIndex ]);
+    setSelectedPaletteIndex(-1);
+    setSellablePalettes([]);
 
-    const validationErrorMessage = useMemo(() =>
+    SendMessageComposer(new GetSellablePetPalettesComposer(productData.type));
+  }, [ currentOffer, petPalettes ]);
+
+  useEffect(() =>
+  {
+    if (petIndex === -1) return;
+
+    const colors = GetPetAvailableColors(petIndex, sellablePalettes);
+
+    setSelectedColorIndex((colors.length ? 0 : -1));
+    setSellableColors(colors);
+  }, [ petIndex, sellablePalettes ]);
+
+  useEffect(() =>
+  {
+    if (!roomPreviewer) return;
+
+    roomPreviewer.reset(false);
+
+    if ((petIndex === -1) || !sellablePalettes.length || (selectedPaletteIndex === -1)) return;
+
+    let petFigureString = `${ petIndex } ${ sellablePalettes[selectedPaletteIndex].paletteId }`;
+
+    if (petIndex <= 7) petFigureString += ` ${ getColor.toString(16) }`;
+
+    roomPreviewer.addPetIntoRoom(petFigureString);
+  }, [ roomPreviewer, petIndex, sellablePalettes, selectedPaletteIndex, getColor ]);
+
+  useEffect(() =>
+  {
+    setApprovalResult(-1);
+  }, [ petName ]);
+
+  if (!currentOffer) return null;
+
+
+  const getOptions = function (): any[]
+  {
+    return sellablePalettes.map((palette, index) =>
     {
-        let key: string = '';
+      var petName = '';
+      if (!((petIndex < 0) || !sellablePalettes.length || (index < 0)))
+      {
+        petName = LocalizeText(`pet.breed.${ petIndex }.${ sellablePalettes[index].breedId }`);
+      }
 
-        switch (approvalResult)
-        {
-            case 1:
-                key = 'catalog.alert.petname.long';
-                break;
-            case 2:
-                key = 'catalog.alert.petname.short';
-                break;
-            case 3:
-                key = 'catalog.alert.petname.chars';
-                break;
-            case 4:
-                key = 'catalog.alert.petname.bobba';
-                break;
-        }
 
-        if (!key || !key.length) return '';
-
-        return LocalizeText(key);
-    }, [ approvalResult ]);
-
-    const purchasePet = useCallback(() =>
-    {
-        if (approvalResult === -1)
-        {
-            SendMessageComposer(new ApproveNameMessageComposer(petName, 1));
-
-            return;
-        }
-
-        if (approvalResult === 0)
-        {
-            SendMessageComposer(new PurchaseFromCatalogComposer(page.pageId, currentOffer.offerId, `${ petName }\n${ petPurchaseString }`, 1));
-
-            return;
-        }
-    }, [ page, currentOffer, petName, petPurchaseString, approvalResult ]);
-
-    useMessageEvent<ApproveNameMessageEvent>(ApproveNameMessageEvent, event =>
-    {
-
+      return {
+        value: palette.paletteId,
+        label: petName
+      };
     });
+  };
 
-    useEffect(() =>
-    {
-        if (!page || !page.offers.length) return;
+  const style = {
+    control: base => ({
+      ...base,
+      // This line disable the blue border
+      boxShadow: 'none'
+    })
+  };
 
-        const offer = page.offers[0];
+  return (
+    <>
+      <Column size={ 12 }>
+        <CatalogHeaderView imageUrl={ page.localization.getImage(0) }/>
+        <Text variant={ 'black' } center> { page.localization.getText(0) }</Text>
+      </Column>
+      <Grid className={ 'catalog-alternative-flex' }>
+        <Column size={ 12 } overflow="hidden">
+          <LayoutPetImageView scale={ 2 } typeId={ petIndex } petColor={ getColor }
+                              paletteId={ selectedPaletteIndex > 0 ? sellablePalettes[selectedPaletteIndex].paletteId : 0 }
+                              direction={ 2 }
+                              headOnly={ false }/>
+        </Column>
 
-        setCurrentOffer(offer);
-        setPetIndex(GetPetIndexFromLocalization(offer.localizationId));
-        setColorsShowing(false);
-    }, [ page, setCurrentOffer ]);
+        <Column size={ 7 } overflow="hidden">
+          <AutoGrid className={ 'catalog-grid pt-2' } columnCount={ 5 } columnMinWidth={ 22 }>
 
-    useEffect(() =>
-    {
-        if (!currentOffer) return;
+            { (sellableColors.length > 0) && sellableColors.map((colorSet, index) =>
+              <LayoutGridColorPickerItem itemHighlight key={ index }
+                                         itemActive={ (selectedColorIndex === index) }
+                                         itemColor={ ColorConverter.int2rgb(colorSet[0]) }
+                                         className="clear-bg pt-1"
 
-        const productData = currentOffer.product.productData;
-
-        if (!productData) return;
-
-        if (petPalettes)
-        {
-            for (const paletteData of petPalettes)
-            {
-                if (paletteData.breed !== productData.type) continue;
-
-                const palettes: SellablePetPaletteData[] = [];
-
-                for (const palette of paletteData.palettes)
-                {
-                    if (!palette.sellable) continue;
-
-                    palettes.push(palette);
-                }
-
-                setSelectedPaletteIndex((palettes.length ? 0 : -1));
-                setSellablePalettes(palettes);
-
-                return;
-            }
-        }
-
-        setSelectedPaletteIndex(-1);
-        setSellablePalettes([]);
-
-        SendMessageComposer(new GetSellablePetPalettesComposer(productData.type));
-    }, [ currentOffer, petPalettes ]);
-
-    useEffect(() =>
-    {
-        if (petIndex === -1) return;
-
-        const colors = GetPetAvailableColors(petIndex, sellablePalettes);
-
-        setSelectedColorIndex((colors.length ? 0 : -1));
-        setSellableColors(colors);
-    }, [ petIndex, sellablePalettes ]);
-
-    useEffect(() =>
-    {
-        if (!roomPreviewer) return;
-
-        roomPreviewer.reset(false);
-
-        if ((petIndex === -1) || !sellablePalettes.length || (selectedPaletteIndex === -1)) return;
-
-        let petFigureString = `${ petIndex } ${ sellablePalettes[selectedPaletteIndex].paletteId }`;
-
-        if (petIndex <= 7) petFigureString += ` ${ getColor.toString(16) }`;
-
-        roomPreviewer.addPetIntoRoom(petFigureString);
-    }, [ roomPreviewer, petIndex, sellablePalettes, selectedPaletteIndex, getColor ]);
-
-    useEffect(() =>
-    {
-        setApprovalResult(-1);
-    }, [ petName ]);
-
-    if (!currentOffer) return null;
+                                         onClick={ event => setSelectedColorIndex(index) }/>) }
+          </AutoGrid>
+        </Column>
+        <Column center={ !currentOffer } size={ 5 } overflow="hidden">
+          { !currentOffer &&
+            <>
+              { !!page.localization.getImage(1) && <img alt="" src={ page.localization.getImage(1) }/> }
+              <Text center dangerouslySetInnerHTML={ {__html: page.localization.getText(0)} }/>
+            </> }
+          { currentOffer &&
+            <>
+              <Base position="relative" overflow="hidden">
 
 
-    const getOptions = function (): any[]
-    {
-        return sellablePalettes.map((palette, index) =>
-        {
-            var petName = '';
-            if (!((petIndex < 0) || !sellablePalettes.length || (index < 0)))
-            {
-                petName = LocalizeText(`pet.breed.${ petIndex }.${ sellablePalettes[index].breedId }`);
-            }
+                <CatalogAddOnBadgeWidgetView position="absolute"
+                                             className="bg-muted rounded bottom-1 end-1"/>
+                { ((petIndex > -1) && (petIndex <= 7)) &&
+                  <Button position="absolute" className="bottom-1 start-1"
+                          onClick={ event => setColorsShowing(!colorsShowing) }>
+                    <FaFillDrip className="fa-icon"/>
+                  </Button> }
+              </Base>
+              <Column grow gap={ 1 }>
 
-
-            return {
-                value: palette.paletteId,
-                label: petName
-            };
-        });
-    };
-
-    const style = {
-        control: base => ({
-            ...base,
-            // This line disable the blue border
-            boxShadow: 'none'
-        })
-    };
-
-    return (
-        <>
-            <Column size={ 12 }>
-                <CatalogHeaderView imageUrl={ page.localization.getImage(0) }/>
-                <Text variant={ 'black' } center> { page.localization.getText(0) }</Text>
-            </Column>
-            <Grid className={ 'catalog-alternative-flex' }>
-                <Column size={ 12 } overflow="hidden">
-                    <LayoutPetImageView scale={ 2 } typeId={ petIndex } petColor={ getColor }
-                                        paletteId={ selectedPaletteIndex > 0 ? sellablePalettes[selectedPaletteIndex].paletteId : 0 }
-                                        direction={ 2 }
-                                        headOnly={ false }/>
+                <ReactSelect styles={ style } classNamePrefix="react-select"
+                             options={ getOptions() }
+                             placeholder={ 'Selecione' }
+                             className="input-dropdown"
+                             classNames={ {
+                               option: () =>
+                                 'react-select-option',
+                             } }
+                             onChange={ event => setSelectedPaletteIndex(event.value) }/>
+                <Column grow gap={ 1 }>
+                  <input type="text" className="form-control form-control-sm w-100"
+                         placeholder={ LocalizeText('widgets.petpackage.name.title') }
+                         value={ petName }
+                         onChange={ event => setPetName(event.target.value) }/>
+                  { (approvalResult > 0) &&
+                    <Base
+                      className="invalid-feedback d-block m-0">{ validationErrorMessage }</Base> }
                 </Column>
+                <Base className={ 'catalog-price-info' }>
 
-                <Column size={ 7 } overflow="hidden">
-                    <AutoGrid className={ 'catalog-grid pt-2' } columnCount={ 5 } columnMinWidth={ 22 }>
+                  <Flex justifyContent="end">
+                    <CatalogTotalPriceWidget justifyContent="end" alignItems="end"/>
+                  </Flex>
+                  <CatalogPurchaseWidgetView showGift={ true } noGiftOption={ true }
+                                             purchaseCallback={ purchasePet }/>
 
-                        { (sellableColors.length > 0) && sellableColors.map((colorSet, index) =>
-                            <LayoutGridColorPickerItem itemHighlight key={ index }
-                                                       itemActive={ (selectedColorIndex === index) }
-                                                       itemColor={ ColorConverter.int2rgb(colorSet[0]) }
-                                                       className="clear-bg pt-1"
-
-                                                       onClick={ event => setSelectedColorIndex(index) }/>) }
-                    </AutoGrid>
-                </Column>
-                <Column center={ !currentOffer } size={ 5 } overflow="hidden">
-                    { !currentOffer &&
-                        <>
-                            { !!page.localization.getImage(1) && <img alt="" src={ page.localization.getImage(1) }/> }
-                            <Text center dangerouslySetInnerHTML={ {__html: page.localization.getText(0)} }/>
-                        </> }
-                    { currentOffer &&
-                        <>
-                            <Base position="relative" overflow="hidden">
-
-
-                                <CatalogAddOnBadgeWidgetView position="absolute"
-                                                             className="bg-muted rounded bottom-1 end-1"/>
-                                { ((petIndex > -1) && (petIndex <= 7)) &&
-                                    <Button position="absolute" className="bottom-1 start-1"
-                                            onClick={ event => setColorsShowing(!colorsShowing) }>
-                                        <FaFillDrip className="fa-icon"/>
-                                    </Button> }
-                            </Base>
-                            <Column grow gap={ 1 }>
-
-                                <ReactSelect styles={ style } classNamePrefix="react-select"
-                                             options={ getOptions() }
-                                             placeholder={ 'Selecione' }
-                                             className="input-dropdown"
-                                             classNames={ {
-                                                 option: () =>
-                                                     'react-select-option',
-                                             } }
-                                             onChange={ event => setSelectedPaletteIndex(event.value) }/>
-                                <Column grow gap={ 1 }>
-                                    <input type="text" className="form-control form-control-sm w-100"
-                                           placeholder={ LocalizeText('widgets.petpackage.name.title') }
-                                           value={ petName }
-                                           onChange={ event => setPetName(event.target.value) }/>
-                                    { (approvalResult > 0) &&
-                                        <Base
-                                            className="invalid-feedback d-block m-0">{ validationErrorMessage }</Base> }
-                                </Column>
-                                <Base className={ 'catalog-price-info' }>
-
-                                    <Flex justifyContent="end">
-                                        <CatalogTotalPriceWidget justifyContent="end" alignItems="end"/>
-                                    </Flex>
-                                    <CatalogPurchaseWidgetView showGift={ true } noGiftOption={ true }
-                                                               purchaseCallback={ purchasePet }/>
-
-                                </Base>
-                            </Column>
-                        </> }
-                </Column>
-            </Grid>
-        </>
-    )
-        ;
+                </Base>
+              </Column>
+            </> }
+        </Column>
+      </Grid>
+    </>
+  )
+    ;
 }

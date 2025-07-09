@@ -163,8 +163,8 @@
 }
 
 .nitro-catalog-gift {
-  width: 325px;
-
+  width: 340px;
+  resize: none;
   .gift-preview {
     width: 80px;
     height: 80px;
@@ -175,9 +175,9 @@
   }
 
   .gift-color {
-    width: 15px;
-    height: 15px;
-    border-radius: $border-radius;
+    width: 100%;
+    height: 100%;
+
   }
 }
 

@@ -32,7 +32,7 @@ export const FurnitureGiftOpeningView: FC<{}> = props =>
                             <Flex gap={ 1 }>
                                 { senderName &&
                                     <Button fullWidth onClick={ event => CreateLinkEvent('catalog/open') }>
-                                        { LocalizeText('widget.furni.present.give_gift', [ 'name' ], [ senderName ]) }
+                                        { LocalizeText('widget.furni.present.give_gift', [ 'name' ], [ '' ]) }
                                     </Button> }
                                 <Button fullWidth onClick={ openPresent }>
                                     { LocalizeText('widget.furni.present.open_gift') }
@@ -61,7 +61,7 @@ export const FurnitureGiftOpeningView: FC<{}> = props =>
                                 </Flex>
                                 { (senderName && senderName.length) &&
                                     <Button fullWidth onClick={ event => CreateLinkEvent('catalog/open') }>
-                                        { LocalizeText('widget.furni.present.give_gift', [ 'name' ], [ senderName ]) }
+                                        { LocalizeText('widget.furni.present.give_gift', [ 'name' ], [ '' ]) }
                                     </Button> }
                             </Column>
                         </Column>
