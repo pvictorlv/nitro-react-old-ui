@@ -26,4 +26,5 @@ export class WiredConditionlayout
     public static NOT_ACTOR_WEARING_EFFECT: number = 23;
     public static DATE_RANGE_ACTIVE: number = 24;
     public static ACTOR_HAS_HANDITEM: number = 25;
+    public static VARIABLE_CONDITION: number = 26;
 }

@@ -171,6 +171,10 @@ const useChatInputWidgetState = () =>
                     }
 
                     return null;
+                case ':wiredtools':
+                case ':wiredtool':
+                    CreateLinkEvent('wiredmenu/open');
+                    return null;
             }
         }
 

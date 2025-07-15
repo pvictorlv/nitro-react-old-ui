@@ -229,6 +229,126 @@
 			background-color: #000 !important;
 		}
 	}
+
+	// Variable Manager Styles
+	.wired-variable-manager {
+		.variable-item {
+			border: 1px solid #444;
+			border-radius: 4px;
+			padding: 8px;
+			margin-bottom: 4px;
+			background-color: rgba(255, 255, 255, 0.05);
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.1);
+			}
+
+			.variable-type-badge {
+				font-size: 10px;
+				padding: 2px 6px;
+				border-radius: 3px;
+				margin-left: 8px;
+
+				&.string { background-color: #007bff; }
+				&.number { background-color: #28a745; }
+				&.boolean { background-color: #ffc107; color: #000; }
+				&.object { background-color: #17a2b8; }
+			}
+
+			.variable-availability {
+				font-size: 10px;
+				padding: 2px 6px;
+				border-radius: 3px;
+				margin-left: 4px;
+
+				&.available { background-color: #28a745; }
+				&.unavailable { background-color: #6c757d; }
+			}
+		}
+	}
+
+	// Creator Tools Styles
+	.wired-creator-tools {
+		.tools-section {
+			border: 1px solid #444;
+			border-radius: 4px;
+			padding: 12px;
+			margin-bottom: 8px;
+			background-color: rgba(255, 255, 255, 0.05);
+
+			.section-title {
+				font-weight: bold;
+				margin-bottom: 8px;
+				color: #fff;
+			}
+		}
+
+		.template-item {
+			padding: 4px 8px;
+			border: 1px solid #555;
+			border-radius: 3px;
+			margin-bottom: 4px;
+			background-color: rgba(255, 255, 255, 0.05);
+			cursor: pointer;
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.1);
+			}
+
+			&.selected {
+				background-color: rgba(0, 123, 255, 0.3);
+				border-color: #007bff;
+			}
+		}
+
+		.history-item {
+			font-size: 11px;
+			padding: 2px 4px;
+			border-bottom: 1px solid #333;
+			color: #ccc;
+		}
+	}
+
+	// Advanced mode indicators
+	.advanced-mode-indicator {
+		position: absolute;
+		top: 4px;
+		right: 4px;
+		width: 8px;
+		height: 8px;
+		background-color: #28a745;
+		border-radius: 50%;
+		box-shadow: 0 0 4px rgba(40, 167, 69, 0.5);
+	}
+
+	// Variable availability display
+	.variable-availability-display {
+		max-height: 100px;
+		overflow-y: auto;
+		border: 1px solid #444;
+		border-radius: 4px;
+		padding: 4px;
+		background-color: rgba(0, 0, 0, 0.2);
+
+		.variable-info {
+			font-size: 10px;
+			color: #ccc;
+			margin-bottom: 2px;
+
+			.variable-name {
+				color: #fff;
+				font-weight: bold;
+			}
+
+			.variable-value {
+				color: #28a745;
+			}
+
+			.variable-type {
+				color: #007bff;
+			}
+		}
+	}
 }
 
 

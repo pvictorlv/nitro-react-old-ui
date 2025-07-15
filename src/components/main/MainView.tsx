@@ -27,6 +27,7 @@ import { ToolbarView } from '../toolbar/ToolbarView';
 import { UserProfileView } from '../user-profile/UserProfileView';
 import { UserSettingsView } from '../user-settings/UserSettingsView';
 import { WiredView } from '../wired/WiredView';
+import { WiredMenuView } from '../wired/views/WiredMenuView';
 
 export const MainView: FC<{}> = props =>
 {
@@ -89,6 +90,7 @@ export const MainView: FC<{}> = props =>
             <RoomView />
             <ChatHistoryView />
             <WiredView />
+            <WiredMenuView />
             <AvatarEditorView />
             <AchievementsView />
             <NavigatorView />

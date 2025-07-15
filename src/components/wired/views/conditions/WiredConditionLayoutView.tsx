@@ -14,6 +14,7 @@ import { WiredConditionFurniMatchesSnapshotView } from './WiredConditionFurniMat
 import { WiredConditionTimeElapsedLessView } from './WiredConditionTimeElapsedLessView';
 import { WiredConditionTimeElapsedMoreView } from './WiredConditionTimeElapsedMoreView';
 import { WiredConditionUserCountInRoomView } from './WiredConditionUserCountInRoomView';
+import { WiredConditionVariableView } from './WiredConditionVariableView';
 
 export const WiredConditionLayoutView = (code: number) =>
 {
@@ -58,6 +59,8 @@ export const WiredConditionLayoutView = (code: number) =>
         case WiredConditionlayout.USER_COUNT_IN:
         case WiredConditionlayout.NOT_USER_COUNT_IN:
             return <WiredConditionUserCountInRoomView />;
+        case WiredConditionlayout.VARIABLE_CONDITION:
+            return <WiredConditionVariableView />;
     }
 
     return null;

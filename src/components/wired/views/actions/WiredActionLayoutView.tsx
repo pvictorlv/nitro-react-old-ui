@@ -22,6 +22,7 @@ import { WiredActionMoveFurniView } from './WiredActionMoveFurniView';
 import { WiredActionMuteUserView } from './WiredActionMuteUserView';
 import { WiredActionResetView } from './WiredActionResetView';
 import { WiredActionSetFurniStateToView } from './WiredActionSetFurniStateToView';
+import { WiredActionSetVariableView } from './WiredActionSetVariableView';
 import { WiredActionTeleportView } from './WiredActionTeleportView';
 import { WiredActionToggleFurniStateView } from './WiredActionToggleFurniStateView';
 
@@ -75,6 +76,8 @@ export const WiredActionLayoutView = (code: number) =>
             return <WiredActionResetView />;
         case WiredActionLayoutCode.SET_FURNI_STATE:
             return <WiredActionSetFurniStateToView />;
+        case WiredActionLayoutCode.SET_VARIABLE:
+            return <WiredActionSetVariableView />;
         case WiredActionLayoutCode.TELEPORT:
             return <WiredActionTeleportView />;
         case WiredActionLayoutCode.TOGGLE_FURNI_STATE:
